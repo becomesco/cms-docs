@@ -247,6 +247,12 @@ export const navigation = [
     ],
   },
   {
+    title: 'CLI',
+    links: [
+      { title: 'Overview', href: '/cli' },
+    ],
+  },
+  {
     title: 'API Reference',
     links: [
       { title: 'Overview', href: '/api-reference/' },

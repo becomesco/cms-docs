@@ -2,22 +2,21 @@
 
 BCMS CLI helps you with things like scaffolding BCMS projects. It can help you quickly create anything BCMS-related. From plugins, over functions, to creating the whole codebase in your framework of choice.
 
-
-## Plugin options {{ tag: 'POST', label: '/v1/contacts' }}
+---
 
 <Row>
   <Col>
-    ## Plugin options {{ tag: 'POST', label: '/v1/contacts' }}
+    ## Plugin {{ label: '--plugin <command>' }}
 
-    `--plugin` options are for when you want to create a BCMS Plugin.
+    Plugin options are for when you want to create a BCMS Plugin.
     <Properties>
-      <Property name="create" type="string">
+      <Property name="create">
         Create new plugin project
       </Property>
-      <Property name="bundle" type="string">
+      <Property name="bundle">
         Prepare plugin for deployment
       </Property>
-      <Property name="deploy" type="string">
+      <Property name="deploy">
         Deploy plugin to your BCMS instance
       </Property>
     </Properties>
@@ -28,24 +27,22 @@ BCMS CLI helps you with things like scaffolding BCMS projects. It can help you q
     bcms --plugin create
     ```
     </CodeGroup>
-     Read more about creating [BCMS plugins here](/cloud/plugins).
+     Read more about working with [BCMS plugins](/cloud/plugins).
   </Col>
 </Row>
-<br />
-<br />
+
 ---
-<br />
-<br />
+
 <Row>
   <Col>
-    ## Function options
+    ## Function {{ label: '--function <name> <options>' }}
 
-    `--function` options are for when you want to create a BCMS Function.
+    Function options are for when you want to create a BCMS Function.
     <Properties>
-      <Property name="create" type="boolean">
+      <Property name="--create" type="boolean">
         Create a function
       </Property>
-      <Property name="bundle" type="boolean">
+      <Property name="--bundle" type="boolean">
         Make a function public
       </Property>
     </Properties>
@@ -53,22 +50,20 @@ BCMS CLI helps you with things like scaffolding BCMS projects. It can help you q
   <Col sticky>
     <CodeGroup title="Example command">
     ```bash {{ title: 'cURL' }}
-    bcms --function create
+    bcms --function myFunction --create
     ```
     </CodeGroup>
      Read more about creating [BCMS functions here](/cloud/plugins).
   </Col>
 </Row>
-<br />
-<br />
-<br />
-<br />
-<br />
+
+---
+
 <Row>
   <Col>
-    ## Login options
+    ## Login {{ label: '--login <options>' }}
 
-    `--login` options are for when you want to log in to a BCMS instance.
+    Login options are for when you want to log in to a BCMS instance.
     <Properties>
       <Property name="otp" type="string">
         Use a specified OTP for login
@@ -86,14 +81,12 @@ BCMS CLI helps you with things like scaffolding BCMS projects. It can help you q
     </CodeGroup>
   </Col>
 </Row>
-<br />
-<br />
-<br />
-<br />
-<br />
+
+---
+
 <Row>
   <Col>
-    ## Log out options
+    ## Log out
 
     `--logout` Sign out of BCMS Cloud account.
   </Col>
@@ -105,33 +98,31 @@ BCMS CLI helps you with things like scaffolding BCMS projects. It can help you q
     </CodeGroup>
   </Col>
 </Row>
-<br />
-<br />
-<br />
-<br />
-<br />
+
+---
+
 <Row>
   <Col>
-    ## CMS options
+    ## CMS {{ label: '--cms <command>' }}
 
-    `--cms` options are for when you want to interact with a BCMS instance.
+    CMS options are for when you want to interact with a BCMS instance.
     <Properties>
-      <Property name="create" type="boolean">
+      <Property name="create">
         Create a new BCMS project
       </Property>
-      <Property name="bundle" type="boolean">
+      <Property name="bundle">
         Prepare project for deployment
       </Property>
-      <Property name="deploy" type="boolean">
+      <Property name="deploy">
         Deploy the project to the BCMS Cloud
       </Property>
-      <Property name="clone" type="boolean">
+      <Property name="clone">
         Create a starter project and get instance data if available
       </Property>
-      <Property name="pull" type="boolean">
+      <Property name="pull">
         Pull functions, events, jobs and plugins for the current instance
       </Property>
-      <Property name="create local backup of the BCMS" type="boolean">
+      <Property name="backup">
         Create local backup of the BCMS
       </Property>
     </Properties>
@@ -144,40 +135,38 @@ BCMS CLI helps you with things like scaffolding BCMS projects. It can help you q
     </CodeGroup>
   </Col>
 </Row>
-<br />
-<br />
-<br />
-<br />
-<br />
+
+---
+
 <Row>
   <Col>
-    ## Instance options
+    ## Instance {{ label: '--instance <id> <options>' }}
 
-    `--instance` option is for when you want to install an instance on the current server.
+    Instance options are for when you want to install an instance on the current server.
     <Properties>
-      <Property name="install">
+      <Property name="--install">
         Install instance on the current server
       </Property>
-      </Properties>
+    </Properties>
   </Col>
   <Col sticky>
     <CodeGroup title="Example command">
     ```bash {{ title: 'cURL' }}
-    bcms --instance install
+    bcms --instance yourBcmsInstanceId install
     ```
     </CodeGroup>
   </Col>
 </Row>
-<br />
-<br />
-<br />
-<br />
-<br />
+
+---
+
 <Row>
   <Col>
-    ## Data migration
+    ## Data migration {{ label: '--migration <command> <options>' }}
 
-    `--migration <command> <options>` is for when you want to migrate data from one BCMS instance to another.
+    Migration commands and options are for when you want to migrate data from one BCMS instance to another.
+
+    ### Migration commands
     <Properties>
       <Property name="pull">
         Pull data from existing BCMS
@@ -191,41 +180,131 @@ BCMS CLI helps you with things like scaffolding BCMS projects. It can help you q
       <Property name="push">
         Restore data to target BCMS
       </Property>
-      </Properties>
+    </Properties>
+    ### Migration options
+    <Properties>
+      <Property name="--version">
+        Migration version (can be 2 or 3)
+      </Property>
+    </Properties>
   </Col>
   <Col sticky>
     <CodeGroup title="Example command">
     ```bash {{ title: 'cURL' }}
-    bcms --instance install
+    --migration pull <options>
     ```
     </CodeGroup>
   </Col>
 </Row>
-{/*
 
---migration <command> <options>
-  command:
-    pull         - pull data from existing BCMS
-    transform    - transform data from 1 version to next
-    create-fsdb  - create valid FSDB database with current data
-    push         - Restore data to target BCMS
-  options:
-    --version - migration version (can be 2 or 3)
+---
 
---most <command>
-  commands:
-    pull-content  - pull content from the BCMS
-    pull-media    - pull media from the BCMS
-    pull-types    - create types for data in the BCMS
-    all           - run all commands
+<Row>
+  <Col>
+    ## Most {{ label: '--most <command>' }}
 
---shim <command>
-  commands:
-    install  - install BCMS SHIM on the current server
-    update   - update BCMS SHIM
+    Most commands are for when you want to work with data from BCMS instance
+    <Properties>
+      <Property name="pull-content">
+        Pull content from the BCMS instance
+      </Property>
+      <Property name="pull-media">
+        Pull media from the BCMS
+      </Property>
+      <Property name="pull-types">
+        Create types based on the data from the BCMS instance
+      </Property>
+      <Property name="all">
+        Run all commands
+      </Property>
+    </Properties>
+  </Col>
+  <Col sticky>
+    <CodeGroup title="Example command">
+    ```bash {{ title: 'cURL' }}
+    bcms pull-content
+    ```
+    </CodeGroup>
+  </Col>
+</Row>
 
---cloudOrigin <url> - set an origin of the BCMS Cloud for running command
+---
 
---website <command>
-  commands:
-    create - Create a website using a framework with the BCMS integration */}
+<Row>
+  <Col>
+    ## Shim {{ label: '--shim <command>' }}
+
+    Shim commands are for when you want to work with BCMS Shim
+    <Properties>
+      <Property name="install">
+        Install BCMS SHIM on the current server
+      </Property>
+      <Property name="update">
+        Update BCMS SHIM
+      </Property>
+    </Properties>
+  </Col>
+  <Col sticky>
+    <CodeGroup title="Example command">
+    ```bash {{ title: 'cURL' }}
+    bcms --shim install
+    ```
+    </CodeGroup>
+  </Col>
+</Row>
+
+---
+
+<Row>
+  <Col>
+    ## CloudOrigin {{ label: '--cloudOrigin <url>' }}
+
+    CloudOrigin is for when you want to set an origin of the BCMS Cloud for running commands
+  </Col>
+  <Col sticky>
+    <CodeGroup title="Example command">
+    ```bash {{ title: 'cURL' }}
+    bcms --cloudOrigin your-bcms-url.yourbcms.com
+    ```
+    </CodeGroup>
+  </Col>
+</Row>
+
+---
+
+<Row>
+  <Col>
+    ## Website {{ label: '--website <command>' }}
+
+    Website commands are for when you want to quickstart a BCMS project
+    <Properties>
+      <Property name="--create">
+        Starts an interactive terminal guide for setting up a framework with the BCMS integration
+      </Property>
+    </Properties>
+  </Col>
+  <Col sticky>
+    <CodeGroup title="Example command">
+    ```bash {{ title: 'cURL' }}
+    bcms --website --create
+    ```
+    </CodeGroup>
+  </Col>
+</Row>
+
+---
+
+<Row>
+  <Col>
+    ## Help {{ label: '--help' }}
+
+    Help command lists our all available BCMS CLI commands
+  </Col>
+  <Col sticky>
+    <CodeGroup title="Example command">
+    ```bash {{ title: 'cURL' }}
+    bcms --help
+    ```
+    </CodeGroup>
+  </Col>
+</Row>
