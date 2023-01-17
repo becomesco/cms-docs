@@ -16,70 +16,70 @@ const cloud = [
     icon: UserIcon,
   },
   {
-    href: 'https://github.com/becomesco/cms',
+    href: '/cloud/instances',
     name: 'Instances',
     description:
       'BCMS is open-source software. Favorite the repository and help us spread a word!',
     icon: ChatBubbleIcon,
   },
   {
-    href: 'https://thebcms.com/blog/tags/tutorials',
+    href: '/cloud/nginx',
     name: 'Ngnix configuration',
     description:
       'Add custom Nginix configuration. For when you want to configure custom proxy or stuff.',
     icon: EnvelopeIcon,
   },
   {
-    href: 'https://thebcms.com/slack',
+    href: '/cloud/dependencies',
     name: 'Dependencies',
     description:
       'Join BCMS Slack community to learn from other developers and stay up-to-date with new features.',
     icon: UsersIcon,
   },
   {
-    href: 'https://thebcms.com/slack',
+    href: '/cloud/functions',
     name: 'Functions',
     description:
       'JavaScript functions which can be executed by sending an HTTP request to the BCMS backend API.',
     icon: UsersIcon,
   },
   {
-    href: 'https://thebcms.com/slack',
+    href: '/cloud/events',
     name: 'Events',
     description:
       'Subscribe to any add, update or delete event in your BCMS.',
     icon: UsersIcon,
   },
   {
-    href: 'https://thebcms.com/slack',
+    href: '/cloud/jobs',
     name: 'Jobs',
     description:
       'A way to execute a custom code on the BCMS Backend at specified interval.',
     icon: UsersIcon,
   },
   {
-    href: 'https://thebcms.com/slack',
+    href: '/cloud/plugins',
     name: 'Plugins',
     description:
       'Use to extend functionality of your BCMS’s backend and UI.',
     icon: UsersIcon,
   },
   {
-    href: 'https://thebcms.com/slack',
+    href: '/cloud/env-variables',
     name: 'Environment variables',
     description:
       'Your environment variables, which you can access from your Functions, Events, Jobs and Plugins.',
     icon: UsersIcon,
   },
   {
-    href: 'https://thebcms.com/slack',
+    href: '/cloud/domains',
     name: 'Domains',
     description:
       'Add custom domains to access your CMS',
     icon: UsersIcon,
   },
   {
-    href: 'https://thebcms.com/slack',
+    href: '/cloud/account-settings',
     name: 'Account settings',
     description:
       'Update your email, change password, upload avatar. Regular stuff.',

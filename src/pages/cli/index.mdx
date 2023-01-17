@@ -162,45 +162,6 @@ BCMS CLI helps you with things like scaffolding BCMS projects. It can help you q
 
 <Row>
   <Col>
-    ## Data migration {{ label: '--migration <command> <options>' }}
-
-    Migration commands and options are for when you want to migrate data from one BCMS instance to another.
-
-    ### Migration commands
-    <Properties>
-      <Property name="pull">
-        Pull data from existing BCMS
-      </Property>
-      <Property name="transform">
-        Transform data from 1 version to next version
-      </Property>
-      <Property name="create-fsdb">
-        Create valid FSDB database with current data
-      </Property>
-      <Property name="push">
-        Restore data to target BCMS
-      </Property>
-    </Properties>
-    ### Migration options
-    <Properties>
-      <Property name="--version">
-        Migration version (can be 2 or 3)
-      </Property>
-    </Properties>
-  </Col>
-  <Col sticky>
-    <CodeGroup title="Example command">
-    ```bash {{ title: 'cURL' }}
-    --migration pull <options>
-    ```
-    </CodeGroup>
-  </Col>
-</Row>
-
----
-
-<Row>
-  <Col>
     ## Most {{ label: '--most <command>' }}
 
     Most commands are for when you want to work with data from BCMS instance

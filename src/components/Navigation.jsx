@@ -243,7 +243,7 @@ export const navigation = [
       { title: 'Plugins', href: '/cloud/plugins' },
       { title: 'Environment variables', href: '/cloud/env-variables' },
       { title: 'Domains', href: '/cloud/domains' },
-      { title: 'Account settings', href: '/cloud/account' },
+      { title: 'Account settings', href: '/cloud/account-settings' },
     ],
   },
   {
