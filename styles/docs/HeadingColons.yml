@@ -1,0 +1,8 @@
+extends: existence
+message: "Capitalize '%s'."
+link: https://www.notion.so/becomes/Documentation-style-guide-5f0eae1aa0e543d489c3cf14c701fd9f
+nonword: true
+level: error
+scope: heading
+tokens:
+  - ':\s[a-z]'

@@ -1,0 +1,6 @@
+(?i)BCMS
+(?i)Qovery
+(?i)Netlify
+(?i)s3
+(?i)vite
+(?i)Vue

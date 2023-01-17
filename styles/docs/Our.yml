@@ -1,0 +1,7 @@
+extends: existence
+message: "Avoid using our"
+link: https://www.notion.so/becomes/Documentation-style-guide-5f0eae1aa0e543d489c3cf14c701fd9f
+level: warning
+ignorecase: true
+tokens:
+  - ours?

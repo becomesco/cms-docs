@@ -1,0 +1,10 @@
+extends: existence
+message: "Avoid using first-person plural like '%s'."
+link: https://www.notion.so/becomes/Documentation-style-guide-5f0eae1aa0e543d489c3cf14c701fd9f
+level: error
+ignorecase: true
+tokens:
+  - we
+  - we'(?:ve|re)
+  - us
+  - let's

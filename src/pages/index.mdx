@@ -1,0 +1,50 @@
+import { Guides } from '@/components/Guides'
+import { Resources } from '@/components/Resources'
+import { HeroPattern } from '@/components/HeroPattern'
+
+export const description =
+  'Learn everything there is to know about the BCMS and integrate BCMS into your product.'
+
+export const sections = [
+  { title: 'Guides', id: 'guides' },
+  { title: 'Resources', id: 'resources' },
+]
+
+<HeroPattern />
+
+# Welcome to BCMS' documentation
+
+BCMS is an open-source, self-hosted, Headless Content Management System.
+
+Chances are, you are exploring different simialar tools now, and wondering "How is BCMS any different?".
+As developers, we worked with most of them, and then decided to make BCMS, with simple ideas:
+- It should empower teams working on modern websites
+- It must be easy to adapt to the frequent changes that teams have in their projects
+- Meanwhile, it must remain beautiful
+- Remain equally super-intuitive, even for non-technical people in your team
+- Keep being blazingly fast even with a lot of content
+- Let you integrate BCMS with other tools
+- Avoid any kind of vendor-locking
+
+
+<div className="not-prose mb-16 mt-6 flex gap-3">
+  <Button href="/quickstart" arrow="right" children="Quickstart" />
+  <Button href="/sdk" variant="outline" children="Explore SDKs" />
+</div>
+
+{/* ## Getting started {{ anchor: false }}
+
+To get started, create your account first, then read about how to create a BCMS instance, optionally deploy it and connect with modern frameworks. {{ className: 'lead' }}
+
+<div className="not-prose">
+  <Button
+    href="https://cloud.thebcms.com/"
+    variant="text"
+    arrow="right"
+    children="Create your account"
+  />
+</div> */}
+
+<Guides />
+
+<Resources />

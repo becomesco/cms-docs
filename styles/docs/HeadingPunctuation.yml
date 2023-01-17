@@ -1,0 +1,13 @@
+extends: existence
+message: "Don't use end punctuation in headings."
+link: https://www.notion.so/becomes/Documentation-style-guide-5f0eae1aa0e543d489c3cf14c701fd9f
+nonword: true
+level: error
+scope: heading
+action:
+  name: edit
+  params:
+    - remove
+    - '.?!'
+tokens:
+  - '[a-z][.?!](?:\s|$)'

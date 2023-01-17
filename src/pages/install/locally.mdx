@@ -1,0 +1,87 @@
+import Image from 'next/image'
+import outputOfTheDockerComposeUpCommand from '/src/images/quickstart/output-of-the-docker-compose-up-command.jpeg'
+import bcmsInLocalDev from '/src/images/quickstart/bcms-in-local-dev.png'
+import { Libraries } from '@/components/Libraries'
+
+export const description =
+  'Follow along with this tutorial on how installl BCMS Headless CMS locally on your computer'
+
+# Install BCMS locally on your computer in 3 minutes
+
+In this quick guide, we'll see how to set up a brand-new website BCMS locally, on your computer. {{ className: 'lead' }}
+
+<Note>
+  To successfully start and run the BCMS locally, you will need a few tools.
+  - [Node 14+](https://nodejs.dev/en/learn/how-to-install-nodejs/)
+  - [NPM 6+](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/)
+  - [Docker](https://docs.docker.com/get-docker/)
+  - [Docker compose](https://docker-docs.netlify.app/compose/install/)
+
+  Make sure to have them installed before you continue. Click on each of the items above to read the installation instructions.
+</Note>
+
+The easiest way to start BCMS project locally is by using the [BCMS CLI](https://www.npmjs.com/package/@becomes/cms-cli).
+
+## Install BCMS CLI
+
+To install it globally, run this command in your terminal:
+<CodeGroup>
+  ```bash
+  npm install -g @becomes/cms-cli
+```
+</CodeGroup>
+
+To verify that the installation went well, run:
+
+<CodeGroup>
+  ```bash
+  bcms --help
+```
+</CodeGroup>
+
+## Create BCMS project
+
+Now that you have the CLI installed, all you have to do is open a terminal, navigate to a location where you want to create the project, and run:
+
+<CodeGroup>
+  ```bash
+  bcms --cms create
+```
+</CodeGroup>
+
+This command will prompt you to enter the name of your project.
+
+<Note>
+  Since BCMS relies on Docker to run all application segments, please ensure that Docket is running on your system. Run ```docker ps -a``` to list all available docker containers. The command will succeed only if the Docker engine is running. Don't worry if your docker table is empty. That's fine 👍
+</Note>
+
+## Start a development server
+
+After creating a BCMS project, you can enter the project location from your terminal or open it in your favorite code editor or IDE. We'll use VSCode. Inside the project, run ```docker-compose up``` or ```docker compose up```  (use whichever works for you).
+<Image
+  src={outputOfTheDockerComposeUpCommand}
+  alt="Figure 1 - Output of the docker-compose up command."
+  className="h-auto w-full"
+  unoptimized
+/>
+
+Once all containers are started, you can open your browser and navigate to [localhost:8080](http://localhost:8080).
+
+<Image
+  src={bcmsInLocalDev}
+  alt="Figure 2 - The BCMS in local development."
+  className="h-auto w-full"
+  unoptimized
+/>
+
+That's all! You can now explore BCMS locally on your machine. 😍
+
+**Is this a full version of the BCMS?**
+
+**Yes, it is.** There are no feature restrictions, and you can do everything that you can do with a production-deployed version. The only difference is that the instance is not connected to the BCMS Cloud, so you cannot create users.
+
+{/* ## What's next?
+
+Great, you're now set up with a BCMS instance. It's time to connect it with your favorite framework:
+
+<Libraries /> */}

@@ -1,0 +1,5 @@
+# BCMS SDK & Caching
+
+Caching is a vital feature of the BCMS SDK.  It helps to minimize the number of requests made to the Backend server, reduce internet usage, and improve UI performance.
+
+When data is requested, the SDK first checks to see if it is already stored in the cache. If it is, the cached data is returned immediately without sending a request to the Backend. It means that subsequent requests for the same data are much faster and have a smaller network payload.

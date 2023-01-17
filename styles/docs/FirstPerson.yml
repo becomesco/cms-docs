@@ -1,0 +1,16 @@
+extends: existence
+message: "Avoid using first person (such as '%s')"
+link: https://www.notion.so/becomes/Documentation-style-guide-5f0eae1aa0e543d489c3cf14c701fd9f
+ignorecase: true
+level: error
+nonword: true
+tokens:
+  - (?:^|\s)I\s
+  - (?:^|\s)I,\s
+  - \bI'd\b
+  - \bI'll\b
+  - \bI'm\b
+  - \bI've\b
+  - \bme\b
+  - \bmy\b
+  - \bmine\b

@@ -1,0 +1,12 @@
+extends: substitution
+message: Consider using '%s' instead of '%s'
+level: warning
+scope: code
+ignorecase: false
+# swap maps tokens in form of bad: good
+swap:
+  (?:nuxt|nuxtjs): Nuxt.js
+  (?:vue|vuejs): Vue.js
+  (?:gridsome|gridsomejs): Gridsome.js
+  (?:gatsby|gatsby.js): Gatsby.js
+  (?:nextjs|next): Next.js
