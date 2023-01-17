@@ -71,7 +71,6 @@ export const Header = forwardRef(function Header({ className }, ref) {
           <ul role="list" className="flex items-center gap-8">
             <TopLevelNavItem href="https://rest-apis.thebcms.com/bcms-backend/3-0-0">API</TopLevelNavItem>
             <TopLevelNavItem href="/">Documentation</TopLevelNavItem>
-            {/* <TopLevelNavItem href="#">Support</TopLevelNavItem> */}
             <li className='mt-2'>
               <GitHubButton href="https://github.com/becomesco/cms" data-icon="octicon-star" data-show-count="true" aria-label="Star becomesco/cms on GitHub">Star</GitHubButton>
             </li>
