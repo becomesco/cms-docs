@@ -252,24 +252,6 @@ export const navigation = [
       { title: 'Overview', href: '/cli' },
     ],
   },
-  {
-    title: 'API Reference',
-    links: [
-      { title: 'Overview', href: '/api-reference/' },
-      // { title: 'User', href: '/api/user' },
-      // { title: 'Template', href: '/api/template' },
-      // { title: 'Group', href: '/api/group' },
-      // { title: 'Group', href: '/api/group' },
-      // { title: 'Widget', href: '/api/widget' },
-      // { title: 'Entry', href: '/api/entry' },
-      // { title: 'Media', href: '/api/dir' },
-      // { title: 'Key', href: '/api/key' },
-      // { title: 'Language', href: '/api/language' },
-      // { title: 'Function', href: '/api/function' },
-      // { title: 'Status', href: '/api/status' },
-      // { title: 'Template Organizer', href: '/api/status' },
-    ],
-  },
 ]
 
 export function Navigation(props) {

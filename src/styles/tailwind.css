@@ -13,3 +13,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.bcmsBody {
+  position: relative;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+  --tw-bg-opacity: 1;
+  background-color: rgba(252, 252, 252, var(--tw-bg-opacity));
+  background-repeat: no-repeat;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  line-height: 1.375
+}
+
+.dark .bcmsBody {
+  --tw-bg-opacity: 1;
+  background-color: rgba(19, 20, 26, var(--tw-bg-opacity))
+}
+
+.bcmsBody {
+  -webkit-overflow-scrolling: touch;
+  background-image: url(/gradient-small.png);
+  background-position: 0 0;
+  background-size: 450px
+}
+
+@media screen and (min-width: 375px) {
+  .bcmsBody {
+      background-size: calc(327.14286px + 32.7619vw)
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .bcmsBody {
+      background-size:622px
+  }
+}

@@ -2,6 +2,7 @@ import { forwardRef } from 'react'
 import Link from 'next/link'
 import clsx from 'clsx'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import GitHubButton from 'react-github-btn'
 
 import { Button } from '@/components/Button'
 import { Logo } from '@/components/Logo'
@@ -68,9 +69,12 @@ export const Header = forwardRef(function Header({ className }, ref) {
       <div className="flex items-center gap-5">
         <nav className="hidden md:block">
           <ul role="list" className="flex items-center gap-8">
-            <TopLevelNavItem href="#">API</TopLevelNavItem>
-            <TopLevelNavItem href="#">Documentation</TopLevelNavItem>
-            <TopLevelNavItem href="#">Support</TopLevelNavItem>
+            <TopLevelNavItem href="https://rest-apis.thebcms.com/bcms-backend/3-0-0">API</TopLevelNavItem>
+            <TopLevelNavItem href="/">Documentation</TopLevelNavItem>
+            {/* <TopLevelNavItem href="#">Support</TopLevelNavItem> */}
+            <li className='mt-2'>
+              <GitHubButton href="https://github.com/becomesco/cms" data-icon="octicon-star" data-show-count="true" aria-label="Star becomesco/cms on GitHub">Star</GitHubButton>
+            </li>
           </ul>
         </nav>
         <div className="hidden md:block md:h-5 md:w-px md:bg-zinc-900/10 md:dark:bg-white/15" />
@@ -79,7 +83,7 @@ export const Header = forwardRef(function Header({ className }, ref) {
           <ModeToggle />
         </div>
         <div className="hidden min-[416px]:contents">
-          <Button href="#">Sign in</Button>
+          <Button target="_blank" href="https://cloud.thebcms.com/">Sign in</Button>
         </div>
       </div>
     </motion.div>
