@@ -2,6 +2,18 @@
 
 BCMS CLI helps you with things like scaffolding BCMS projects. It can help you quickly create anything BCMS-related. From plugins, over functions, to creating the whole codebase in your framework of choice.
 
+## Installing BCMS CLI
+
+To install BCMS CLI globally, run `npm install -g @becomes/cms-cli`. After that, you should be able to run any of the following commands.
+
+## Learning the CLI
+
+You will find a lot of commands and options on this page. Rest assured, you will only need to know and use a small fraction in a typical day.
+
+For new users, the recommended learning path is to first go through [BCMS Quickstart](/quickstart) and [Integrations](/integrations). There you will learn the commands while building a sample app. Then, review the rest of the commants here.
+
+The CLI comes with a help system too. At any point, if you're not sure what a command does and what its options are, you can add `--help` to the command and press enter to find out more.
+
 ---
 
 <Row>
@@ -184,31 +196,6 @@ BCMS CLI helps you with things like scaffolding BCMS projects. It can help you q
     <CodeGroup title="Example command">
     ```bash {{ title: 'cURL' }}
     bcms pull-content
-    ```
-    </CodeGroup>
-  </Col>
-</Row>
-
----
-
-<Row>
-  <Col>
-    ## Shim {{ label: '--shim <command>' }}
-
-    Shim commands are for when you want to work with BCMS Shim
-    <Properties>
-      <Property name="install">
-        Install BCMS SHIM on the current server
-      </Property>
-      <Property name="update">
-        Update BCMS SHIM
-      </Property>
-    </Properties>
-  </Col>
-  <Col sticky>
-    <CodeGroup title="Example command">
-    ```bash {{ title: 'cURL' }}
-    bcms --shim install
     ```
     </CodeGroup>
   </Col>

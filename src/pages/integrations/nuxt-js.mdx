@@ -9,12 +9,12 @@ export const sections = [
     id: 'getting-data-from-bcms-in-a-nuxt-page',
   },
   {
-    title: 'Working with media files',
-    id: 'working-with-media-files-from-bcms',
+    title: 'BCMSImage Component',
+    id: 'working-with-bcms-image-component',
   },
 ]
 
-# Nuxt.js plugin for BCMS
+# Getting started with Nuxt.js and BCMS
 
 This is the Nuxt.js plugin documentation for the BCMS.
 
@@ -68,17 +68,18 @@ If you want to get an entry from Blog template, and the entry's slug is _'how-to
 <CodeGroup>
   ```typescript {{ title: 'Nuxt.js 3' }}
   const { data } = useAsyncData(async (ctx) => {
-    return (await ctx?.$bcms.entry.get({
+    const blog = (await ctx?.$bcms.entry.get({
       template: 'blog',
       entry: 'how-to-connect-bcms-and-nuxtjs',
     })) as HomeEntry[];
+    return { blog }
   });
   ```
 </CodeGroup>
 
-For this particular use case, you will probably put this code in your `blog/_slug.vue` file, and set entry parameter to be dynamic, like this: `entry: ctx.route.params.slug`.
+For this particular use case, you will probably put this code in your `blog/_slug.vue` file, and set entry parameter to be dynamic, like this: `entry: ctx.route.params.slug`. After that, your blog's data is available in the `blog` variable.
 
-To learn more about all available options, read the [BCMS CLI documentation](/cli).
+{/* TODO: The rest of the available $bcms options */}
 
 ### Getting data using Nuxt middleware API
 
@@ -91,24 +92,24 @@ Create a `bcms.routes.ts` file. Inside, let's create a simple configuration and 
 import { createBcmsMostServerRoutes, createBcmsMostServerRoute } from '@becomes/cms-most';
 
 export default createBcmsMostServerRoutes({
-  '/template-list.json': createBcmsMostServerRoute({
-    method: 'get',
-    async handler({ bcms }) {
-      await bcms.template.pull();
-      const result = await bcms.template.find(async () => true);
-      return result.map((temp) => {
-        return {
-          title: temp.label,
-          slug: '/' + temp.name,
-        };
-      });
-    },
-  }),
+    '/template-list.json': createBcmsMostServerRoute({
+      method: 'get',
+      async handler({ bcms }) {
+        await bcms.template.pull();
+        const result = await bcms.template.find(async () => true);
+        return result.map((temp) => {
+          return {
+            title: temp.label,
+            slug: '/' + temp.name,
+          };
+        });
+      },
+    }),
 });
 ````
 </CodeGroup>
 
-In the example above, we quickly created an endpoint that returns a light model of all templates from the BCMS, containing only *title* and *slug* properties of each template.
+In the example above, we quickly created an endpoint that returns a light model of all templates from the BCMS instance, containing only the *title* and *slug* properties of each template.
 
 You can now call this endpoint inside of *asyncData*, as shown bellow:
 
@@ -124,5 +125,33 @@ const { data } = useAsyncData(async (ctx) => {
 
 </CodeGroup>
 
-## Working with Media files from BCMS
+## Working with BCMSImage Nuxt.js component
 
+We all love images on the web. High-quality, sharp ones. But we also love fast websites. Why can't we have both? Well, BCMS Image lets you have both. To simplify handling responsive images and performance optimization, we created the `BCMSImage` component.
+
+It automatically creates multiple variants of the source image, including WEBP format. Let's see how to use it. Our demo blog data (which is available if you are [running BCMS locally](/install/locally)), has a cover image property. To start, let's import the `BCMSImage` component and pass the cover_image object.
+
+<CodeGroup>
+```html
+<template>
+  <div v-if="blog">
+    <div v-if="blog.meta.en && blog.meta.en.cover_image">
+      <BCMSImage :media="blog.meta.en.cover_image" />
+    </div>
+  </div>
+</template>
+<script lang="ts">
+  import BCMSImage from 'nuxt-plugin-bcms/components/image.vue';
+  export default Vue.extend({
+    components: {
+      BCMSImage,
+    },
+  });
+</script>
+````
+</CodeGroup>
+
+In your browser, you'll see that the image size is changing. The real image source is changing. If you inspect the image, you'll see that the image source is of the same size as it appears on the screen. BCMSImage takes care of chosing the perfect image dimensions, out of the box.
+You are also able to pass to it options like quality and sizes, that will give you a fine grained control over performance and art direction.
+
+Learn more about all BCMSImage component options here.
