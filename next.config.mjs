@@ -18,6 +18,16 @@ const nextConfig = {
   experimental: {
     scrollRestoration: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.loom.com',
+        port: '',
+        pathname: '/sessions/thumbnails/**',
+      },
+    ],
+  },
 }
 
 export default withMDX(nextConfig)

@@ -193,6 +193,11 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
+"@loomhq/loom-embed@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@loomhq/loom-embed/-/loom-embed-1.5.0.tgz#1f5a72a3bef30958c05b37a94ec86af78c3626c9"
+  integrity sha512-1Rilv+Ta39Rk2mEb8wzfLSpPhl6ax7kfLNnfYTAGK4mCJIxwQ1o/BY46QRbIpQT/SdfsFCvvNWa57hlEEaduGA==
+
 "@mdx-js/loader@^2.1.5":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mdx-js/loader/-/loader-2.2.1.tgz#71634e87659cd29240933d174a151a4d4ab3b70c"

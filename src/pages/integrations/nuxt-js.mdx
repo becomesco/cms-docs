@@ -10,7 +10,7 @@ export const sections = [
   },
   {
     title: 'BCMSImage Component',
-    id: 'working-with-bcms-image-component',
+    id: 'working-with-bcms-image-nuxt-js-component',
   },
 ]
 
@@ -71,7 +71,7 @@ If you want to get an entry from Blog template, and the entry's slug is _'how-to
     const blog = (await ctx?.$bcms.entry.get({
       template: 'blog',
       entry: 'how-to-connect-bcms-and-nuxtjs',
-    })) as HomeEntry[];
+    })) as BlogEntry[];
     return { blog }
   });
   ```
@@ -109,9 +109,9 @@ export default createBcmsMostServerRoutes({
 ````
 </CodeGroup>
 
-In the example above, we quickly created an endpoint that returns a light model of all templates from the BCMS instance, containing only the *title* and *slug* properties of each template.
+In the example above, we quickly created an endpoint that returns a light model of all templates from the BCMS instance, containing only the _title_ and _slug_ properties of each template.
 
-You can now call this endpoint inside of *asyncData*, as shown bellow:
+You can now call this endpoint inside of _asyncData_, as shown bellow:
 
 <CodeGroup>
 ```typescript
@@ -134,11 +134,8 @@ It automatically creates multiple variants of the source image, including WEBP f
 <CodeGroup>
 ```html
 <template>
-  <div v-if="blog">
-    <div v-if="blog.meta.en && blog.meta.en.cover_image">
-      <BCMSImage :media="blog.meta.en.cover_image" />
-    </div>
-  </div>
+  ...
+  <BCMSImage :media="blog.meta.en.cover_image" />
 </template>
 <script lang="ts">
   import BCMSImage from 'nuxt-plugin-bcms/components/image.vue';
@@ -151,7 +148,143 @@ It automatically creates multiple variants of the source image, including WEBP f
 ````
 </CodeGroup>
 
-In your browser, you'll see that the image size is changing. The real image source is changing. If you inspect the image, you'll see that the image source is of the same size as it appears on the screen. BCMSImage takes care of chosing the perfect image dimensions, out of the box.
-You are also able to pass to it options like quality and sizes, that will give you a fine grained control over performance and art direction.
+## Adding data from Nuxt.js to BCMS
 
-Learn more about all BCMSImage component options here.
+Now the things got a bit more spicy 🌶️. Is there a website that doesn't have a contact form / newsletter subscription form? Comment form even. When working with modern static site generators like Nuxt.js, we usualy end up using some 3rd party form providers. With BCMS, you don't need to do that. The same way you get data from BCMS, you can add or update data.
+
+If you want to create a comment section, you could easily create a [template](/inside-bcms/templates), and name it *Comment* for example. It can contain properties like *full_name* and *message*.
+
+In your Nuxt.js code, you'll have something like this:
+
+<CodeGroup>
+```html
+<template>
+  <form @submit="handleSubmit()">
+    <label>
+      <span>Your name</span>
+      <input type="text" v-model="full_name" />
+    </label>
+    <label>
+      <span>Your message</span>
+      <textarea v-model="message"></textarea>
+    </label>
+  </form>
+</template>
+<script lang="ts">
+  export default Vue.extend({
+    data: {
+      return {
+        full_name: '',
+        message: '',
+      }
+    },
+    methods: {
+      async handleSubmit() {
+      const bcms = this.$bcms as BCMSNuxtPlugin;
+      const date = new Date();
+      await bcms.entry.create({
+        templateId: '1234567', /** Your template ID */
+        meta: [
+          {
+            lng: 'en',
+            props: [
+              {
+                id: 'title-prop-id', /** Your title prop ID */
+                data: [`Comment from ${date.toDateString()}`],
+              },
+              {
+                id: 'slug-prop-id', /** Your slug prop ID */
+                data: ['anthony-hopkins-comment'],
+              },
+              {
+                id: 'full_name-prop-id', /** Your full_name prop ID */
+                data: [this.full_name]
+              },
+               {
+                id: 'message-prop-id', /** Your message prop ID */
+                data: [this.message]
+              }
+            ],
+          },
+        ],
+        content: [
+          {
+            lng: 'en',
+            nodes: [
+              // Prosemirror nodes
+            ],
+            plainText: '',
+          },
+        ],
+      });
+    },
+    }
+  });
+</script>
+````
+</CodeGroup>
+
+<Note>
+  `prop-id` of a property is displayed on the [template's page](/inside-bcms/templates).
+</Note>
+
+Now you'll be able to get data from your Nuxt.js aplication to your BCMS instance.
+
+<Note>
+Just don't forget to allow your API key in [Key Manager](/inside-bcms/key-manager) to add data to your *Contact* template.
+</Note>
+
+## Updateing BCMS data from Nuxt.js to BCMS
+
+The same way you create an entry, you can update an entry too. Here's how:
+
+<CodeGroup>
+```html
+<script lang="ts">
+  export default Vue.extend({
+    methods: {
+      async handleUpdate() {
+        const bcms = this.$bcms as BCMSNuxtPlugin;
+        const date = new Date();
+        await bcms.entry.update({
+          _id: '7654321', /** Your entry ID */
+          templateId: '1234567', /** Your template ID */
+          meta: [
+            {
+              lng: 'en',
+              props: [
+                {
+                  id: 'title-prop-id', /** Your title prop ID */
+                  data: [`Comment from ${date.toDateString()}`],
+                },
+                {
+                  id: 'slug-prop-id', /** Your slug prop ID */
+                  data: ['anthony-hopkins-comment'],
+                },
+                {
+                  id: 'full_name-prop-id', /** Your full_name prop ID */
+                  data: 'Anthony Hopkins'
+                },
+                {
+                  id: 'message-prop-id', /** Your message prop ID */
+                  data: 'First, principles, Clarice. Simplicity. Read Marcus Aurelius. Of each particular thing, ask what is it in itself? What is its nature?'
+                }
+              ],
+            },
+          ],
+          content: [
+            {
+              lng: 'en',
+              nodes: [
+                // Prosemirror nodes
+              ],
+              plainText: '',
+            },
+          ],
+        });
+      },
+    }
+  });
+</script>
+````
+</CodeGroup>

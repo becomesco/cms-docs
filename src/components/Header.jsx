@@ -73,7 +73,7 @@ export const Header = forwardRef(function Header({ className }, ref) {
             <TopLevelNavItem href="/">Documentation</TopLevelNavItem>
             <TopLevelNavItem href="https://thebcms.com">Website</TopLevelNavItem>
             <li className='mt-2'>
-              <GitHubButton href="https://github.com/becomesco/cms" data-icon="octicon-star" data-show-count="true" aria-label="Star becomesco/cms on GitHub">Star</GitHubButton>
+              <GitHubButton href="https://github.com/becomesco/cms" data-size="large" aria-label="Star becomesco/cms on GitHub">Star BCMS</GitHubButton>
             </li>
           </ul>
         </nav>
