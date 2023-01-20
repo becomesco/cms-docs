@@ -239,7 +239,7 @@ export const navigation = [
     ],
   },
   {
-    title: 'CLI',
+    title: 'CLI Tool',
     links: [
       { title: 'Overview', href: '/cli' },
     ],
