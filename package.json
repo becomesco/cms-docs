@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build:search": "npm-tool --build:search"
   },
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {
@@ -20,7 +21,6 @@
     "@sindresorhus/slugify": "^2.1.1",
     "@tailwindcss/typography": "^0.5.8",
     "acorn": "^8.8.1",
-    "algoliasearch": "^4.14.2",
     "autoprefixer": "^10.4.7",
     "clsx": "^1.2.0",
     "focus-visible": "^5.2.0",
@@ -41,6 +41,10 @@
     "zustand": "^4.3.2"
   },
   "devDependencies": {
+    "@banez/fs": "^1.0.3",
+    "@banez/npm-tool": "^1.1.1",
+    "@banez/string-utility": "^1.0.1",
+    "algoliasearch": "^4.14.3",
     "eslint": "8.26.0",
     "eslint-config-next": "13.0.2",
     "prettier": "^2.7.1",
