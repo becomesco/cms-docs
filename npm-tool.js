@@ -3,6 +3,8 @@ const { StringUtility } = require('@banez/string-utility')
 const { createConfig } = require('@banez/npm-tool')
 const { createFS } = require('@banez/fs')
 const algoliaSearch = require('algoliasearch')
+const removeMd = require('remove-markdown-and-html');
+
 
 const algolia = algoliaSearch.default(
   '6VKFS5NOO9',
@@ -12,6 +14,13 @@ const algIndex = algolia.initIndex('docs')
 const fs = createFS({
   base: process.cwd(),
 })
+
+function parseContent(content) {
+  const strip1 = content.replace(/\{{[^{{}}]*\}}/g, '');
+  const strip2 = removeMd(strip1);
+  const strip3 = strip2.replace(/<\/?[^>]+(>|$)/g, '').replace('#', '').replace('##', '')
+  return strip3
+}
 
 module.exports = createConfig({
   custom: {
@@ -53,7 +62,7 @@ module.exports = createConfig({
                 .digest('hex'),
               uri: `/${item.path.rel.replace('.mdx', '')}`,
               title: title.replace('# ', ''),
-              content: lines.slice(j + 1).join('\n'),
+              content: parseContent(lines.slice(j + 1).join(' ')),
             }
             break
           }

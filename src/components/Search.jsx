@@ -36,12 +36,13 @@ function useAutocomplete() {
       getSources() {
         return [
           {
-            sourceId: 'documentation',
+            sourceId: 'docs',
             getItemInputValue({ item }) {
               return item.query
             },
             getItemUrl({ item }) {
-              let url = new URL(item.url)
+              console.log(item)
+              let url = new URL('https://docs.thebcms.com' + item.uri)
               return `${url.pathname}${url.hash}`
             },
             onSelect({ itemUrl }) {
@@ -59,6 +60,10 @@ function useAutocomplete() {
                       highlightPreTag:
                         '<mark class="underline bg-transparent text-emerald-500">',
                       highlightPostTag: '</mark>',
+                      snippetEllipsisText: '...',
+                      attributesToSnippet: [
+                        'content:5',
+                      ]
                     },
                   },
                 ],
@@ -74,27 +79,29 @@ function useAutocomplete() {
 }
 
 function resolveResult(result) {
-  let allLevels = Object.keys(result.hierarchy)
-  let hierarchy = Object.entries(result._highlightResult.hierarchy).filter(
-    ([, { value }]) => Boolean(value)
-  )
-  let levels = hierarchy.map(([level]) => level)
+  console.log(result)
+  // let allLevels = Object.keys(result.hierarchy)
+  // let hierarchy = Object.entries(result._highlightResult.hierarchy).filter(
+  //   ([, { value }]) => Boolean(value)
+  // )
+  // let levels = hierarchy.map(([level]) => level)
 
-  let level =
-    result.type === 'content'
-      ? levels.pop()
-      : levels
-          .filter(
-            (level) =>
-              allLevels.indexOf(level) <= allLevels.indexOf(result.type)
-          )
-          .pop()
+  // let level =
+  //   result.type === 'content'
+  //     ? levels.pop()
+  //     : levels
+  //         .filter(
+  //           (level) =>
+  //             allLevels.indexOf(level) <= allLevels.indexOf(result.type)
+  //         )
+  //         .pop()
 
   return {
-    titleHtml: result._highlightResult.hierarchy[level].value,
-    hierarchyHtml: hierarchy
-      .slice(0, levels.indexOf(level))
-      .map(([, { value }]) => value),
+    titleHtml: result._highlightResult.title.value,
+    content: result._snippetResult.content.value,
+    // hierarchyHtml: hierarchy
+    //   .slice(0, levels.indexOf(level))
+    //   .map(([, { value }]) => value),
   }
 }
 
@@ -153,7 +160,7 @@ function LoadingIcon(props) {
 
 function SearchResult({ result, resultIndex, autocomplete, collection }) {
   let id = useId()
-  let { titleHtml, hierarchyHtml } = resolveResult(result)
+  let { titleHtml, content } = resolveResult(result)
 
   return (
     <li
@@ -173,26 +180,26 @@ function SearchResult({ result, resultIndex, autocomplete, collection }) {
         className="text-sm font-medium text-zinc-900 group-aria-selected:text-emerald-500 dark:text-white"
         dangerouslySetInnerHTML={{ __html: titleHtml }}
       />
-      {hierarchyHtml.length > 0 && (
+      {content && (
         <div
           id={`${id}-hierarchy`}
           aria-hidden="true"
           className="mt-1 truncate whitespace-nowrap text-2xs text-zinc-500"
         >
-          {hierarchyHtml.map((item, itemIndex, items) => (
-            <Fragment key={itemIndex}>
-              <span dangerouslySetInnerHTML={{ __html: item }} />
-              <span
+          {/* {hierarchyHtml.map((item, itemIndex, items) => ( */}
+            {/* <Fragment key={itemIndex}> */}
+              <span dangerouslySetInnerHTML={{ __html: content }} />
+              {/* <span
                 className={
-                  itemIndex === items.length - 1
-                    ? 'sr-only'
-                    : 'mx-2 text-zinc-300 dark:text-zinc-700'
+                  // itemIndex === items.length - 1
+                    // ? 'sr-only'
+                    'mx-2 text-zinc-300 dark:text-zinc-700'
                 }
               >
                 /
-              </span>
-            </Fragment>
-          ))}
+              </span> */}
+            {/* </Fragment> */}
+          {/* ))} */}
         </div>
       )}
     </li>
@@ -477,7 +484,6 @@ export function Search() {
     )
   }, [])
 
-  return <div className="hidden lg:block lg:max-w-md lg:flex-auto" />
   return (
     <div className="hidden lg:block lg:max-w-md lg:flex-auto">
       <button
