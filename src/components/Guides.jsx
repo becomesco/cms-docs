@@ -32,13 +32,13 @@ export function Guides() {
       <Heading level={2} id="guides">
         Guides
       </Heading>
-      <div className="grid grid-cols-1 gap-8 pt-10 mt-4 border-t not-prose border-zinc-900/5 dark:border-white/5 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="grid grid-cols-1 gap-8 pt-10 mt-4 border-t not-prose border-dark/5 dark:border-light/5 sm:grid-cols-2 xl:grid-cols-4">
         {guides.map((guide) => (
           <div key={guide.href}>
-            <h3 className="text-sm font-semibold text-zinc-900 dark:text-white">
+            <h3 className="text-sm font-semibold text-dark dark:text-light">
               {guide.name}
             </h3>
-            <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+            <p className="mt-1 text-sm text-dark dark:text-light">
               {guide.description}
             </p>
             <p className="mt-4">

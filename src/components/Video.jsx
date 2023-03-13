@@ -29,8 +29,6 @@ export default function VideoComponent({
     setVideoHTML(html)
   }
 
-  console.log({ youtubeId, file, loomId })
-
   if (loomId) {
     setupLoom()
     return <div dangerouslySetInnerHTML={{ __html: videoHTML }}></div>

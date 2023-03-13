@@ -30,8 +30,8 @@ function InfoIcon(props) {
 
 export function Note({ children }) {
   return (
-    <div className="my-6 flex gap-2.5 rounded-2xl border border-emerald-500/20 bg-emerald-50/50 p-4 leading-6 text-emerald-900 dark:border-emerald-500/30 dark:bg-emerald-500/5 dark:text-emerald-200 dark:[--tw-prose-links:theme(colors.white)] dark:[--tw-prose-links-hover:theme(colors.emerald.300)]">
-      <InfoIcon className="flex-none w-4 h-4 mt-1 fill-emerald-500 stroke-white dark:fill-emerald-200/20 dark:stroke-emerald-200" />
+    <div className="my-6 flex gap-2.5 rounded-2xl border border-green/20 bg-green/10 p-4 leading-6 text-green dark:border-yellow/30 dark:bg-yellow/5 dark:text-yellow dark:[--tw-prose-links:theme(colors.yellow)] dark:[--tw-prose-links-hover:theme(colors.yellow)]">
+      <InfoIcon className="flex-none w-4 h-4 mt-1 fill-green/80 stroke-light dark:fill-yellow/20 dark:stroke-yellow" />
       <div className="[&>:first-child]:mt-0 [&>:last-child]:mb-0">
         {children}
       </div>
@@ -65,7 +65,7 @@ export function Properties({ children }) {
     <div className="my-6">
       <ul
         role="list"
-        className="m-0 max-w-[calc(theme(maxWidth.lg)-theme(spacing.8))] list-none divide-y divide-zinc-900/5 p-0 dark:divide-white/5"
+        className="m-0 max-w-[calc(theme(maxWidth.lg)-theme(spacing.8))] list-none divide-y divide-dark/5 p-0 dark:divide-light/5"
       >
         {children}
       </ul>
@@ -82,7 +82,7 @@ export function Property({ name, type, children }) {
           <code>{name}</code>
         </dd>
         <dt className="sr-only">Type</dt>
-        <dd className="font-mono text-xs text-zinc-400 dark:text-zinc-500">
+        <dd className="font-mono text-xs text-dark dark:text-light">
           {type}
         </dd>
         <dt className="sr-only">Description</dt>
@@ -95,7 +95,6 @@ export function Property({ name, type, children }) {
 }
 
 export function Video(props) {
-  console.log('aaaaaaa')
   return (
     <VideoComponent {...props} />
   )

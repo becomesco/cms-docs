@@ -6,29 +6,29 @@ const variantStyles = {
 
 const colorStyles = {
   emerald: {
-    small: 'text-emerald-500 dark:text-emerald-400',
+    small: 'text-green dark:text-yellow',
     medium:
-      'ring-emerald-300 dark:ring-emerald-400/30 bg-emerald-400/10 text-emerald-500 dark:text-emerald-400',
+      'ring-light dark:ring-light/30 bg-light/10 text-green dark:text-yellow',
   },
   sky: {
-    small: 'text-sky-500',
+    small: 'text-green dark:text-yellow',
     medium:
-      'ring-sky-300 bg-sky-400/10 text-sky-500 dark:ring-sky-400/30 dark:bg-sky-400/10 dark:text-sky-400',
+      'ring-light bg-light/10 text-green dark:ring-light/30 dark:bg-light/10 dark:text-yellow',
   },
   amber: {
-    small: 'text-amber-500',
+    small: 'text-red',
     medium:
-      'ring-amber-300 bg-amber-400/10 text-amber-500 dark:ring-amber-400/30 dark:bg-amber-400/10 dark:text-amber-400',
+      'ring-light bg-light/10 text-red dark:ring-light/30 dark:bg-light/10 dark:text-light',
   },
   rose: {
-    small: 'text-red-500 dark:text-rose-500',
+    small: 'text-red dark:text-red',
     medium:
-      'ring-rose-200 bg-rose-50 text-red-500 dark:ring-rose-500/20 dark:bg-rose-400/10 dark:text-rose-400',
+      'ring-light bg-light text-red dark:ring-red/20 dark:bg-light/10 dark:text-light',
   },
   zinc: {
-    small: 'text-zinc-400 dark:text-zinc-500',
+    small: 'text-light dark:text-dark',
     medium:
-      'ring-zinc-200 bg-zinc-50 text-zinc-500 dark:ring-zinc-500/20 dark:bg-zinc-400/10 dark:text-zinc-400',
+      'ring-light bg-light text-dark dark:ring-dark/20 dark:bg-light/10 dark:text-light',
   },
 }
 

@@ -1,7 +1,7 @@
-import { forwardRef, Fragment, useState } from 'react'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { Transition } from '@headlessui/react'
+import { forwardRef, Fragment, useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { Transition } from '@headlessui/react';
 
 import { Button } from '@/components/Button'
 import { navigation } from '@/components/Navigation'
@@ -25,7 +25,7 @@ function FeedbackButton(props) {
   return (
     <button
       type="submit"
-      className="px-3 text-sm font-medium text-zinc-600 transition hover:bg-zinc-900/2.5 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-white/5 dark:hover:text-white"
+      className="px-3 text-sm font-medium text-dark transition hover:bg-dark/2.5 hover:text-dark dark:text-light dark:hover:bg-light/5 dark:hover:text-light"
       {...props}
     />
   )
@@ -38,12 +38,12 @@ const FeedbackForm = forwardRef(function FeedbackForm({ onSubmit }, ref) {
       onSubmit={onSubmit}
       className="absolute inset-0 flex items-center justify-center gap-6 md:justify-start"
     >
-      <p className="text-sm text-zinc-600 dark:text-zinc-400">
+      <p className="text-sm text-dark dark:text-light">
         Was this page helpful?
       </p>
-      <div className="group grid h-8 grid-cols-[1fr,1px,1fr] overflow-hidden rounded-full border border-zinc-900/10 dark:border-white/10">
+      <div className="group grid h-8 grid-cols-[1fr,1px,1fr] overflow-hidden rounded-full border border-dark/10 dark:border-light/10">
         <FeedbackButton data-response="yes">Yes</FeedbackButton>
-        <div className="bg-zinc-900/10 dark:bg-white/10" />
+        <div className="bg-dark/10 dark:bg-light/10" />
         <FeedbackButton data-response="no">No</FeedbackButton>
       </div>
     </form>
@@ -56,8 +56,8 @@ const FeedbackThanks = forwardRef(function FeedbackThanks(_props, ref) {
       ref={ref}
       className="absolute inset-0 flex justify-center md:justify-start"
     >
-      <div className="flex items-center gap-3 rounded-full bg-emerald-50/50 py-1 pr-3 pl-1.5 text-sm text-emerald-900 ring-1 ring-inset ring-emerald-500/20 dark:bg-emerald-500/5 dark:text-emerald-200 dark:ring-emerald-500/30">
-        <CheckIcon className="flex-none w-5 h-5 fill-emerald-500 stroke-white dark:fill-emerald-200/20 dark:stroke-emerald-200" />
+      <div className="flex items-center gap-3 rounded-full bg-light/50 py-1 pr-3 pl-1.5 text-sm text-green ring-1 ring-inset ring-green/20 dark:bg-yellow/5 dark:text-yellow dark:ring-yellow/30">
+        <CheckIcon className="flex-none w-5 h-5 fill-green stroke-light dark:fill-yellow/20 dark:stroke-light" />
         Thanks for your feedback!
       </div>
     </div>
@@ -115,7 +115,7 @@ function PageLink({ label, page, previous = false }) {
         href={page.href}
         tabIndex={-1}
         aria-hidden="true"
-        className="text-base font-semibold transition text-zinc-900 hover:text-zinc-600 dark:text-white dark:hover:text-zinc-300"
+        className="text-base font-semibold transition text-dark hover:text-dark dark:text-light dark:hover:text-light"
       >
         {page.title}
       </Link>
@@ -204,15 +204,15 @@ function SocialLink({ href, icon: Icon, children }) {
   return (
     <Link href={href} className="group">
       <span className="sr-only">{children}</span>
-      <Icon className="w-5 h-5 transition fill-zinc-700 group-hover:fill-zinc-900 dark:group-hover:fill-zinc-500" />
+      <Icon className="w-5 h-5 transition fill-dark group-hover:fill-dark dark:group-hover:fill-dark" />
     </Link>
   )
 }
 
 function SmallPrint() {
   return (
-    <div className="flex flex-col items-center justify-between gap-5 pt-8 border-t border-zinc-900/5 dark:border-white/5 sm:flex-row">
-      <p className="text-xs text-zinc-600 dark:text-zinc-400">
+    <div className="flex flex-col items-center justify-between gap-5 pt-8 border-t border-dark/5 dark:border-light/5 sm:flex-row">
+      <p className="text-xs text-dark dark:text-light">
         &copy; Copyright {new Date().getFullYear()}. All rights reserved.
       </p>
       <div className="flex gap-4">

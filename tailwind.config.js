@@ -21,9 +21,6 @@ module.exports = {
     },
     typography: require('./typography'),
     extend: {
-      boxShadow: {
-        glow: '0 0 4px rgb(0 0 0 / 0.1)',
-      },
       maxWidth: {
         lg: '33rem',
         '2xl': '40rem',
@@ -37,7 +34,58 @@ module.exports = {
         15: '0.15',
       },
       colors: {
-      }
+        // rgba(255, 205, 25)
+        yellow: ({ opacityValue }) => {
+          return `rgba(255, 205, 25, ${opacityValue || 100})`
+        },
+        // rgba(19, 20, 26)
+        dark: ({ opacityValue }) => {
+          return `rgba(19, 20, 26, ${opacityValue || 100})`
+        },
+        // rgba(248, 248, 252)
+        light: ({ opacityValue }) => {
+          return `rgba(248, 248, 252, ${opacityValue || 100})`
+        },
+        // rgba(36, 150, 129)
+        green: ({ opacityValue }) => {
+          return `rgba(36, 150, 129, ${opacityValue || 100})`
+        },
+        // rgba(151, 152, 171)
+        grey: ({ opacityValue }) => {
+          return `rgba(151, 152, 171, ${opacityValue || 100})`
+        },
+        // rgba(245, 107, 88)
+        red: ({ opacityValue }) => {
+          return `rgba(245, 107, 88, ${opacityValue || 100})`
+        },
+        // rgba(80, 79, 84)
+        darkGrey: ({ opacityValue }) => {
+          return `rgba(80, 79, 84, ${opacityValue})`
+        },
+        // // rgba(234, 245, 243)
+        // success: ({ opacityValue }) => {
+        //   return `rgba(234, 245, 243, ${opacityValue})`
+        // },
+        // // rgba(236, 173, 169)
+        // pink: ({ opacityValue }) => {
+        //   return `rgba(236, 173, 169, ${opacityValue})`
+        // },
+        // // rgba(255, 250, 232)
+        // warning: ({ opacityValue }) => {
+        //   return `rgba(255, 250, 232, ${opacityValue})`
+        // },
+        // // rgba(245, 234, 234)
+        // error: ({ opacityValue }) => {
+        //   return `rgba(245, 234, 234, ${opacityValue})`
+        // },
+        // // rgba(252, 252, 252)
+        // white: ({ opacityValue }) => {
+        //   return `rgba(252, 252, 252, ${opacityValue})`
+        // },
+        // inherit: 'inherit',
+        // initial: 'initial',
+        // transparent: 'transparent',
+      },
     },
   },
   plugins: [require('@tailwindcss/typography')],

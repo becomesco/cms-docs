@@ -41,7 +41,6 @@ function useAutocomplete() {
               return item.query
             },
             getItemUrl({ item }) {
-              console.log(item)
               let url = new URL('https://docs.thebcms.com' + item.uri)
               return `${url.pathname}${url.hash}`
             },
@@ -58,7 +57,7 @@ function useAutocomplete() {
                     params: {
                       hitsPerPage: 5,
                       highlightPreTag:
-                        '<mark class="underline bg-transparent text-emerald-500">',
+                        '<mark class="underline bg-transparent text-green dark:text-yellow">',
                       highlightPostTag: '</mark>',
                       snippetEllipsisText: '...',
                       attributesToSnippet: [
@@ -79,7 +78,6 @@ function useAutocomplete() {
 }
 
 function resolveResult(result) {
-  console.log(result)
   // let allLevels = Object.keys(result.hierarchy)
   // let hierarchy = Object.entries(result._highlightResult.hierarchy).filter(
   //   ([, { value }]) => Boolean(value)
@@ -165,8 +163,8 @@ function SearchResult({ result, resultIndex, autocomplete, collection }) {
   return (
     <li
       className={clsx(
-        'group block cursor-default px-4 py-3 aria-selected:bg-zinc-50 dark:aria-selected:bg-zinc-800/50',
-        resultIndex > 0 && 'border-t border-zinc-100 dark:border-zinc-800'
+        'group block cursor-default px-4 py-3 aria-selected:bg-light dark:aria-selected:bg-dark/50',
+        resultIndex > 0 && 'border-t border-light dark:border-dark'
       )}
       aria-labelledby={`${id}-hierarchy ${id}-title`}
       {...autocomplete.getItemProps({
@@ -177,28 +175,28 @@ function SearchResult({ result, resultIndex, autocomplete, collection }) {
       <div
         id={`${id}-title`}
         aria-hidden="true"
-        className="text-sm font-medium text-zinc-900 group-aria-selected:text-emerald-500 dark:text-white"
+        className="text-sm font-medium text-dark group-aria-selected:text-green dark:text-light dark:group-aria-selected:text-yellow"
         dangerouslySetInnerHTML={{ __html: titleHtml }}
       />
       {content && (
         <div
           id={`${id}-hierarchy`}
           aria-hidden="true"
-          className="mt-1 truncate whitespace-nowrap text-2xs text-zinc-500"
+          className="mt-1 truncate whitespace-nowrap text-2xs text-dark"
         >
           {/* {hierarchyHtml.map((item, itemIndex, items) => ( */}
-            {/* <Fragment key={itemIndex}> */}
-              <span dangerouslySetInnerHTML={{ __html: content }} />
-              {/* <span
+          {/* <Fragment key={itemIndex}> */}
+          <span dangerouslySetInnerHTML={{ __html: content }} />
+          {/* <span
                 className={
                   // itemIndex === items.length - 1
                     // ? 'sr-only'
-                    'mx-2 text-zinc-300 dark:text-zinc-700'
+                    'mx-2 text-light dark:text-dark'
                 }
               >
                 /
               </span> */}
-            {/* </Fragment> */}
+          {/* </Fragment> */}
           {/* ))} */}
         </div>
       )}
@@ -210,10 +208,10 @@ function SearchResults({ autocomplete, query, collection }) {
   if (collection.items.length === 0) {
     return (
       <div className="p-6 text-center">
-        <NoResultsIcon className="w-5 h-5 mx-auto stroke-zinc-900 dark:stroke-zinc-600" />
-        <p className="mt-2 text-xs text-zinc-700 dark:text-zinc-400">
+        <NoResultsIcon className="w-5 h-5 mx-auto stroke-dark dark:stroke-dark" />
+        <p className="mt-2 text-xs text-dark dark:text-light">
           Nothing found for{' '}
-          <strong className="font-semibold break-words text-zinc-900 dark:text-white">
+          <strong className="font-semibold break-words text-dark dark:text-light">
             &lsquo;{query}&rsquo;
           </strong>
           . Please try again.
@@ -245,11 +243,11 @@ const SearchInput = forwardRef(function SearchInput(
 
   return (
     <div className="relative flex h-12 group">
-      <SearchIcon className="absolute top-0 w-5 h-full pointer-events-none left-3 stroke-zinc-500" />
+      <SearchIcon className="absolute top-0 w-5 h-full pointer-events-none left-3 stroke-dark" />
       <input
         ref={inputRef}
         className={clsx(
-          'flex-auto appearance-none bg-transparent pl-10 text-zinc-900 outline-none placeholder:text-zinc-500 focus:w-full focus:flex-none dark:text-white sm:text-sm [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden [&::-webkit-search-results-button]:hidden [&::-webkit-search-results-decoration]:hidden',
+          'flex-auto appearance-none bg-transparent pl-10 text-dark outline-none placeholder:text-dark focus:w-full focus:flex-none dark:text-light sm:text-sm [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden [&::-webkit-search-results-button]:hidden [&::-webkit-search-results-decoration]:hidden',
           autocompleteState.status === 'stalled' ? 'pr-11' : 'pr-4'
         )}
         {...inputProps}
@@ -271,7 +269,7 @@ const SearchInput = forwardRef(function SearchInput(
       />
       {autocompleteState.status === 'stalled' && (
         <div className="absolute inset-y-0 flex items-center right-3">
-          <LoadingIcon className="w-5 h-5 animate-spin stroke-zinc-200 text-zinc-900 dark:stroke-zinc-800 dark:text-emerald-400" />
+          <LoadingIcon className="w-5 h-5 animate-spin stroke-light text-dark dark:stroke-dark dark:text-light" />
         </div>
       )}
     </div>
@@ -310,23 +308,23 @@ function SearchButton(props) {
     <>
       <button
         type="button"
-        className="hidden h-8 w-full items-center gap-2 rounded-full bg-white pl-2 pr-3 text-sm text-zinc-500 ring-1 ring-zinc-900/10 transition hover:ring-zinc-900/20 dark:bg-white/5 dark:text-zinc-400 dark:ring-inset dark:ring-white/10 dark:hover:ring-white/20 lg:flex focus:[&:not(:focus-visible)]:outline-none"
+        className="hidden h-8 w-full items-center gap-2 rounded-full bg-light pl-2 pr-3 text-sm text-dark ring-1 ring-dark/10 transition hover:ring-dark/20 dark:bg-light/5 dark:text-light dark:ring-inset dark:ring-light/10 dark:hover:ring-light/20 lg:flex focus:[&:not(:focus-visible)]:outline-none"
         {...props}
       >
         <SearchIcon className="w-5 h-5 stroke-current" />
         Find something...
-        <kbd className="ml-auto text-2xs text-zinc-400 dark:text-zinc-500">
+        <kbd className="ml-auto text-2xs text-dark dark:text-light">
           <kbd className="font-sans">{modifierKey}</kbd>
           <kbd className="font-sans">K</kbd>
         </kbd>
       </button>
       <button
         type="button"
-        className="flex h-6 w-6 items-center justify-center rounded-md transition hover:bg-zinc-900/5 dark:hover:bg-white/5 lg:hidden focus:[&:not(:focus-visible)]:outline-none"
+        className="flex h-6 w-6 items-center justify-center rounded-md transition hover:bg-dark/5 dark:hover:bg-light/5 lg:hidden focus:[&:not(:focus-visible)]:outline-none"
         aria-label="Find something..."
         {...props}
       >
-        <SearchIcon className="w-5 h-5 stroke-zinc-900 dark:stroke-white" />
+        <SearchIcon className="w-5 h-5 stroke-dark dark:stroke-light" />
       </button>
     </>
   )
@@ -395,7 +393,7 @@ function SearchDialog({ open, setOpen, className }) {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-zinc-400/25 backdrop-blur-sm dark:bg-black/40" />
+          <div className="fixed inset-0 bg-light/25 backdrop-blur-sm dark:bg-dark/40" />
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-y-auto px-4 py-4 sm:py-20 sm:px-6 md:py-32 lg:px-8 lg:py-[15vh]">
@@ -408,7 +406,7 @@ function SearchDialog({ open, setOpen, className }) {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <Dialog.Panel className="mx-auto overflow-hidden rounded-lg bg-zinc-50 shadow-xl ring-1 ring-zinc-900/7.5 dark:bg-zinc-900 dark:ring-zinc-800 sm:max-w-xl">
+            <Dialog.Panel className="mx-auto overflow-hidden rounded-lg bg-light shadow-xl ring-1 ring-dark/7.5 dark:bg-dark dark:ring-dark sm:max-w-xl">
               <div {...autocomplete.getRootProps({})}>
                 <form
                   ref={formRef}
@@ -424,7 +422,7 @@ function SearchDialog({ open, setOpen, className }) {
                   />
                   <div
                     ref={panelRef}
-                    className="border-t border-zinc-200 bg-white empty:hidden dark:border-zinc-100/5 dark:bg-white/2.5"
+                    className="border-t border-light bg-light empty:hidden dark:border-light/5 dark:bg-light/2.5"
                     {...autocomplete.getPanelProps({})}
                   >
                     {autocompleteState.isOpen && (
@@ -434,9 +432,9 @@ function SearchDialog({ open, setOpen, className }) {
                           query={autocompleteState.query}
                           collection={autocompleteState.collections[0]}
                         />
-                        <p className="flex items-center justify-end gap-2 px-4 py-2 text-xs border-t border-zinc-100 text-zinc-400 dark:border-zinc-800 dark:text-zinc-500">
+                        <p className="flex items-center justify-end gap-2 px-4 py-2 text-xs border-t border-light text-light dark:border-dark dark:text-dark">
                           Search by{' '}
-                          <AlgoliaLogo className="h-4 fill-[#003DFF] dark:fill-zinc-400" />
+                          <AlgoliaLogo className="h-4 fill-[#003DFF] dark:fill-light" />
                         </p>
                       </>
                     )}
@@ -488,12 +486,12 @@ export function Search() {
     <div className="hidden lg:block lg:max-w-md lg:flex-auto">
       <button
         type="button"
-        className="hidden h-8 w-full items-center gap-2 rounded-full bg-white pl-2 pr-3 text-sm text-zinc-500 ring-1 ring-zinc-900/10 transition hover:ring-zinc-900/20 dark:bg-white/5 dark:text-zinc-400 dark:ring-inset dark:ring-white/10 dark:hover:ring-white/20 lg:flex focus:[&:not(:focus-visible)]:outline-none"
+        className="hidden h-8 w-full items-center gap-2 rounded-full bg-light pl-2 pr-3 text-sm text-dark ring-1 ring-dark/10 transition hover:ring-dark/20 dark:bg-light/5 dark:text-light dark:ring-inset dark:ring-light/10 dark:hover:ring-light/20 lg:flex focus:[&:not(:focus-visible)]:outline-none"
         {...buttonProps}
       >
         <SearchIcon className="w-5 h-5 stroke-current" />
         Find something...
-        <kbd className="ml-auto text-2xs text-zinc-400 dark:text-zinc-500">
+        <kbd className="ml-auto text-2xs text-dark dark:text-light">
           <kbd className="font-sans">{modifierKey}</kbd>
           <kbd className="font-sans">K</kbd>
         </kbd>
@@ -510,11 +508,11 @@ export function MobileSearch() {
     <div className="contents lg:hidden">
       <button
         type="button"
-        className="flex h-6 w-6 items-center justify-center rounded-md transition hover:bg-zinc-900/5 dark:hover:bg-white/5 lg:hidden focus:[&:not(:focus-visible)]:outline-none"
+        className="flex h-6 w-6 items-center justify-center rounded-md transition hover:bg-dark/5 dark:hover:bg-light/5 lg:hidden focus:[&:not(:focus-visible)]:outline-none"
         aria-label="Find something..."
         {...buttonProps}
       >
-        <SearchIcon className="w-5 h-5 stroke-zinc-900 dark:stroke-white" />
+        <SearchIcon className="w-5 h-5 stroke-dark dark:stroke-light" />
       </button>
       <SearchDialog className="lg:hidden" {...dialogProps} />
     </div>

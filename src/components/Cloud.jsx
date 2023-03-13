@@ -89,8 +89,8 @@ const cloud = [
 
 function ResourceIcon({ icon: Icon }) {
   return (
-    <div className="flex h-7 w-7 items-center justify-center rounded-full bg-zinc-900/5 ring-1 ring-zinc-900/25 backdrop-blur-[2px] transition duration-300 group-hover:bg-white/50 group-hover:ring-zinc-900/25 dark:bg-white/7.5 dark:ring-white/15 dark:group-hover:bg-emerald-300/10 dark:group-hover:ring-emerald-400">
-      <Icon className="w-5 h-5 transition-colors duration-300 fill-zinc-700/10 stroke-zinc-700 group-hover:stroke-zinc-900 dark:fill-white/10 dark:stroke-zinc-400 dark:group-hover:fill-emerald-300/10 dark:group-hover:stroke-emerald-400" />
+    <div className="flex h-7 w-7 items-center justify-center rounded-full bg-dark/5 ring-1 ring-dark/25 backdrop-blur-[2px] transition duration-300 group-hover:bg-light/50 group-hover:ring-dark/25 dark:bg-light/7.5 dark:ring-light/15 dark:group-hover:bg-light/10 dark:group-hover:ring-light">
+      <Icon className="w-5 h-5 transition-colors duration-300 fill-dark/10 stroke-dark group-hover:stroke-dark dark:fill-light/10 dark:stroke-light dark:group-hover:fill-light/10 dark:group-hover:stroke-light" />
     </div>
   )
 }
@@ -123,19 +123,19 @@ function Resource({ resource }) {
     <div
       key={resource.href}
       onMouseMove={onMouseMove}
-      className="group relative flex rounded-2xl bg-zinc-50 transition-shadow hover:shadow-md hover:shadow-zinc-900/5 dark:bg-white/2.5 dark:hover:shadow-black/5"
+      className="group relative flex rounded-2xl bg-light transition-shadow hover:shadow-md hover:shadow-dark/5 dark:bg-light/2.5 dark:hover:shadow-dark/5"
     >
       <ResourcePattern {...resource.pattern} mouseX={mouseX} mouseY={mouseY} />
-      <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-zinc-900/7.5 group-hover:ring-zinc-900/10 dark:ring-white/10 dark:group-hover:ring-white/20" />
+      <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-dark/7.5 group-hover:ring-dark/10 dark:ring-light/10 dark:group-hover:ring-light/20" />
       <div className="relative px-4 pt-16 pb-4 rounded-2xl">
         <ResourceIcon icon={resource.icon} />
-        <h3 className="mt-4 text-sm font-semibold leading-7 text-zinc-900 dark:text-white">
+        <h3 className="mt-4 text-sm font-semibold leading-7 text-dark dark:text-light">
           <Link href={resource.href}>
             <span className="absolute inset-0 rounded-2xl" />
             {resource.name}
           </Link>
         </h3>
-        <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+        <p className="mt-1 text-sm text-dark dark:text-light">
           {resource.description}
         </p>
       </div>
@@ -149,7 +149,7 @@ export function Cloud() {
       <Heading level={2} id="cloud">
         Cloud Features
       </Heading>
-      <div className="grid grid-cols-1 gap-8 pt-10 mt-4 border-t not-prose border-zinc-900/5 dark:border-white/5 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="grid grid-cols-1 gap-8 pt-10 mt-4 border-t not-prose border-dark/5 dark:border-light/5 sm:grid-cols-2 xl:grid-cols-4">
         {cloud.map((feature) => (
           <Resource key={feature.href} resource={feature} />
         ))}

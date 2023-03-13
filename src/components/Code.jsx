@@ -62,8 +62,8 @@ function CopyButton({ code }) {
       className={clsx(
         'group/button absolute top-3.5 right-4 overflow-hidden rounded-full py-1 pl-2 pr-3 text-2xs font-medium opacity-0 backdrop-blur transition focus:opacity-100 group-hover:opacity-100',
         copied
-          ? 'bg-emerald-400/10 ring-1 ring-inset ring-emerald-400/20'
-          : 'bg-white/5 hover:bg-white/7.5 dark:bg-white/2.5 dark:hover:bg-white/5'
+          ? 'bg-light/10 ring-1 ring-inset ring-light/20'
+          : 'bg-light/5 hover:bg-light/7.5 dark:bg-light/2.5 dark:hover:bg-light/5'
       )}
       onClick={() => {
         window.navigator.clipboard.writeText(code).then(() => {
@@ -74,17 +74,17 @@ function CopyButton({ code }) {
       <span
         aria-hidden={copied}
         className={clsx(
-          'pointer-events-none flex items-center gap-0.5 text-zinc-400 transition duration-300',
+          'pointer-events-none flex items-center gap-0.5 text-light transition duration-300',
           copied && '-translate-y-1.5 opacity-0'
         )}
       >
-        <ClipboardIcon className="w-5 h-5 transition-colors fill-zinc-500/20 stroke-zinc-500 group-hover/button:stroke-zinc-400" />
+        <ClipboardIcon className="w-5 h-5 transition-colors fill-dark/20 stroke-dark group-hover/button:stroke-light" />
         Copy
       </span>
       <span
         aria-hidden={!copied}
         className={clsx(
-          'pointer-events-none absolute inset-0 flex items-center justify-center text-emerald-400 transition duration-300',
+          'pointer-events-none absolute inset-0 flex items-center justify-center text-light transition duration-300',
           !copied && 'translate-y-1.5 opacity-0'
         )}
       >
@@ -100,17 +100,17 @@ function CodePanelHeader({ tag, label }) {
   }
 
   return (
-    <div className="flex h-9 items-center gap-2 border-y border-t-transparent border-b-white/7.5 bg-zinc-900 bg-white/2.5 px-4 dark:border-b-white/5 dark:bg-white/1">
+    <div className="flex h-9 items-center gap-2 border-y border-t-transparent border-b-light/7.5 bg-dark bg-light/2.5 px-4 dark:border-b-light/5 dark:bg-light/1">
       {tag && (
         <div className="flex dark">
           <Tag variant="small">{tag}</Tag>
         </div>
       )}
       {tag && label && (
-        <span className="h-0.5 w-0.5 rounded-full bg-zinc-500" />
+        <span className="h-0.5 w-0.5 rounded-full bg-dark" />
       )}
       {label && (
-        <span className="font-mono text-xs text-zinc-400">{label}</span>
+        <span className="font-mono text-xs text-dark dark:text-light">{label}</span>
       )}
     </div>
   )
@@ -120,13 +120,13 @@ function CodePanel({ tag, label, code, children }) {
   let child = Children.only(children)
 
   return (
-    <div className="group dark:bg-white/2.5">
+    <div className="group dark:bg-light/2.5">
       <CodePanelHeader
         tag={child.props.tag ?? tag}
         label={child.props.label ?? label}
       />
       <div className="relative">
-        <pre className="p-4 overflow-x-auto text-xs text-white">{children}</pre>
+        <pre className="p-4 overflow-x-auto text-xs text-light">{children}</pre>
         <CopyButton code={child.props.code ?? code} />
       </div>
     </div>
@@ -141,9 +141,9 @@ function CodeGroupHeader({ title, children, selectedIndex }) {
   }
 
   return (
-    <div className="flex min-h-[calc(theme(spacing.12)+1px)] flex-wrap items-start gap-x-4 border-b border-zinc-700 bg-zinc-800 px-4 dark:border-zinc-800 dark:bg-transparent">
+    <div className="flex min-h-[calc(theme(spacing.12)+1px)] flex-wrap items-start gap-x-4 border-b border-dark bg-darkGrey px-4 dark:border-dark dark:bg-transparent">
       {title && (
-        <h3 className="pt-3 mr-auto text-xs font-semibold text-white">
+        <h3 className="pt-3 mr-auto text-xs font-semibold text-light">
           {title}
         </h3>
       )}
@@ -154,8 +154,8 @@ function CodeGroupHeader({ title, children, selectedIndex }) {
               className={clsx(
                 'border-b py-3 transition focus:[&:not(:focus-visible)]:outline-none',
                 childIndex === selectedIndex
-                  ? 'border-emerald-500 text-emerald-400'
-                  : 'border-transparent text-zinc-400 hover:text-zinc-300'
+                  ? 'border-green text-light dark:border-yellow'
+                  : 'border-transparent text-light hover:text-light'
               )}
             >
               {getPanelTitle(child.props)}
@@ -265,7 +265,7 @@ export function CodeGroup({ children, title, ...props }) {
     <CodeGroupContext.Provider value={true}>
       <Container
         {...containerProps}
-        className="my-6 overflow-hidden shadow-md not-prose rounded-2xl bg-zinc-900 dark:ring-1 dark:ring-white/10"
+        className="my-6 overflow-hidden shadow-md not-prose rounded-2xl bg-darkGrey dark:ring-1 dark:ring-light/10"
       >
         <CodeGroupHeader title={title} {...headerProps}>
           {children}

@@ -20,7 +20,7 @@ function TopLevelNavItem({ href, children }) {
     <li className="md:hidden">
       <Link
         href={href}
-        className="block py-1 text-sm transition text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+        className="block py-1 text-sm transition text-dark hover:text-dark dark:text-light dark:hover:text-light"
       >
         {children}
       </Link>
@@ -34,11 +34,8 @@ function NavLink({ href, tag, active, isAnchorLink = false, children }) {
       href={href}
       aria-current={active ? 'page' : undefined}
       className={clsx(
-        'flex justify-between gap-2 py-1 pr-3 text-sm transition',
+        'flex justify-between gap-2 py-1 pr-3 text-sm text-dark dark:text-light transition',
         isAnchorLink ? 'pl-7' : 'pl-4',
-        active
-          ? 'text-zinc-900 dark:text-white'
-          : 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'
       )}
     >
       <span className="truncate">{children}</span>
@@ -81,7 +78,7 @@ function VisibleSectionHighlight({ group, pathname }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { delay: 0.2 } }}
       exit={{ opacity: 0 }}
-      className="absolute inset-x-0 top-0 bg-zinc-800/2.5 will-change-transform dark:bg-white/2.5"
+      className="absolute inset-x-0 top-0 bg-dark/2.5 will-change-transform dark:bg-light/2.5"
       style={{ borderRadius: 8, height, top }}
     />
   )
@@ -96,7 +93,7 @@ function ActivePageMarker({ group, pathname }) {
   return (
     <motion.div
       layout
-      className="absolute w-px h-6 left-2 bg-emerald-500"
+      className="absolute w-px h-6 left-2 bg-green dark:bg-yellow"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { delay: 0.2 } }}
       exit={{ opacity: 0 }}
@@ -122,7 +119,7 @@ function NavigationGroup({ group, className }) {
     <li className={clsx('relative mt-6', className)}>
       <motion.h2
         layout="position"
-        className="text-xs font-semibold text-zinc-900 dark:text-white"
+        className="text-xs font-semibold text-dark dark:text-light"
       >
         {group.title}
       </motion.h2>
@@ -134,7 +131,7 @@ function NavigationGroup({ group, className }) {
         </AnimatePresence>
         <motion.div
           layout
-          className="absolute inset-y-0 w-px left-2 bg-zinc-900/10 dark:bg-white/5"
+          className="absolute inset-y-0 w-px left-2 bg-dark/10 dark:bg-light/5"
         />
         <AnimatePresence initial={false}>
           {isActiveGroup && (

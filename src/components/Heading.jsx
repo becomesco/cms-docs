@@ -29,10 +29,10 @@ function Eyebrow({ tag, label }) {
     <div className="flex items-center gap-x-3">
       {tag && <Tag>{tag}</Tag>}
       {tag && label && (
-        <span className="h-0.5 w-0.5 rounded-full bg-zinc-300 dark:bg-zinc-600" />
+        <span className="h-0.5 w-0.5 rounded-full bg-light dark:bg-dark" />
       )}
       {label && (
-        <span className="font-mono text-xs text-zinc-400">{label}</span>
+        <span className="font-mono text-xs text-dark dark:text-light">{label}</span>
       )}
     </div>
   )
@@ -46,8 +46,8 @@ function Anchor({ id, inView, children }) {
     >
       {inView && (
         <div className="absolute mt-1 ml-[calc(-1*var(--width))] hidden w-[var(--width)] opacity-0 transition [--width:calc(2.625rem+0.5px+50%-min(50%,calc(theme(maxWidth.lg)+theme(spacing.8))))] group-hover:opacity-100 group-focus:opacity-100 md:block lg:z-50 2xl:[--width:theme(spacing.10)]">
-          <div className="block w-5 h-5 transition rounded-lg group/anchor bg-zinc-50 ring-1 ring-inset ring-zinc-300 hover:ring-zinc-500 dark:bg-zinc-800 dark:ring-zinc-700 dark:hover:bg-zinc-700 dark:hover:ring-zinc-600">
-            <AnchorIcon className="w-5 h-5 transition stroke-zinc-500 dark:stroke-zinc-400 dark:group-hover/anchor:stroke-white" />
+          <div className="block w-5 h-5 transition rounded-lg group/anchor bg-light ring-1 ring-inset ring-light hover:ring-dark dark:bg-dark dark:ring-dark dark:hover:bg-dark dark:hover:ring-dark">
+            <AnchorIcon className="w-5 h-5 transition stroke-dark dark:stroke-light dark:group-hover/anchor:stroke-light" />
           </div>
         </div>
       )}
