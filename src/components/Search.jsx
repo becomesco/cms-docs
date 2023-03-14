@@ -243,11 +243,11 @@ const SearchInput = forwardRef(function SearchInput(
 
   return (
     <div className="relative flex h-12 group">
-      <SearchIcon className="absolute top-0 w-5 h-full pointer-events-none left-3 stroke-dark" />
+      <SearchIcon className="absolute top-0 w-5 h-full pointer-events-none left-3 stroke-dark dark:stroke-light" />
       <input
         ref={inputRef}
         className={clsx(
-          'flex-auto appearance-none bg-transparent pl-10 text-dark outline-none placeholder:text-dark focus:w-full focus:flex-none dark:text-light sm:text-sm [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden [&::-webkit-search-results-button]:hidden [&::-webkit-search-results-decoration]:hidden',
+          'flex-auto appearance-none bg-transparent pl-10 text-dark outline-none placeholder:text-dark/50 focus:w-full focus:flex-none dark:text-light dark:placeholder:text-light/50 sm:text-sm [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden [&::-webkit-search-results-button]:hidden [&::-webkit-search-results-decoration]:hidden',
           autocompleteState.status === 'stalled' ? 'pr-11' : 'pr-4'
         )}
         {...inputProps}

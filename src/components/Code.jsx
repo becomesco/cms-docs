@@ -78,7 +78,7 @@ function CopyButton({ code }) {
           copied && '-translate-y-1.5 opacity-0'
         )}
       >
-        <ClipboardIcon className="w-5 h-5 transition-colors fill-dark/20 stroke-dark group-hover/button:stroke-light" />
+        <ClipboardIcon className="w-5 h-5 transition-colors stroke-light fill-light/20 group-hover/button:stroke-light" />
         Copy
       </span>
       <span
