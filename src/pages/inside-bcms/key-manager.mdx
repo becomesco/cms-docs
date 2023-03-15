@@ -1,1 +1,28 @@
-# BCMS API Keys
+import Image from 'next/image'
+import keyManagerMain from '/src/images/inside-bcms/key-manager/main.png'
+import { Pen } from '@/components/icons/Pen'
+
+# Working with API keys
+
+API keys are used to connect your app with your CMS data. Each key gives you an option to manage permissions for [templates](/inside-bcms/templates), [plugins](/cloud/plugins) and [functions](/cloud/functions).
+
+---
+
+## Creating and editing a key
+
+To create a key, click on **Add new key**. In the next step, fill in the name, and optional description.
+
+To edit a key, click on the key you want to edit and update the permissions, or click on the <Pen /> beside the key name to edit the name or description.
+
+<Image
+  src={keyManagerMain}
+  alt="Key manager view"
+  className="h-auto w-full"
+  unoptimized
+/>
+
+---
+
+## Deleting a key
+
+To delete a key click on **Delete**, and **Confirm** in the next step.
