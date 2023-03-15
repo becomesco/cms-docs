@@ -1,1 +1,49 @@
-# BCMS Groups
+import Image from 'next/image'
+import groupsMain from '/src/images/inside-bcms/groups/main.png'
+import { Pen } from '@/components/icons/Pen'
+
+# Working with groups
+
+Groups in BCMS are reusable building blocks that are made of multiple [Properties](/inside-bcms/properties). Groups can be included in any template, widget or even other groups.
+
+<Note>
+  Just like with the most of BCMS properties, groups can be used as arrays.
+</Note>
+
+---
+
+## Creating and editing a group
+
+To create a group, click on "Add new group". In the next step, fill in the label, and optional description.
+
+To edit a group, click on the group you want to edit and update properties, or click on the <Pen /> beside the label to edit the label or description.
+
+<Image
+  src={groupsMain}
+  alt="Groups view"
+  className="h-auto w-full"
+  unoptimized
+/>
+
+---
+
+## Adding properties to a group
+
+To add properties to your newly created group, click "Add property" button, and select from the list of properties.
+
+---
+
+## View where is a group used
+
+To view where is a group used, click "See where is it used". This will give you the list of all places where this group is currently used.
+
+---
+
+## Deleting a group
+
+Deleting a group is as easy as clicking on the "Delete" button, entering the group's name and clicking "Confirm".
+
+<Note>
+  This will remove the group from all places where it is used, so delete groups
+  with caution.
+</Note>
