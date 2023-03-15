@@ -9,19 +9,19 @@ export function ThreeDots(props) {
       viewBox="0 0 24 24"
     >
       <path
-        fill-rule="evenodd"
+        fillRule="evenodd"
         d="M10 12a2 2 0 114 0 2 2 0 01-4 0z"
-        clip-rule="evenodd"
+        clipRule="evenodd"
       ></path>
       <path
-        fill-rule="evenodd"
+        fillRule="evenodd"
         d="M10 5a2 2 0 114 0 2 2 0 01-4 0z"
-        clip-rule="evenodd"
+        clipRule="evenodd"
       ></path>
       <path
-        fill-rule="evenodd"
+        fillRule="evenodd"
         d="M10 19a2 2 0 114 0 2 2 0 01-4 0z"
-        clip-rule="evenodd"
+        clipRule="evenodd"
       ></path>
     </svg>
   )
