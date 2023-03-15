@@ -1,1 +1,44 @@
-# BCMS Widgets
+import Image from 'next/image'
+import widgetsMain from '/src/images/inside-bcms/widgets/main.png'
+
+# Working with BCMS Widgets
+
+Widgets in BCMS are reusable building blocks that are used inside of [Entry's Content area](/inside-bcms/entries).
+
+---
+
+## Creating and editing a widget
+
+To create a Widget, click on "Add new widget". In the next step, fill in the label, and optional description/preview image.
+
+To edit a Widget, click on the Widget you want to edit and update [Properties](/inside-bcms/properties), or click on the Pen icon beside the label to edit the label or description/preview image.
+
+<Image
+  src={widgetsMain}
+  alt="Widgets view"
+  className="h-auto w-full"
+  unoptimized
+/>
+
+---
+
+## Adding properties to a widget
+
+To add properties to your newly created widget, click "Add property" button, and select from the list of properties.
+
+---
+
+## View where is the Widget used
+
+To view where is the widget used, click "See where is it used". This will give you the list of all places where this widget has been used.
+
+---
+
+## Deleting a widget
+
+Deleting a widget is as easy as clicking on the "Delete" button, entering the widgets's name and clicking "Confirm".
+
+<Note>
+  This will remove the widget from all Entries where it was used, so use it at
+  your own risk.
+</Note>
