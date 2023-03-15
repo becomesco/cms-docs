@@ -3,7 +3,7 @@ export function ThreeDots(props) {
     <svg
       aria-hidden="true"
       {...props}
-      class="h-6 w-6 fill-current text-grey transition-colors duration-300 group-hover:text-dark group-focus:text-dark dark:group-hover:text-light dark:group-focus:text-light inline-flex relative -top-1"
+      className="h-6 w-6 fill-current text-grey transition-colors duration-300 group-hover:text-dark group-focus:text-dark dark:group-hover:text-light dark:group-focus:text-light inline-flex relative -top-1"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
