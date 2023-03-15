@@ -11,6 +11,16 @@ npm install
 cp .env.example .env.local
 ```
 
+## Linting
+
+We use Vale, a powerful and customizable linter for prose that helps improve our writing by checking it against a set of predefined rules.
+
+To install it, follow [Vale installation instructions](https://vale.sh/docs/vale-cli/installation/).
+
+Right now, we only run Vale manually, by running locally `vale src/pages`.
+
+## Running the project locally
+
 Next, run the development server:
 
 ```bash
@@ -38,3 +48,4 @@ To learn more about the technologies used in this site template, see the followi
 - [MDX](https://mdxjs.com/) - the official MDX documentation
 - [Algolia Autocomplete](https://www.algolia.com/doc/ui-libraries/autocomplete/introduction/what-is-autocomplete/) - the official Algolia Autocomplete documentation
 - [Zustand](https://docs.pmnd.rs/zustand/getting-started/introduction) - the official Zustand documentation
+- [Vale](https://vale.sh/docs/vale-cli/installation/) - the official Zustand documentation
