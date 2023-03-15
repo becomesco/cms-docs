@@ -1,1 +1,62 @@
-# BCMS Media
+import Image from 'next/image'
+import mediaUploadArea from '/src/images/inside-bcms/media/upload-area.png'
+import mediaModifyImage from '/src/images/inside-bcms/media/modify-image.png'
+import { Pen } from '@/components/icons/Pen'
+import { TrashBin } from '@/components/icons/TrashBin'
+
+# Working with media
+
+Media manager allows you to store your images, videos and other files with many ways to organize them [using folders](/inside-bcms/media#using-folders).
+
+---
+
+## Uploading media
+
+To upload a media file, click on **Upload file**, and then either browse the files from your system or drag and drop them in the pre-defined area.
+
+<Image
+  src={mediaUploadArea}
+  alt="Media upload area"
+  className="h-auto w-full"
+  unoptimized
+/>
+
+---
+
+## Using folders
+
+To create a folder, click on **Create new folder**, and enter the folder's name.
+
+Folders are a great way to organize your files. You can nest media inside of a folder and associate a custom name to it for easier search.
+
+<Note>
+  If you are already inside of another folder, when adding a new one, it will be
+  nested inside of the current active folder. This rule applies when uploading
+  media files as well.
+</Note>
+
+---
+
+## Modify image
+
+If the file is of type image, you will be able to modify the aspect-ratio, zoom-in/out, flip and crop it before uploading.
+
+You can do this by uploading an image and clicking on the <Pen /> which will open the editing mode. All available options are located at the bottom.
+
+<Image
+  src={mediaModifyImage}
+  alt="Media modify image"
+  className="h-auto w-full"
+  unoptimized
+/>
+
+---
+
+## Deleting media
+
+To delete a media or a folder you can click on the <TrashBin /> that is located on each individual file/folder.
+
+<Note>
+  This will remove the media from all places where it is used, so delete media
+  with caution.
+</Note>
