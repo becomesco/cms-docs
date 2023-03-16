@@ -1,13 +1,13 @@
 :root {
   --shiki-color-text: theme('colors.light');
-  --shiki-token-constant: theme('colors.light');
-  --shiki-token-string: theme('colors.light');
-  --shiki-token-comment: theme('colors.dark');
-  --shiki-token-keyword: theme('colors.light');
-  --shiki-token-parameter: theme('colors.light');
-  --shiki-token-function: theme('colors.light');
-  --shiki-token-string-expression: theme('colors.light');
-  --shiki-token-punctuation: theme('colors.light');
+  --shiki-token-constant: #6ee7b7;
+  --shiki-token-string: #6ee7b7;
+  --shiki-token-comment: theme('colors.grey');
+  --shiki-token-keyword: #7dd3fc;
+  --shiki-token-parameter: #f9a8d4;
+  --shiki-token-function: #c4b5fd;
+  --shiki-token-string-expression: #6ee7b7;
+  --shiki-token-punctuation: theme('colors.grey');
 }
 
 @tailwind base;
