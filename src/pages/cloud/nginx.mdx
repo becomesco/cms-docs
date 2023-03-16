@@ -1,1 +1,50 @@
+import Image from 'next/image';
+import addConfig from '/src/images/cloud/nginx/1-add-config.png';
+
 # NginX configuration
+
+All outside connections to your CMS are going through the [Nginx](https://nginx.org).
+If you are looking to add a custom domain name, you should look at [domain configuration](/cloud/domains).
+If you are looking for advanced proxy configuration for your CMS, you are at the
+tight place.
+
+---
+
+It is important to note that adding or changing Nginx configuration can brake your CMS and make it unreachable.
+
+---
+
+## Adding configuration
+
+To add the configuration, open the [BCMS Cloud](https://cloud.thebcms.com) and
+navigate to an Instance to which you would like to add a configuration. When on
+an Instance screen click on **Nginx config**.
+
+<Image
+  src={addConfig}
+  alt="Add nginx configuration"
+  className="h-auto w-full"
+  unoptimized
+/>
+
+From here, click on **Add new configuration** and modal will open which will
+allow you to set _Configuration name_ and [Virtual Host configuration](https://docs.nginx.com/nginx/admin-guide/web-server/web-server/).
+Name can be any name you wish but Virtual Host configuration must follow the Nginx
+configuration syntax.
+
+Example where you might want to use Nginx configuration is if you would like to
+make some files available in you CMS on some domain without allowing access to
+the CMS itself.
+
+```nginx
+listen 80;
+listen [::]:80;
+server_name demo.example.com;
+
+location / {
+  try_files $uri $uri/index.html $uri/ =404;
+}
+root /bcms-share/demo/;
+
+error_page 404 /404.html;
+```
