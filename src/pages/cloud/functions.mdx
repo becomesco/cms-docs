@@ -23,10 +23,11 @@ it will be converted to `test-function`.
 - Access to function - Can be **Public** or **Private**. Public function will be
 accessible to anyone while private function will require [API Key](/inside-bcms/key-manager)
 authorization.
-- Global scope - Is the place where you want to do your imports declare
+- Global scope - Is the place where you want to do your imports and declare
 utility functions.
 - Handler scope - Is the code which will be called when endpoint of the function
 is called. Here you have access to: `request`, `errorHandler`, `logger` and `auth` objects.
+More information [here](https://github.com/becomesco/cms-backend/blob/master/src/types/function/models/main.ts#L37)
 
 When function is added, you will need to wait a little bit for CMS to rebuild
 with new configuration.
@@ -37,7 +38,7 @@ with new configuration.
 
 When you are on the Instance screen click on **Functions** card. Here you will
 see the list of all functions with a function name and **Edit** button next to it.
-To edit function, click on **Edit** button.
+To edit a function, click on **Edit** button.
 
 When function is edited, you will need to wait a little bit for CMS to rebuild
 with new configuration.
@@ -48,7 +49,7 @@ with new configuration.
 
 When you are on the Instance screen click on **Functions** card. Here you will
 see the list of all functions with a function name and **Edit** button next to it.
-To delete function, click on **Edit** button and after that click on **Delete**
+To delete a function, click on **Edit** button and after that click on **Delete**
 button in the bottom left corner of the modal.
 
 When function is deleted, you will need to wait a little bit for CMS to rebuild
