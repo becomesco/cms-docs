@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import addConfig from '/src/images/cloud/nginx/1-add-config.png';
+import editConfig from '/src/images/cloud/nginx/2-edit-config.png';
+import deleteConfig from '/src/images/cloud/nginx/3-delete-config.png';
 
 # NginX configuration
 
@@ -16,9 +18,9 @@ It is important to note that adding or changing Nginx configuration can brake yo
 
 ## Adding configuration
 
-To add the configuration, open the [BCMS Cloud](https://cloud.thebcms.com) and
-navigate to an Instance to which you would like to add a configuration. When on
-an Instance screen click on **Nginx config**.
+To add a configuration, open the [BCMS Cloud](https://cloud.thebcms.com) and
+navigate to an Instance screen to which you would like to add a configuration. When on
+an Instance screen click on **Nginx config** card.
 
 <Image
   src={addConfig}
@@ -32,19 +34,31 @@ allow you to set _Configuration name_ and [Virtual Host configuration](https://d
 Name can be any name you wish but Virtual Host configuration must follow the Nginx
 configuration syntax.
 
-Example where you might want to use Nginx configuration is if you would like to
-make some files available in you CMS on some domain without allowing access to
-the CMS itself.
+## Editing configuration
 
-```nginx
-listen 80;
-listen [::]:80;
-server_name demo.example.com;
+To edit a configuration, navigate to an Instance screen and click on **Nginx config** card.
 
-location / {
-  try_files $uri $uri/index.html $uri/ =404;
-}
-root /bcms-share/demo/;
+<Image
+  src={editConfig}
+  alt="Edit nginx configuration"
+  className="h-auto w-full"
+  unoptimized
+/>
 
-error_page 404 /404.html;
-```
+Inside of the modal you will see the list of all configurations with a
+configuration name and **Edit** button next to it. To edit a configuration
+click on **Edit** button and modify the configuration or change its name.
+
+## Deleting configuration
+
+Navigate to an Instance screen and click on **Nginx config** card. From here,
+click on **Edit** button and new modal will open. To delete the configuration,
+click on **Delete** button in the bottom left corner of the modal.
+
+<Image
+  src={deleteConfig}
+  alt="Delete nginx configuration"
+  className="h-auto w-full"
+  unoptimized
+/>
+
