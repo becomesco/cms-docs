@@ -1,1 +1,49 @@
-# BCMS Jobs documentation
+# BCMS Jobs
+
+BCMS Jobs are JavaScript functions which are executed at specified time interval.
+For simple jobs (when logic can be placed in 1 file and you do not need
+autocomplete) we recommend creating jobs like explained on this page, but
+for complex jobs (when you need utilities, file structure, services...)
+we recommend [using your favorite code editor to create them](https://github.com/becomesco/cms#getting-started).
+
+---
+
+## Add a job
+
+Login to the [BCMS Cloud](https://cloud.thebcms.com) and open an Instance to
+which you would like to add a job. When on the Instance screen click on
+**Jobs** card. From here, click on **Add new job** button where you
+will need to provide few information:
+
+- Job name - Can be any name that you like.
+- Cron time - Interval, at which the job will be executed, in
+  [Cron job format](https://crontab.guru/)
+- Global scope - Is the place where you want to do your imports and declare
+  utility functions.
+- Handler scope - Is the code which will be executed at specified interval.
+
+When job is added, you will need to wait a little bit for CMS to rebuild
+with new configuration.
+
+---
+
+## Edit a job
+
+When you are on the Instance screen click on **Jobs** card. Here you will
+see the list of all jobs with a job name and **Edit** button next to it.
+To edit a job, click on **Edit** button.
+
+When job is edited, you will need to wait a little bit for CMS to rebuild
+with new configuration.
+
+---
+
+## Delete a job
+
+When you are on the Instance screen click on **Jobs** card. Here you will
+see the list of all jobs with a job name and **Edit** button next to it.
+To delete a job, click on **Edit** button and after that click on **Delete**
+button in the bottom left corner of the modal.
+
+When job is deleted, you will need to wait a little bit for CMS to rebuild
+with new configuration.
