@@ -10,4 +10,110 @@ available at `POST: https://{CMS_DOMAIN}/api/function/{FUNCTION_NAME}`.
 
 Creating a function is pretty straight forward. First you need to create a
 file inside of the `src/functions`, for example, let's create a file called
-`ping-pong.ts`;
+`ping-pong.ts`.
+
+To keep it simple, this function will be public and echo pack a request body.
+This can be done line this:
+
+```ts
+// src/functions/ping-pong.ts
+
+import { createBcmsFunction } from '@becomes/cms-backend/src/function';
+
+export default createBcmsFunction(async () => {
+  return {
+    config: {
+      name: 'ping-pong',
+      public: true,
+    },
+    async handler({ request }) {
+      return {
+        requestBody: request.body,
+      };
+    },
+  };
+});
+```
+
+After saving the file and starting the BCMS you can send a `POST` request to
+`/api/function/ping-pong`. Request and response will look like this:
+
+```txt
+POST http://localhost:8080/api/function/ping-pong
+Content-Type: application/json
+
+{
+  "message": "Hello world!"
+}
+
+---------------
+
+HTTP/1.1 200 OK
+Server: nginx
+Date: Fri, 17 Mar 2023 13:18:16 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 68
+Connection: close
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+ETag: W/"44-r1QIq4dWf0ZgljC19i8Qi20S0LY"
+
+{
+  "success": true,
+  "result": {
+    "requestBody": {
+      "message": "Hello world!"
+    }
+  }
+}
+```
+
+That's it! You just created a BCMS Function. Since functions are running on the
+Backend, they have access to all core utilities and helpers. This means that
+functions have access to the database and, for example you can return list of
+all [Entries](/inside-bcms/entries) in specific [Template](/inside-bcms/templates):
+
+```ts
+// src/functions/ping-pong.ts
+
+import { createBcmsFunction } from '@becomes/cms-backend/src/function';
+import { BCMSRepo } from '@becomes/cms-backend/src/repo';
+
+export default createBcmsFunction(async () => {
+  return {
+    config: {
+      name: 'ping-pong',
+      public: true,
+    },
+    async handler() {
+      const entries = await BCMSRepo.entry.methods.findAllByTemplateId(
+        'TEMPLATE_ID'
+      );
+      return {
+        entries: entries.map((entry) => {
+          return {
+            id: entry._id,
+            title: (entry.meta[0].props[0].data as string[])[0],
+          };
+        }),
+      };
+    },
+  };
+});
+```
+
+---
+
+## Public vs Private functions
+
+In example above we've created a **public** function. This means that the
+function can be called by anyone from anywhere without authentication. Public
+functions are useful if you need to return publicly available data to many
+different clients, this makes it very easy for clients to call the function 
+and get the data.
+
+In contrast to public functions, **private** function require authentication 
+using [HTTP Signature](https://github.com/becomesco/cms-client/blob/master/src/util/security.ts#L6)
+which is available out-of-the-box with [BCMS Client package](https://github.com/becomesco/cms-client).
+
+

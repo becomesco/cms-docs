@@ -222,6 +222,11 @@ export const navigation = [
     title: 'Customization',
     links: [
       { title: 'Overview', href: '/customization' },
+      { title: 'Functions', href: '/customization/functions' },
+      { title: 'Events', href: '/customization/events' },
+      { title: 'Jobs', href: '/customization/jobs' },
+      { title: 'Deployment', href: '/customization/deployment' },
+      { title: 'Plugins', href: '/customization/plugins' },
     ],
   },
   {

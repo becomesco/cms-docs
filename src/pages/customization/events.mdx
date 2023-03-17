@@ -1,0 +1,76 @@
+# BCMS Events
+
+BCMS Events are JavaScript functions which are executed by internal backend
+Events. They allow you to run some custom code when specific event is
+triggered.
+
+---
+
+## Creating an event handler
+
+Creating an event handler is pretty straight forward. First you need to create
+a file inside of the `src/events`, for example, let's create a file called
+`test.ts`.
+
+To keep is simple, this event will only log data which it receives:
+
+```ts
+// src/events/test.ts
+
+import { createBcmsEvent } from '@becomes/cms-backend/src/event';
+import {
+  BCMSEventConfigMethod,
+  BCMSEventConfigScope,
+} from '@becomes/cms-backend/src/types';
+
+export default createBcmsEvent(async () => {
+  return {
+    config: {
+      scope: BCMSEventConfigScope.ENTRY,
+      method: BCMSEventConfigMethod.ADD,
+    },
+    async handler(data) {
+      console.log(data);
+    },
+  };
+});
+```
+
+The event handler which we have created will be triggered every time a new
+[Entry](/inside-bcms/entries) is added to the database.
+
+## Triggering an event
+
+Since we are talking about internal events, they can be triggered only by
+internal code, this also includes Functions and Jobs. Events can be
+triggered using the [Event Manager](https://github.com/becomesco/cms-backend/blob/master/src/event/main.ts#L12).
+Few examples are shown bellow:
+
+```ts
+// Trigger Entry Added event
+await BCMSEventManager.emit(
+  BCMSEventConfigScope.ENTRY,
+  BCMSEventConfigMethod.ADD,
+  {
+    // Entry data
+  }
+);
+
+// Trigger Template Updated event
+await BCMSEventManager.emit(
+  BCMSEventConfigScope.TEMPLATE,
+  BCMSEventConfigMethod.UPDATE,
+  {
+    // Template data
+  }
+);
+
+// Trigger custom event
+await BCMSEventManager.emit(
+  'MY_CUSTOM_SCOPE', 
+  'MY_CUSTOM_METHOD', 
+  {
+    custom: 'data',
+  }
+);
+```
