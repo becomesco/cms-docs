@@ -1,0 +1,13 @@
+# BCMS Function development
+
+BCMS Functions are JavaScript functions that can be executed by sending an
+HTTP request to the Backend API. Once function is created, it will be
+available at `POST: https://{CMS_DOMAIN}/api/function/{FUNCTION_NAME}`.
+
+---
+
+## Create a function
+
+Creating a function is pretty straight forward. First you need to create a
+file inside of the `src/functions`, for example, let's create a file called
+`ping-pong.ts`;

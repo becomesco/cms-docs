@@ -219,6 +219,12 @@ export const navigation = [
     ],
   },
   {
+    title: 'Customization',
+    links: [
+      { title: 'Overview', href: '/customization' },
+    ],
+  },
+  {
     title: 'Cloud',
     links: [
       { title: 'Overview', href: '/cloud' },
