@@ -34,3 +34,4 @@ yarn-error.log*
 # output
 
 /public/search.json
+.env

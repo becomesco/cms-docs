@@ -24,9 +24,9 @@ export default function App({ Component, pageProps }) {
     <>
       <Head>
         {router.pathname === '/' ? (
-          <title>BCMS documentations</title>
+          <title>BCMS documentation</title>
         ) : (
-          <title>{`${pageProps.title} - BCMS documentations`}</title>
+          <title>{`${pageProps.title} - BCMS documentation`}</title>
         )}
         <meta name="description" content={pageProps.description} />
       </Head>

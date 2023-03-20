@@ -7,8 +7,8 @@ const removeMd = require('remove-markdown-and-html');
 
 
 const algolia = algoliaSearch.default(
-  '6VKFS5NOO9',
-  '09e3edac6d30b94064be44f1fb745697'
+  process.env.NEXT_PUBLIC_DOCSEARCH_APP_ID,
+  process.env.ALGOLIA_ADMIN_API_KEY
 )
 const algIndex = algolia.initIndex('docs')
 const fs = createFS({
@@ -60,7 +60,7 @@ module.exports = createConfig({
                 .createHash('sha1')
                 .update(`/${item.path.rel.replace('.mdx', '')}`)
                 .digest('hex'),
-              uri: `/${item.path.rel.replace('.mdx', '')}`,
+              uri: `/${item.path.rel.replace('/index.mdx', '')}`,
               title: title.replace('# ', ''),
               content: parseContent(lines.slice(j + 1).join(' ')),
             }
