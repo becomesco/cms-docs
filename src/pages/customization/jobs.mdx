@@ -1,0 +1,36 @@
+# BCMS Jobs
+
+BCMS Jobs are JavaScript functions which are executed at specified time interval.
+
+---
+
+## Creating a job
+
+Creating a job is pretty straight forward. First you need to create a file 
+inside of the `src/jobs`, for example, let's create a file called `test.ts`.
+
+To keep it simple, this job will only console log **Hello world!** message and
+we'll do it like this:
+
+```ts
+// src/jobs/test.ts
+
+import { createBcmsJob } from '@becomes/cms-backend/src/job';
+
+export default createBcmsJob(async () => {
+  return {
+    cron: {
+      dayOfMonth: '*',
+      dayOfWeek: '*',
+      hour: '*',
+      minute: '*',
+      month: '*',
+    },
+    async handler() {
+      console.log('Hello world!');
+    },
+  };
+});
+```
+
+The job will be executed every minute.
