@@ -12,8 +12,8 @@ Creating a function is pretty straight forward. First you need to create a
 file inside of the `src/functions`, for example, let's create a file called
 `ping-pong.ts`.
 
-To keep it simple, this function will be public and echo pack a request body.
-This can be done line this:
+To keep it simple, this function will be public and echo back a request body.
+This can be done like this:
 
 ```ts
 // src/functions/ping-pong.ts
@@ -112,7 +112,7 @@ functions are useful if you need to return publicly available data to many
 different clients, this makes it very easy for clients to call the function 
 and get the data.
 
-In contrast to public functions, **private** function require authentication 
+In contrast to public functions, **private** function requires an authentication 
 using [HTTP Signature](https://github.com/becomesco/cms-client/blob/master/src/util/security.ts#L6)
 which is available out-of-the-box with [BCMS Client package](https://github.com/becomesco/cms-client).
 
