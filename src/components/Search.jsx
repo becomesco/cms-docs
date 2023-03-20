@@ -5,6 +5,7 @@ import { getAlgoliaResults } from '@algolia/autocomplete-preset-algolia'
 import { Dialog, Transition } from '@headlessui/react'
 import algoliasearch from 'algoliasearch/lite'
 import clsx from 'clsx'
+import Link from 'next/link'
 
 const searchClient = algoliasearch(
   process.env.NEXT_PUBLIC_DOCSEARCH_APP_ID,
@@ -60,9 +61,7 @@ function useAutocomplete() {
                         '<mark class="underline bg-transparent text-green dark:text-yellow">',
                       highlightPostTag: '</mark>',
                       snippetEllipsisText: '...',
-                      attributesToSnippet: [
-                        'content:5',
-                      ]
+                      attributesToSnippet: ['content:5'],
                     },
                   },
                 ],
@@ -166,40 +165,44 @@ function SearchResult({ result, resultIndex, autocomplete, collection }) {
         'group block cursor-default px-4 py-3 aria-selected:bg-light dark:aria-selected:bg-dark/50',
         resultIndex > 0 && 'border-t border-light dark:border-dark'
       )}
-      aria-labelledby={`${id}-hierarchy ${id}-title`}
-      {...autocomplete.getItemProps({
-        item: result,
-        source: collection.source,
-      })}
     >
-      <div
-        id={`${id}-title`}
-        aria-hidden="true"
-        className="text-sm font-medium text-dark group-aria-selected:text-green dark:text-light dark:group-aria-selected:text-yellow"
-        dangerouslySetInnerHTML={{ __html: titleHtml }}
-      />
-      {content && (
+      <Link
+        href={result.uri}
+        aria-labelledby={`${id}-hierarchy ${id}-title`}
+        {...autocomplete.getItemProps({
+          item: result,
+          source: collection.source,
+        })}
+      >
         <div
-          id={`${id}-hierarchy`}
+          id={`${id}-title`}
           aria-hidden="true"
-          className="mt-1 truncate whitespace-nowrap text-2xs text-dark"
-        >
-          {/* {hierarchyHtml.map((item, itemIndex, items) => ( */}
-          {/* <Fragment key={itemIndex}> */}
-          <span dangerouslySetInnerHTML={{ __html: content }} />
-          {/* <span
-                className={
-                  // itemIndex === items.length - 1
-                    // ? 'sr-only'
-                    'mx-2 text-light dark:text-dark'
-                }
-              >
-                /
-              </span> */}
-          {/* </Fragment> */}
-          {/* ))} */}
-        </div>
-      )}
+          className="text-sm font-medium text-dark group-aria-selected:text-green dark:text-light dark:group-aria-selected:text-yellow"
+          dangerouslySetInnerHTML={{ __html: titleHtml }}
+        />
+        {content && (
+          <div
+            id={`${id}-hierarchy`}
+            aria-hidden="true"
+            className="mt-1 truncate whitespace-nowrap text-2xs text-dark"
+          >
+            {/* {hierarchyHtml.map((item, itemIndex, items) => ( */}
+            {/* <Fragment key={itemIndex}> */}
+            <span dangerouslySetInnerHTML={{ __html: content }} />
+            {/* <span
+                  className={
+                    // itemIndex === items.length - 1
+                      // ? 'sr-only'
+                      'mx-2 text-light dark:text-dark'
+                  }
+                >
+                  /
+                </span> */}
+            {/* </Fragment> */}
+            {/* ))} */}
+          </div>
+        )}
+      </Link>
     </li>
   )
 }
