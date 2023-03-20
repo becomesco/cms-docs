@@ -1,1 +1,59 @@
-# BCMS Settings
+import Image from 'next/image'
+import settingsBackups from '/src/images/inside-bcms/settings/backups.png'
+import settingsLanguages from '/src/images/inside-bcms/settings/languages.png'
+import { TrashBin } from '@/components/icons/TrashBin'
+import { File } from '@/components/icons/File'
+
+# Settings
+
+Settings page is used to manage data backups, your account, languages and team invites.
+
+---
+
+## Creating a backup
+
+To create a backup of your data, click on **Backups**, and then **Create new backup**. This might take some take, depending on the size of your CMS, but all backups will be located in one place and you can download them at any time.
+
+<Image
+  src={settingsBackups}
+  alt="Settings backups"
+  className="h-auto w-auto"
+  unoptimized
+/>
+
+To download a backup, click on <File />. To delete a backup, click on <TrashBin />.
+
+{/* <Note>It is recommended to make often backups of your CMS data.</Note> */}
+
+---
+
+## Edit account
+
+To edit your account data, click on **Edit account**. This will redirect you to [cloud](/cloud), where you can edit things like name, email and avatar.
+
+---
+
+## Handling languages
+
+To add a language click on the **Add** area, which will give you the list of all available languages to choose from.
+
+When you add a new language, whenever you fetch CMS data, you will also be fetching [entry](/inside-bcms/entries) data with all selected languages.
+
+<Image
+  src={settingsLanguages}
+  alt="Settings languages"
+  className="h-auto w-auto"
+  unoptimized
+/>
+
+To delete a language, click on the **X** from the language card.
+
+<Note>English is the default language of the BCMS, so you won't be able to delete it. Any other language you can delete, but note that this will remove all data you added for that specific language.</Note>
+
+---
+
+## Handling team
+
+To invite a new team member, click on **Invite a new member**. This will redirect you to cloud, where you can [manage team](/cloud/team).
+
+<Note>Only admins are able to manage team members.</Note>
