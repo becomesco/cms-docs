@@ -8,8 +8,8 @@ import { ThreeDots } from '@/components/icons/ThreeDots'
 
 Each entry in BCMS represents a single record of a [template](/inside-bcms/templates).
 
-An entry's structure depends on what properties its template has. Properties defined in its template will be used used in the *meta* section of every entry.
-Other than the pre-defined meta, each entry has the area we call the *content* area. In there, you can add rich text and [widgets](/inside-bcms/widgets).
+An entry's structure depends on what properties its template has. Properties defined in its template will appear in the *meta* section of every entry.
+Other than the pre-defined meta, each entry has the area called the *content* area. In there, you can add rich text and [widgets](/inside-bcms/widgets).
 
 For example, if you have a Blog template, you'll probably add properties like author, category, tags and date published to the Blog's template meta. Then, in each entry's content you'll write your blog post's content, add widgets to it etc.
 
@@ -55,9 +55,9 @@ To view the entry model click on the <ThreeDots /> beside the Edit button and cl
 
 ---
 
-## View where is the Entry used
+## View where's the Entry used
 
-To view where is the entry used click on the <ThreeDots /> beside the Edit button and click on **Where is used**. This will give you the list of all places where this specifc Entry has been used, such as other entries which are linking to this specific one.
+To view where's the entry used click on the <ThreeDots /> beside the Edit button and click on **Where is used**. This will give you the list of all places where this specifc Entry has been used, such as other entries which are linking to this specific one.
 
 ---
 
@@ -66,14 +66,18 @@ To view where is the entry used click on the <ThreeDots /> beside the Edit butto
 To delete an entry click on the <ThreeDots /> beside the Edit button and click on **Remove**.
 
 <Note>
-  Make sure to check all places where this Entry was used as a link to preventively fix any possible issues.
+  Make sure to check all places where this Entry is in use as a link to preventively fix any possible issues.
 </Note>
 
 ---
 
 ## Setting the entry status
 
-Sometimes we want to have our entries to have different statuses. For example to specify when a blog post is ready for production. You can use statuses to mark an entry as **Draft**, **Production-Ready**, ***You Name It***. This will of course require you to handle these statuses in your codebase, such as filtering or modyfing data based on the status, but as you can see it is a powerful way to handle multiple versions of your website.
+At times, you may need to assign different statuses to your entries. This is useful to indicate when a blog post is ready for publishing. You can use different statuses like Draft, Production-Ready, and others of your choice. Handling these statuses in your codebase, like filtering or modifying data based on the status, will be necessary. However, this approach is a powerful way to manage multiple versions of your website. As you can see, it provides benefits in terms of flexibility and control.
+
+
+
+
 
 To set the status, open the entry and in the top right corner you can click on the status dropdown field to select/unselect a status.
 

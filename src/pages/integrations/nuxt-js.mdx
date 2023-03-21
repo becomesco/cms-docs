@@ -23,7 +23,7 @@ This is the Nuxt.js plugin documentation for the BCMS.
 If you are starting a Nuxt.js project from scratch, and want to connect it with BCMS, You can initialize Nuxt project by using the [BCMS CLI](/cli).
 Through an interactive terminal questionary, BCMS cli will set it up for you.
 
-To install BCMS CLI globally, run `npm install -g @becomes/cms-cli`. After that, you should be able to create a Nuxt project and connect it with BCMS by running: `bcms --website create`. Here you can read more about [BCMS CLI](/cli). If you want to add BCMS to an existing Nuxt project, that's described [here]().
+To install BCMS CLI globally, run `npm install @becomes/cms-cli -g`. After that, you should be able to create a Nuxt project and connect it with BCMS by running: `bcms --website create`. Here you can read more about [BCMS CLI](/cli). If you want to add BCMS to an existing Nuxt project, that's described [here]().
 
 ## Adding BCMS to an existing Nuxt project
 
@@ -85,7 +85,7 @@ For this particular use case, you will probably put this code in your `blog/_slu
 
 When using BCMS with Nuxt middleware API, you don't call BCMS API endpoints every time you need something from the CMS. Instead, Nuxt middleware caches the reponse data in RAM, prividing fast response time and more flexibility. Here's how to set it up:
 
-Create a `bcms.routes.ts` file. Inside, let's create a simple configuration and and an endpoint which will return list of all templates.
+Create a `bcms.routes.ts` file. Inside, create a simple configuration and an endpoint which will return list of all templates.
 
 <CodeGroup>
   ```typescript
@@ -109,7 +109,7 @@ export default createBcmsMostServerRoutes({
 ````
 </CodeGroup>
 
-In the example above, we quickly created an endpoint that returns a light model of all templates from the BCMS instance, containing only the _title_ and _slug_ properties of each template.
+In the example above, there's an endpoint that returns a light model of all templates from the BCMS instance, containing only the _title_ and _slug_ properties of each template.
 
 You can now call this endpoint inside of _asyncData_, as shown bellow:
 
@@ -127,9 +127,9 @@ const { data } = useAsyncData(async (ctx) => {
 
 ## Working with BCMSImage Nuxt.js component
 
-We all love images on the web. High-quality, sharp ones. But we also love fast websites. Why can't we have both? Well, BCMS Image lets you have both. To simplify handling responsive images and performance optimization, we created the `BCMSImage` component.
+Images on the web are great. High-quality, sharp ones. But, fast websites are even more great! Why can't there be both? Well, BCMS Image lets you have both. To simplify handling responsive images and performance optimization, BCMS comes with the BCMSImage component.
 
-It automatically creates multiple variants of the source image, including WEBP format. Let's see how to use it. Our demo blog data (which is available if you are [running BCMS locally](/install/locally)), has a cover image property. To start, let's import the `BCMSImage` component and pass the cover_image object.
+It automatically creates several variants of the source image, including WEBP format. To start, import BCMSImage component, and pass an object from BCMS, containing an image. In the example below, the prop is `cover_image` object.
 
 <CodeGroup>
 ```html
@@ -150,7 +150,7 @@ It automatically creates multiple variants of the source image, including WEBP f
 
 ## Adding data from Nuxt.js to BCMS
 
-Now the things got a bit more spicy 🌶️. Is there a website that doesn't have a contact form / newsletter subscription form? Comment form even. When working with modern static site generators like Nuxt.js, we usualy end up using some 3rd party form providers. With BCMS, you don't need to do that. The same way you get data from BCMS, you can add or update data.
+Now the things got a bit more spicy 🌶️. Is there a website that doesn't have a contact form / newsletter subscription form? Comment form even. When working with modern static site generators like Nuxt.js, developers usualy end up using some 3rd party form providers. With BCMS, you don't need to do that. The same way you get data from BCMS, you can add or update data.
 
 If you want to create a comment section, you could easily create a [template](/inside-bcms/templates), and name it *Comment* for example. It can contain properties like *full_name* and *message*.
 

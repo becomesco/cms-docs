@@ -1,22 +1,23 @@
 import Image from 'next/image'
-import image1 from '@/images/self-host/digitalocean/create-a-droplet.jpeg';
-import image2 from "@/images/self-host/digitalocean/select-a-droplet.jpeg";
-import image3 from "@/images/self-host/digitalocean/choose-a-plan.jpeg";
-import image4 from "@/images/self-host/digitalocean/choose-a-datacenter.jpeg";
-import image5 from "@/images/self-host/digitalocean/authentication.jpeg";
-import image6 from "@/images/self-host/digitalocean/finalize-and-create.jpeg";
-import image7 from "@/images/self-host/digitalocean/droplet-screen.jpeg";
-import image8 from "@/images/self-host/digitalocean/droplet-network.jpeg";
-import image9 from "@/images/self-host/digitalocean/firewall.jpeg";
-import image10 from "@/images/self-host/digitalocean/firewall-name.jpeg";
-import image11 from "@/images/self-host/digitalocean/inbound-rules.jpeg";
-import image12 from "@/images/self-host/digitalocean/outbound-rules.jpeg";
-import image13 from "@/images/self-host/digitalocean/apply-to-droplets.jpeg";
-import image14 from "@/images/self-host/digitalocean/firewalls.jpeg";
-import image15 from "@/images/self-host/digitalocean/public-ip-address-of-the-droplet.jpeg";
-import image16 from "@/images/self-host/digitalocean/execute-ssh-command.jpeg";
-import image17 from "@/images/self-host/digitalocean/ubuntu-server-login-message.jpeg";
-import image18 from "@/images/self-host/digitalocean/open-instance-install-instructions.gif";
+
+import createADroplet from '@/images/self-host/digitalocean/create-a-droplet.jpeg'
+import selectADroplet from '@/images/self-host/digitalocean/select-a-droplet.jpeg'
+import chooseAPlan from '@/images/self-host/digitalocean/choose-a-plan.jpeg'
+import chooseADatacenter from '@/images/self-host/digitalocean/choose-a-datacenter.jpeg'
+import authentication from '@/images/self-host/digitalocean/authentication.jpeg'
+import finalizeAndCreate from '@/images/self-host/digitalocean/finalize-and-create.jpeg'
+import dropletScreen from '@/images/self-host/digitalocean/droplet-screen.jpeg'
+import dropletNetwork from '@/images/self-host/digitalocean/droplet-network.jpeg'
+import firewall from '@/images/self-host/digitalocean/firewall.jpeg'
+import firewallName from '@/images/self-host/digitalocean/firewall-name.jpeg'
+import inboundRules from '@/images/self-host/digitalocean/inbound-rules.jpeg'
+import outboundRules from '@/images/self-host/digitalocean/outbound-rules.jpeg'
+import applyToDroplets from '@/images/self-host/digitalocean/apply-to-droplets.jpeg'
+import firewalls from '@/images/self-host/digitalocean/firewalls.jpeg'
+import publicIpAddressOfTheDroplet from '@/images/self-host/digitalocean/public-ip-address-of-the-droplet.jpeg'
+import executeSshCommand from '@/images/self-host/digitalocean/execute-ssh-command.jpeg'
+import ubuntuServerLoginMessage from '@/images/self-host/digitalocean/ubuntu-server-login-message.jpeg'
+import openInstanceInstallInstructions from '@/images/self-host/digitalocean/open-instance-install-instructions.gif'
 
 # How to install BCMS on DigitalOcean in 5 minutes
 
@@ -49,52 +50,52 @@ Otherwise, if you are going to use BCMS' server-side image processing or CPU and
 
 ## Existing server
 
-I already have a server. Can I use it for BCMS?
+You already have a server. Can you use it for BCMS?
 
-Even though it is technically possible, we highly recommend running BCMS in its server instance because:
-- It is more secure - Having only BCMS on the server ensures that the application is isolated and more secure. If you are running BCMS on the server with other applications, those applications can compromise BCMS, and if BCMS is compromised, it can compromise other applications.
+Even though it is technically possible, it's highly recommended to runn BCMS on its own server instance because:
+- It is more secure - Having only BCMS on the server ensures the isolation of the application, and makes it more secure. If you are running BCMS on the server with other applications, those applications can compromise BCMS, and if BCMS is compromised, it can compromise other applications.
 - It is more stable - If BCMS is the only application running on the server, other applications cannot impact the performance or crash the server.
-- It is easier - We provide tools that update and configure your server to run BCMS smoothly. This includes File System, proxy, database, and security. All default configuration options can be used if the server is dedicated to BCMS.
+- It is easier - BCMS provides tools that update and configure your server to run BCMS smoothly. This includes File System, proxy, database, and security. All default configuration options can be used if the server is dedicated to BCMS.
 
 In the next sections, you'll learn how to set up BCMS on its own server.
 
 ### Running BCMS on DigitalOcean
 
-[DigitalOcean](https://digitalocean.com) is a user-friendly cloud hosting provider with a transparent and predictable pricing model. It is an excellent option for businesses of different sizes, and we always recommend it first :)
+[DigitalOcean](https://digitalocean.com) is a user-friendly cloud hosting provider with a transparent and predictable pricing model. It's an excellent option for businesses of different sizes, and our recommedation :)
 
 ## Creating a Droplet
 
 First, go to [DigitalOcean](https://cloud.digitalocean.com/) and log in to your account. After that, you can go to [Create Droplet](https://docs.digitalocean.com/products/droplets/how-to/create/) screen.
 
 <Image
-  src={image1}
+  src={createADroplet}
   alt=""
   unoptimized
 />
 
 In **Choose an image** section, select **Ubuntu**.
 
-<Image src={image2} alt="" unoptimized />
+<Image src={selectADroplet} alt="" unoptimized />
 
 In **Choose a plan** section, you should select a **Basic** plan with **Regular SSD** and recommended hardware specification, which, at the time of writing these instructions, is a $20 /month plan. Please keep in mind that this is a recommended setup, and you can select any plan you like.
 
-<Image src={image3} alt="" unoptimized />
+<Image src={chooseAPlan} alt="" unoptimized />
 
 You can skip **Add block storage** section.
 
-In **Choose a datacenter region** section, you can select any region. We recommend selecting a region that is physically close to your location.
+In **Choose a datacenter region** section, you can select any region. Try selecting a region that's physically close to your location.
 
-<Image src={image4} alt="" unoptimized />
+<Image src={chooseADatacenter} alt="" unoptimized />
 
 The next section is a **VPC Network**. If you don't know what this is, leave the default settings.
 
 In the **Authorization** section, you have the option to use the SSH Key or Password to login into a server. If you don't know the SSH Key, select a password login and type a strong password.
 
-<Image src={image5} alt="" unoptimized />
+<Image src={authentication} alt="" unoptimized />
 
 In **Finalize and create** section, create only 1 Droplet and set its name to anything you like.
 
-<Image src={image6} alt="" unoptimized />
+<Image src={finalizeAndCreate} alt="" unoptimized />
 
 With all of this done, you can click on Create Droplet button.
 
@@ -103,37 +104,37 @@ With all of this done, you can click on Create Droplet button.
 ## Droplet Firewall {{ tag: 'Optional' }}
 Setting up a firewall is optional, but recommended. Once your Droplet is created and ready, it will appear on the **Droplet screen** of the **DigitalOcean Dashboard**.
 
-<Image src={image7} alt="" unoptimized />
+<Image src={dropletScreen} alt="" unoptimized />
 
 In the sidebar, click on **Networking**, and then click on the Edit button in the **Firewalls** section.
 
-<Image src={image8} alt="" unoptimized />
+<Image src={dropletNetwork} alt="" unoptimized />
 
 You will be redirected to the network configuration settings screen, and here you can click on **Create Firewall** button. After this, you will be redirected to the Firewall configuration screen.
 
-<Image src={image9} alt="" unoptimized />
+<Image src={firewall} alt="" unoptimized />
 
-First, you will need to enter the firewall name. We recommend using **bcms-firewall** as a name so you can know what it is for.
+First, you will need to enter the firewall name. Use **bcms-firewall** as a name, so that you know it's purpose later.
 
-<Image src={image10} alt="" unoptimized />
+<Image src={firewallName} alt="" unoptimized />
 
 After that, set the incoming connection rules as shown below. Remember that for SSH connections, you can set a specific IP address that can use it, but if you do not know what this is or if you do not have a static IP address, leave it as shown below.
 
-<Image src={image11} alt="" unoptimized />
+<Image src={inboundRules} alt="" unoptimized />
 
 Outgoing connection rules can be left without changing them, as shown below.
 
-<Image src={image12} alt="" unoptimized />
+<Image src={outboundRules} alt="" unoptimized />
 
-The only thing left is to apply the firewall to BCMS Droplet. This can be done by typing a Droplet name (in our case, it is **my-bcms-server**) in **Apply to Droplets** section.
+The only thing left is to apply the firewall to BCMS Droplet. You can do this by typing a Droplet name (in this case, it is **my-bcms-server**) in **Apply to Droplets** section.
 
-<Image src={image13} alt="" unoptimized />
+<Image src={applyToDroplets} alt="" unoptimized />
 
 You can now click on **Create Firewall** button at the end of the page.
 
 If you go back to the Droplet screen and navigate the networking tab, you will see that the firewall you just created is applied to the Droplet.
 
-<Image src={image14} alt="" unoptimized />
+<Image src={firewalls} alt="" unoptimized />
 
 Now you are ready to login into our server.
 
@@ -143,17 +144,17 @@ Now you are ready to login into our server.
 
 The first step is to get the IP address of the server. You can find this information on the Droplet screen, as shown below.
 
-<Image src={image15} alt="" unoptimized />
+<Image src={publicIpAddressOfTheDroplet} alt="" unoptimized />
 
 After this, open a terminal of the command line and type ```ssh root@IP_ADDRESS``` but make sure to replace **IP_ADDRESS** with numbers you have copied from the DigitalOcean dashboard. In our case, this command will look like this:<br /> ssh root@178.128.197.200.
 
-<Image src={image16} alt="" unoptimized />
+<Image src={executeSshCommand} alt="" unoptimized />
 
 If you have selected password authentication (the one you created for the Droplet), you will be prompted to enter the password.
 
 After successful login, you will see a message shown below.
 
-<Image src={image17} alt="" unoptimized />
+<Image src={ubuntuServerLoginMessage} alt="" unoptimized />
 
 ---
 
@@ -161,7 +162,7 @@ After successful login, you will see a message shown below.
 
 BCMS is installed using a single command. Go to your [BCMS Cloud Dashboard](https://cloud.thebcms.com/) and open an Instance your would like to install. For instance, page click on **More Info** which will open a modal. Here you can see the installation command, as shown below.
 
-<Image src={image18} alt="" unoptimized />
+<Image src={openInstanceInstallInstructions} alt="" unoptimized />
 
 Copy the command and return to the terminal/cmd where you are logged in to the server. Paste the command and run it.
 This command will install all necessary tools, update your server and install BCMS.

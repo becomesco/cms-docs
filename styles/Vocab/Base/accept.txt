@@ -4,3 +4,11 @@
 (?i)s3
 (?i)vite
 (?i)Vue
+(?i)WEBP
+(?i)VSCode
+(?i)Vercel
+(?i)SSD
+(?i)VPC
+(?i)unoptimized
+v.B
+v.O

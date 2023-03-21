@@ -4,11 +4,11 @@ import bcmsInLocalDev from '/src/images/quickstart/bcms-in-local-dev.png'
 import { Libraries } from '@/components/Libraries'
 
 export const description =
-  'Follow along with this tutorial on how installl BCMS Headless CMS locally on your computer'
+  'Follow along with this tutorial on how install BCMS Headless CMS locally on your computer'
 
 # Install BCMS locally on your computer in 3 minutes
 
-In this quick guide, we'll see how to set up a brand-new website BCMS locally, on your computer. {{ className: 'lead' }}
+In this quick guide, you'll see how to set up a brand-new website BCMS locally, on your computer.
 
 <Note>
   To successfully start and run the BCMS locally, you will need a few tools.
@@ -27,7 +27,7 @@ The easiest way to start BCMS project locally is by using the [BCMS CLI](https:/
 To install it globally, run this command in your terminal:
 <CodeGroup>
   ```bash
-  npm install -g @becomes/cms-cli
+  npm install @becomes/cms-cli -g
 ```
 </CodeGroup>
 
@@ -57,7 +57,7 @@ This command will prompt you to enter the name of your project.
 
 ## Start a development server
 
-After creating a BCMS project, you can enter the project location from your terminal or open it in your favorite code editor or IDE. We'll use VSCode. Inside the project, run ```docker-compose up``` or ```docker compose up```  (use whichever works for you).
+After creating a BCMS project, you can enter the project location from your terminal or open it in your favorite code editor or IDE. Inside the project, run ```docker-compose up``` or ```docker compose up```  (use whichever works for you).
 <Image
   src={outputOfTheDockerComposeUpCommand}
   alt="Figure 1 - Output of the docker-compose up command."
@@ -65,7 +65,7 @@ After creating a BCMS project, you can enter the project location from your term
   unoptimized
 />
 
-Once all containers are started, you can open your browser and navigate to [localhost:8080](http://localhost:8080).
+When all containers start, you can open your browser and navigate to [localhost:8080](http://localhost:8080).
 
 <Image
   src={bcmsInLocalDev}

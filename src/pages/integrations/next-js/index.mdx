@@ -43,7 +43,7 @@ After running the create command, you will be prompted to decide on a few option
 - For the project name, you can enter your project's name
 - For framework - select Next.js
 - When asked if you want to connect to the BCMS, answer with yes. After this, you'll be able to select the BCMS to connect to. If you are using a local BCMS, select the local one. However, if you are using the live version - select Live.
-- Since your Next.js project needs an [API key](/inside-bcms/key-manager) to be able to access the data from the BCMS, in the next step, you'll need to select an API key that we would like to use. If you haven't created any API keys yet, CLI will automatically create one. If BCMS CLI finds any API key, it will let you select them, or create a new one.
+- Since your Next.js project needs an [API key](/inside-bcms/key-manager) to be able to access the data from the BCMS, in the next step, you'll need to select an API key that you want to use. If you haven't created any API keys yet, CLI will automatically create one. If BCMS CLI finds any API key, it will let you select one, or create a new one.
 
 <Image
   src={bcmsWebsiteCreate}
@@ -60,19 +60,20 @@ The fastest way to use BCMS with Next.js is to create a new project using BCMS C
 
 ## Next.js & BCMS project structure
 
-By default, BCMS CLI creates a typical NextJS project. However, you might spot a few new files and folders. Let's see what they are.
+By default, BCMS CLI creates a typical NextJS project. However, you might spot a few new files and folders. Here is what they are:
 
-- `./bcms.config.js` - This file is used to configure the [BCMS Most](https://github.com/becomesco/cms-most), which is an API layer between the BCMS and your project. In short, the Most makes it easy to get data from the BCMS and synchronize it in real-time.
+- `./bcms.config.js` - Where the [BCMS Most](https://github.com/becomesco/cms-most) configuration is. BCMS most is an API layer between the BCMS and your project. In short, the Most makes it easy to get data from the BCMS and synchronize it in real-time.
 - `./bcms.routes.js` - Here you can define custom API routes in the Most server (by default running on localhost:3001). This is an advanced feature.
-- `./bcms` - This is a dynamic directory created by the Most, and it is used for caching data and storing data types from the BCMS. Yes, If you are using [TypeScript](https://www.typescriptlang.org/), [GraphQL](https://graphql.org/), or even [JSDoc](https://jsdoc.app/), we got you covered - with automatically typed BCMS!
+- `./bcms` - This is a dynamic directory created by the Most, and it is used for caching data and storing data types from the BCMS. Yes, If you are using [TypeScript](https://www.typescriptlang.org/), [GraphQL](https://graphql.org/), or even [JSDoc](https://jsdoc.app/), BCMS got you covered - with automatically typed BCMS!
 
 That's all the stuff related to the BCMS. Everything else in your project's folder is the vanilla Next.js.
 
-## How to get data from BCMS on a Next.js page?
+## How to get data from BCMS on a Next.js page
 
 There are two ways you can get data from the BCMS and display it on the page.
 
-Using the BCMS Client, and using BCMS Most. Here's an example, and the differences. Let's say that we have Blog entries in our BCMS, and we want to display one blog post on the path `/blog/{blog-slug}`.
+Using the BCMS Client, and using BCMS Most. Here's an example, and the differences.
+For examle, you have Blog entries in your BCMS, and you want to display one blog post on the path `/blog/{blog-slug}`.
 
 ### Getting data on the Next.js page with BCMS Client
 
@@ -91,7 +92,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const client = getBcmsClient();
   const blog: BlogsEntry = await client.entry.get({
     template: 'blogs',
-    entry: 'my-first-blog',
+    entry: 'awesome-first-blog-slug',
   });
   return {
     props: {
@@ -102,7 +103,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
 const Blog: FC<Props> = (props) => {
   return (
-    <pre style={{ fontFamily: 'monospace' }}>
+    <pre>
       {JSON.stringify(props.blog, null, ' ')}
     </pre>
   );
@@ -129,7 +130,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const most = getBcmsMost();
   const blog: BlogsEntry | null = await most.content.entry.findOne(
     'blogs',
-    async (e) => e.meta.en.slug === 'my-first-blog',
+    async (e) => e.meta.en.slug === 'awesome-first-blog-slug',
   );
   if (!blog) {
     return {
@@ -145,7 +146,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
 const Blog: FC<Props> = (props) => {
   return (
-    <pre style={{ fontFamily: 'monospace' }}>
+    <pre>
       {JSON.stringify(props.blog, null, ' ')}
     </pre>
     );
@@ -154,17 +155,17 @@ export default Blog;
 ```
 </CodeGroup>
 
-### What is the difference between getting data using BCMS Client and BCMS Most?
+### What is the difference between getting data using BCMS Client and BCMS Most
 
-The simple answer is that BCMS Client will make an API request to the BCMS every time, while BCMS Most will check the local cache and decide if an API request is needed.
+The simple answer is that BCMS Client will make an API request to the BCMS every time, while BCMS Most will check the local cache and decide if it needs to make an API request or not.
 
 There are more details to this answer but simply put, for now: if you want to deploy your application to Vercel or Netlify, you should use BCMS Client, and if you are deploying to Railway or DigitalOcean App Platform, you should use BCMS Most.
 
 ## Working with BCMSImage Next.js component
 
-We all love when images on the web are sharp and high-quality. But we also love fast websites. Why can't we have both? Well, BCMS Image lets you have both. To simplify handling responsive images and performance optimization, we created the BCMSImage component.
+You probably love when images on the web are sharp and high-quality. But you also love fast websites. Why can't you have both, you wonder? Well, BCMS Image lets you have both. To simplify handling responsive images and performance optimization, BCMS comes with the BCMSImage component.
 
-To start, import the BCMSImage component, it to the render and pass the object from BCMS, containing an image. In the example below, it is the `cover_image` object.
+To start, import BCMSImage component, and pass an object from BCMS, containing an image. In the example below, the prop is `cover_image` object.
 
 <CodeGroup>
 ```javascript
@@ -190,16 +191,15 @@ If you resize your browser, you'll see that the image size is changing. It's not
   unoptimized
 />
 
-Taraaam. You have your Next.js & BCMS set up! Congrats! 🎉
-
-## Where to deploy Next.js & BCMS code?
+## Where to deploy Next.js & BCMS code
 
 You can deploy your Next.js application powered by the BCMS, anywhere you usually deploy Next.js. Just keep in mind that you won't benefit from BCMS Cache if you are deploying your app on a platform that uses serverless technology.
-We use and recommend the following platforms:
+Recommended platforms:
 
 - [Railway](https://docs.railway.app/getting-started)
 - [DigitalOcean App Platform](https://docs.digitalocean.com/tutorials/app-nextjs-deploy/)
 - [Heroku](https://heroku.com/)
 
 ## What's next
-Great, you now have a fully set up Next.js with BCMS. Now you can learn more about [Widgets](/inside-bcms/widgets) and [Groups](/inside-bcms/groups).
+Great, you now have a fully set up Next.js with BCMS. Congrats! 🎉 <br />
+Now you can learn more about [Widgets](/inside-bcms/widgets) and [Groups](/inside-bcms/groups).
