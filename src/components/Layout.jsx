@@ -17,7 +17,7 @@ export function Layout({ children, sections = [] }) {
           className="fixed inset-y-0 left-0 z-40 px-6 pb-8 overflow-y-auto border-r contents w-72 border-dark/10 dark:border-light/10 lg:block xl:w-80"
         >
           <div className="items-center hidden lg:flex h-14">
-            <Link href="/" aria-label="Home" className='flex items-center text-sm text-dark dark:text-light'>
+            <Link href="/" aria-label="Home" className='flex items-center text-sm text-darkGrey dark:text-light'>
               <Logo className="h-5" />
               <span className='ml-1'>docs</span>
             </Link>
