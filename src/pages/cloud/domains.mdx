@@ -1,1 +1,49 @@
 # Adding custom domain to BCMS
+
+When you create a BCMS Instance, you will also get a domain name from which
+you can access the CMS (it will be in format `{ORG_NAME}-{INSTANCE_NAME}.yourbcms.com`).
+To make the CMS accessible from the custom domain name (e.g. `cms.my-company.com`)
+you will need to add it and configure it on the Cloud.
+
+---
+
+## Add a domain name
+
+Login to the [BCMS Cloud](https://cloud.thebcms.com) and open an Instance to
+which you would like to add a domain name. When on the Instance screen click on
+**Domains** card. From here, click on **Add new domain** button where you
+will need to provide few information:
+
+- Domain name - domain or sub-domain name which you would like to use.
+- SSL Certificate - **Optional** provided by your domain name provider. If you
+  are using [CloudFlare](https://www.cloudflare.com/) as a DNS you can use
+  _Origin server certificate_.
+- SSL Private Key - **Required if SSL Certificate is provided**, it is also
+  provided by your domain name provider and is paired with SSL Certificate.
+- Proxy config - [Nginx configuration](/cloud/nginx) for specified domain name.
+
+When domain name is added, you will need to wait a little bit for CMS to rebuild
+with new configuration.
+
+---
+
+## Edit a domain name
+
+When you are on the Instance screen click on **Domains** card. Here you will
+see the list of all domains with a domain name and **Edit** button next to it.
+To edit a domain, click on **Edit** button.
+
+When domain name is edited, you will need to wait a little bit for CMS to rebuild
+with new configuration.
+
+---
+
+## Delete a job
+
+When you are on the Instance screen click on **Domains** card. Here you will
+see the list of all domains with a domain name and **Edit** button next to it.
+To delete a domain, click on **Edit** button and after that click on **Delete**
+button in the bottom left corner of the modal.
+
+When domain name is deleted, you will need to wait a little bit for CMS to rebuild
+with new configuration.
