@@ -1,0 +1,224 @@
+import Image from 'next/image';
+import image1 from '/src/images/customization/plugins/1.png';
+
+# BCMS Plugins
+
+Most powerful way to extend BCMS functionality is by using BCMS Plugins. Plugins
+are applications which are running inside of the CMS with UI and Backend
+component.
+
+---
+
+## Creating a plugin
+
+To create a plugin project, open a terminal and navigate to a place where you
+would like to create it. Using the [BCMS CLI](/cli), run `bcms --plugin create`
+and give a name to the project.
+
+<Note>Make sure that you have Docker and Docket Compose installed.</Note>
+
+Once the CLI is done, you can open the project in you favorite code editor and
+run `docker-compose up`. This command will start the BCMS with the plugin mounted.
+You can not open a browser and navigate to [localhost:8080](http://localhost:8080).
+In the navigation, when you expend _Plugins_ section, you will be able to see
+the plugin.
+
+<Image src={image1} alt="BCMS Plugin" className="h-auto w-full" unoptimized />
+
+Don't worry that the name of the plugin is _Bcms Plugin Name_, this is only in
+development. When you bundle the plugin it will have proper name.
+
+---
+
+## Project structure
+
+There a lot of directories and files in the project but `ui` and `backend` directories are the place
+where you will write your code for the plugin. Inside of the `bcms-plugin.config.json`
+you can change the plugin name.
+
+- `ui` directory stores the frontend code for the plugin. This is the place
+  where you will write your UI elements, call the APIs and present data to
+  a user. If you need some dependencies, you can install them by moving to `ui`
+  directory and running `npm i --save PACKAGE_NAME`.
+- `backend` directory stores the backend code for the plugin. This is the place
+  where you will write your custom REST endpoints and server-side logic. To install
+  backend dependencies run `npm i --save PACKAGE_NAME` from the root of the project.
+
+---
+
+## Plugin Backend
+
+Since BCMS is using [Purple Cheetah](https://github.com/becomesco/purple-cheetah)
+for the backend, BCMS Plugins are also using it. This means that you will use
+Purple Cheetah to create controllers and middleware.
+
+When you create a new plugin project, it will come with example code in which
+you will be able to see how to create a simple Todo plugin.
+
+### Creating an endpoint
+
+To create an endpoint there are 2 things that you need to do:
+
+- Create a controller/middleware object
+- Register object with BCMS Plugin handler.
+
+To explain this in more detail, let's create an endpoint which will return
+**Hello world!** response. First we will create a controller inside of the
+`backend` directory, like you can see bellow:
+
+```ts
+// backend/hello-world.ts
+import {
+  createController,
+  createControllerMethod,
+} from '@becomes/purple-cheetah';
+
+export const HelloWorldController = createController({
+  name: 'Hello world',
+  path: '/hello',
+  methods() {
+    return {
+      helloWorld: createControllerMethod<void, { message: string }>({
+        path: '/world',
+        type: 'get',
+        async handler() {
+          return {
+            message: 'Hello world!',
+          };
+        },
+      }),
+    };
+  },
+});
+```
+
+To make this controller available, only thing left to do is to add it to
+BCMS Plugin handler:
+
+```ts
+// backend/main.ts
+
+import { createBcmsPlugin } from '@becomes/cms-backend/plugin';
+import { HelloWorldController } from './hello-world';
+import { TodoController } from './todo';
+
+export default createBcmsPlugin({
+  name: 'bcms-plugin---name',
+  controllers: [
+    TodoController,
+    HelloWorldController, // <-- This is our controller
+  ],
+});
+```
+
+We can now start the BCMS and if we send a request to this controller we will
+get this:
+
+```txt
+GET http://localhost:8080/api/plugin/bcms-plugin---name/hello/world
+
+-----------------------
+
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 23 Mar 2023 11:51:45 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 26
+Connection: close
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+ETag: W/"1a-T7vCLEZV7pLSyUzkr9XBdG32YU8"
+
+{
+  "message": "Hello world!"
+}
+```
+
+That's it! As you are able to see we can call this endpoint without any authentication
+which means that it is public (anyone can access it). If you want to lock this
+endpoint you can use **BCMSRouteProtection** call to create endpoint protection:
+
+```ts
+import type { BCMSRouteProtectionJwtResult } from '@becomes/cms-backend/types';
+import { BCMSRouteProtection } from '@becomes/cms-backend/util';
+import {
+  createController,
+  createControllerMethod,
+} from '@becomes/purple-cheetah';
+import {
+  JWTPermissionName,
+  JWTRoleName,
+} from '@becomes/purple-cheetah-mod-jwt/types';
+
+export const HelloWorldController = createController({
+  name: 'Hello world',
+  path: '/hello',
+  methods() {
+    return {
+      helloWorld: createControllerMethod<
+        BCMSRouteProtectionJwtResult,
+        { message: string }
+      >({
+        path: '/world',
+        type: 'get',
+        // Endpoint protection using JWT authentication
+        // --------------------------------------------
+        preRequestHandler: BCMSRouteProtection.createJwtPreRequestHandler(
+          [JWTRoleName.ADMIN, JWTRoleName.USER],
+          JWTPermissionName.READ
+        ),
+        async handler() {
+          return {
+            message: 'Hello world!',
+          };
+        },
+      }),
+    };
+  },
+});
+```
+
+After this modification if we again try to send the request from above we will
+get:
+
+```txt
+HTTP/1.1 401 Unauthorized
+Server: nginx
+Date: Thu, 23 Mar 2023 12:03:20 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 35
+Connection: close
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+ETag: W/"23-P6T7nIGEhyt+0WRId7BsUh87luo"
+
+{
+  "message": "Token is `undefined`."
+}
+```
+
+---
+
+## Plugin Frontend
+
+As mentioned, frontend code for a plugin is located in `ui` directory. BCMS UI
+is written in Vue 3 with TSX syntax and because of that, plugins starter comes
+with everything ready to go. It is completely up to you how would you structure
+the frontend code but recommend that you follow code from the starter.
+
+It is important to note that you have access to the [SDK](https://github.com/becomesco/cms-sdk) vie
+`window.bcms.sdk.*` which will allow you to easily access the Backend API.
+
+---
+
+## Plugin deployment
+
+Deploying your plugin is extremely easy. Once you are ready to deploy the plugin
+to the CMS, all that you have to do is run:
+
+- `npm run bundle` - will bundle your backend and ui code and create a package,
+- `npm run deploy` - will deploy the bundled plugin to the BCMS Instance which
+  you've selected.
+
+Have in mind that it may take a few moment for you to see changes on the CMS after
+deploying the plugin.
