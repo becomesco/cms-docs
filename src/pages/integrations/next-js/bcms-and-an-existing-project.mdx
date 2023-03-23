@@ -1,0 +1,88 @@
+# How to Adding BCMS to an existing Next.js project
+
+The fastest way to start using BCMS with Next.js is to [create a new Next.js project](/integrations/next-js#starting-a-project-from-scratch) from scratch, using BCMS CLI.
+However, if you want to add BCMS to an existing Next.js project, here are the steps:
+
+1. Install BCMS plugin and its dependencies by running: `npm install -D next-plugin-bcms @becomes/cms-cli @becomes/cms-client @becomes/cms-most`
+2. Create BCMS configuration by making a file called `bcms.config.js` in the root of your project
+
+<CodeGroup title="bcms.config.js">
+```javascript
+const { createBcmsMostConfig } = require('@becomes/cms-most');
+
+module.exports = createBcmsMostConfig({
+  cms: {
+    origin:
+      process.env.BCMS_API_ORIGIN ||
+      'https://becomes-starter-projects.yourbcms.com',
+    key: {
+      id: process.env.BCMS_API_KEY || '629dcd4dbcf5017354af6fe8',
+      secret:
+        process.env.BCMS_API_SECRET ||
+        '7a3c5899f211c2d988770f7561330ed8b0a4b2b5481acc2855bb720729367896',
+    },
+  },
+  media: {
+    output: 'public',
+    download: false,
+  },
+  enableClientCache: true,
+});
+```
+</CodeGroup>
+
+3. After that, You can configure BCMS images handler (this is optional). TO do so, open `pages/_app.tsx` and add configuration for API origin and public API key.
+
+<CodeGroup title="pages/_app.tsx">
+```javascript
+// ... Other imports
+
+import { BCMSImageConfig } from 'next-plugin-bcms/components';
+
+BCMSImageConfig.cmsOrigin =
+  process.env.NEXT_PUBLIC_BCMS_API_ORIGIN ||
+  'https://becomes-starter-projects.yourbcms.com';
+BCMSImageConfig.publicApiKeyId =
+  process.env.NEXT_PUBLIC_BCMS_API_PUBLIC_KEY_ID || '629dcd4dbcf5017354af6fe8';
+
+// ... Other configuration
+```
+</CodeGroup>
+
+4. Next step is to create instance of the Next.js plugin at the server runtime by calling `createBcmsNextPlugin` inside of the `next.config.js`.
+
+
+<CodeGroup title="next.config.js">
+```javascript
+// ... Other imports
+
+const { createBcmsNextPlugin } = require('next-plugin-bcms/main');
+createBcmsNextPlugin();
+
+// ... Other configuration
+```
+</CodeGroup>
+
+5. Finally, we will call [BCMS Most](https://github.com/becomesco/cms-most) functions in every script before Next execution.
+
+<CodeGroup title="package.json">
+```javascript
+"scripts": {
+  "dev": "bcms --m all && next dev",
+  "build": "bcms --m all && next build",
+  "start": "bcms --m all && next start",
+  "lint": "next lint"
+},
+```
+</CodeGroup>
+
+6. And you should probably add BCMS cache paths to your `.gitignore`
+
+<CodeGroup title=".gitignore">
+```javascript
+# BCMS
+/bcms
+/public/bcms-media
+/public/api/bcms-images
+```
+</CodeGroup>

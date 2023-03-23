@@ -7,8 +7,8 @@ const removeMd = require('remove-markdown-and-html');
 
 
 const algolia = algoliaSearch.default(
-  '6VKFS5NOO9',
-  '09e3edac6d30b94064be44f1fb745697'
+  process.env.NEXT_PUBLIC_DOCSEARCH_APP_ID,
+  process.env.ALGOLIA_ADMIN_API_KEY
 )
 const algIndex = algolia.initIndex('docs')
 const fs = createFS({
@@ -18,8 +18,9 @@ const fs = createFS({
 function parseContent(content) {
   const strip1 = content.replace(/\{{[^{{}}]*\}}/g, '');
   const strip2 = removeMd(strip1);
-  const strip3 = strip2.replace(/<\/?[^>]+(>|$)/g, '').replace('#', '').replace('##', '')
-  return strip3
+  const strip3 = strip2.replace(/<\/?[^>]+(>|$)/g, '').replace('##', '').replace('#', '').replace(/\s{2,}/g, ' ')
+  const strip4 = strip3.trim();
+  return strip4
 }
 
 module.exports = createConfig({
@@ -60,7 +61,7 @@ module.exports = createConfig({
                 .createHash('sha1')
                 .update(`/${item.path.rel.replace('.mdx', '')}`)
                 .digest('hex'),
-              uri: `/${item.path.rel.replace('.mdx', '')}`,
+              uri: `/${item.path.rel.replace('/index.mdx', '').replace('.mdx', '')}`,
               title: title.replace('# ', ''),
               content: parseContent(lines.slice(j + 1).join(' ')),
             }
