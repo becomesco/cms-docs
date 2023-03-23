@@ -40,8 +40,8 @@ const resources = [
 
 function ResourceIcon({ icon: Icon }) {
   return (
-    <div className="flex h-7 w-7 items-center justify-center rounded-full bg-dark/5 ring-1 ring-dark/25 backdrop-blur-[2px] transition duration-300 group-hover:bg-light/50 group-hover:ring-dark/25 dark:bg-light/7.5 dark:ring-light/15 dark:group-hover:bg-light/10 dark:group-hover:ring-light">
-      <Icon className="w-5 h-5 transition-colors duration-300 fill-dark/10 stroke-dark group-hover:stroke-dark dark:fill-light/10 dark:stroke-light dark:group-hover:fill-light/10 dark:group-hover:stroke-light" />
+    <div className="flex w-7 h-7 items-center justify-center rounded-full ring-1 ring-dark/25 backdrop-blur-[2px] transition duration-300 group-hover:ring-dark group-hover:bg-light/50 dark:bg-light/7.5 dark:ring-light/15 dark:group-hover:bg-light/10 dark:group-hover:ring-light">
+      <Icon className="w-5 h-5 transition-colors duration-300 fill-none stroke-dark dark:stroke-light" />
     </div>
   )
 }

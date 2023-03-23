@@ -27,6 +27,7 @@
   --tw-bg-opacity: 1;
   background-color: rgba(252, 252, 252, var(--tw-bg-opacity));
   background-repeat: no-repeat;
+  background-attachment: fixed;
   font-size: 1rem;
   line-height: 1.5rem;
   line-height: 1.375;
