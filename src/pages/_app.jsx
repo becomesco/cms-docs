@@ -19,16 +19,20 @@ Router.events.on('routeChangeError', onRouteChange)
 
 export default function App({ Component, pageProps }) {
   let router = useRouter()
-
+  const uriName = encodeURIComponent(pageProps.title);
   return (
     <>
       <Head>
         {router.pathname === '/' ? (
           <title>BCMS documentation</title>
         ) : (
-          <title>{`${pageProps.title} - BCMS documentation`}</title>
+          <title>{`${pageProps.title} - BCMS`}</title>
         )}
         <meta name="description" content={pageProps.description} />
+        <meta
+          property="og:image"
+          content={`https://docs.thebcms.com/api/og-image?name=${uriName}&description=${pageProps.description}`}
+        />
       </Head>
       <MDXProvider components={mdxComponents}>
         <Layout {...pageProps}>
