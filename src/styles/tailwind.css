@@ -15,8 +15,7 @@
 @tailwind utilities;
 
 *::selection {
-  background-color: rgba(36, 150, 129, 0.3);
-  color: rgb(19, 20, 26);
+  @apply bg-green/10 text-green;
 }
 
 .bcmsBody {
@@ -46,8 +45,7 @@
 }
 
 .dark *::selection {
-  background-color: rgb(255, 205, 25);
-  color: rgb(19, 20, 26);
+  @apply text-yellow bg-yellow/5;
 }
 
 @media screen and (min-width: 375px) {

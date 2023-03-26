@@ -15,7 +15,7 @@ module.exports = ({ theme }) => ({
       '--tw-prose-captions': theme('colors.dark'),
       '--tw-prose-code': theme('colors.dark'),
       '--tw-prose-code-bg': theme('colors.light'),
-      '--tw-prose-code-ring': theme('colors.light'),
+      '--tw-prose-code-ring': theme('colors.grey'),
       '--tw-prose-th-borders': theme('colors.light'),
       '--tw-prose-td-borders': theme('colors.light'),
 
