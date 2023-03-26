@@ -84,6 +84,7 @@ export default withOGImage({
           <head>
             <meta charSet="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            {/* eslint-disable-next-line @next/next/no-sync-scripts */}
             <script src="https://cdn.tailwindcss.com"></script>
             <style dangerouslySetInnerHTML={{ __html: style }} />
             <script dangerouslySetInnerHTML={{ __html: `tailwind.config = ${JSON.stringify(tailwindConfig)};` }}></script>
