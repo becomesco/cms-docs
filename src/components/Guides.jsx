@@ -8,19 +8,19 @@ const guides = [
     description: 'Learn how to start BCMS locally on your machine in just a 3 minutes.',
   },
   {
-    href: '/sdk',
+    href: '/integrations',
     name: 'How to connect BCMS with your favorite framework',
     description:
       'Understand how to work with BCMS and Nuxt.js, Gatsby.js, Next.js, etc.',
   },
   {
-    href: '/how-to-create-bcms-instance',
-    name: 'How to create BCMS instance & License key',
+    href: '/install/locally',
+    name: 'How to start BCMS locally',
     description:
       'Read about the different types of errors returned by the API.',
   },
   {
-    href: '/how-to-install-bcms-on-ubuntu-server',
+    href: '/install/digitalocean',
     name: 'How to install BCMS on Ubuntu Server',
     description: "Learn how to install BCMS on DigitalOcean's Ubuntu Server.",
   },
