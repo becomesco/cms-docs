@@ -4,7 +4,7 @@ BCMS SDK is a module that abstracts API communication. It takes care of making R
 The BCMS SDK provides a lot of helpful features, including:
 
 - Authentication management so you don't have to worry about security tokens and their lifecycles.
-- An intuitive interface for communicating with the Backend API. Instead of making HTTP requests, developers can use abstract methods like sdk.template.getAll() to retrieve data.
+- An intuitive interface for communicating with the back end API. Instead of making HTTP requests, developers can use abstract methods like sdk.template.getAll() to retrieve data.
 - Socket support for data synchronization, ensuring that the cache is always in sync with other sessions.
 - Integration with Vue store, allowing the use of powerful computed methods.
 - A cache layer that stores data in memory for a session. When the browser tab reloads, the cache clears. Read more about [BCMS SDK Caching.](/improve/caching)
@@ -13,17 +13,17 @@ Access the BCMS SDK via ```window.bcms.sdk.*``` in your UI code to get started.
 
 To illustrate how caching works in the BCMS SDK, consider the following example:
 
-A client logs in and requests all available widgets using ```sdk.widget.getAll()```. Since this is the first time this method has been called, a request is made to the Backend, and the data is received and stored in the cache. A copy of the data is also returned to the client.
+A client logs in and requests all available widgets using ```sdk.widget.getAll()```. Since this is the first time this method has been called, a request is made to the back end, and the data is received and stored in the cache. A copy of the data is also returned to the client.
 
-A bit later, the client requests all widgets again using ```sdk.widget.getAll()```. This time, the SDK checks the cache and finds that the data is already present. It returns a copy of the data from the cache without sending a request to the Backend.
+A bit later, the client requests all widgets again using ```sdk.widget.getAll()```. This time, the SDK checks the cache and finds that the data is already present. It returns a copy of the data from the cache without sending a request to the back end.
 
-Updating cached data is also easy. When clients want to make changes to a widget, they can call ```sdk.widget.update(myUpdatedWidget)```, and the SDK will send a request to the Backend to update the widget. The Backend will then respond with the updated widget, which the SDK will use to update the corresponding widget in the cache. The widget will be added to the cache if it doesn't exist there already.
+Updating cached data is also easy. When clients want to make changes to a widget, they can call ```sdk.widget.update(myUpdatedWidget)```, and the SDK will send a request to the back end to update the widget. The back end will then respond with the updated widget, which the SDK will use to update the corresponding widget in the cache. The widget will be added to the cache if it doesn't exist there already.
 
-Caching becomes increasingly more important when there are more clients connected to the same Backend simultaneously.
+Caching becomes increasingly more important when there are more clients connected to the same back end simultaneously.
 For example, consider two clients, **C-one** and **C-two**, who requested and received a copy of all widgets.
-If C-one updates a widget, C-two's cache must also be updated to remain in sync with the Backend.
+If C-one updates a widget, C-two's cache must also be updated to remain in sync with the back end.
 The BCMS SDK uses sockets to solve this problem.
-With every update on the Backend, all active clients get informed via socket.
+With every update on the back end, all active clients get informed via socket.
 That's how C-two retrieves the updated widget and updates its cache.
 
 The BCMS SDK makes it easy for developers to work with cached data without worrying about the underlying implementation details.

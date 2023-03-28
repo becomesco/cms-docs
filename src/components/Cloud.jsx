@@ -40,7 +40,7 @@ const cloud = [
     href: '/cloud/functions',
     name: 'Functions',
     description:
-      'JavaScript functions which can be executed by sending an HTTP request to the BCMS backend API.',
+      'JavaScript functions which can be executed by sending an HTTP request to the BCMS back end API.',
     icon: UsersIcon,
   },
   {
@@ -54,14 +54,14 @@ const cloud = [
     href: '/cloud/jobs',
     name: 'Jobs',
     description:
-      'A way to execute a custom code on the BCMS Backend at specified interval.',
+      'A way to execute a custom code on the BCMS back end at specified interval.',
     icon: UsersIcon,
   },
   {
     href: '/cloud/plugins',
     name: 'Plugins',
     description:
-      'Use to extend functionality of your BCMS’s backend and UI.',
+      'Use to extend functionality of your BCMS’s back end and UI.',
     icon: UsersIcon,
   },
   {

@@ -1,20 +1,15 @@
 # BCMS Jobs
 
-BCMS Jobs are JavaScript functions which are executed at specified time interval.
+BCMS Jobs are JavaScript functions that execute at a specified time interval.
 
----
+## Creating a BCMS job
 
-## Creating a job
+Create a file inside `src/jobs` folder, for example, `test.ts`.
 
-Creating a job is pretty straight forward. First you need to create a file
-inside of the `src/jobs`, for example, let's create a file called `test.ts`.
+To keep it simple, this job will only console log **Hello world!** message.
 
-To keep it simple, this job will only console log **Hello world!** message and
-we'll do it like this:
-
+<CodeGroup title="src/jobs/test.ts">
 ```ts
-// src/jobs/test.ts
-
 import { createBcmsJob } from '@becomes/cms-backend/src/job';
 
 export default createBcmsJob(async () => {
@@ -32,7 +27,17 @@ export default createBcmsJob(async () => {
   };
 });
 ```
+</CodeGroup>
 
-The job will be executed every minute and time is set using Cron time format.
-[Crontab guru](https://crontab.guru/) is an amazing website which will allow
+The job will run every minute. The time is set using Cron time format.
+[Crontab guru](https://crontab.guru/) is an amazing website which allows
 you to calculate time intervals.
+
+---
+
+## Deploying a job
+
+When you are ready to deploy your job to the CMS, follow these steps:
+
+- Inside the project, run `npm run bundle`. This will compile TypeScript files and bootstrap the project.
+- Then, to deploy your job, run `npm run deploy`.

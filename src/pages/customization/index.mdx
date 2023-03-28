@@ -1,43 +1,42 @@
 # Customizing BCMS
 
-BCMS is a complex system, and it can be overwhelming to understand every part
-of it immediately. That's why we created BCMS in a way that allows developers
-to easily extend its functionality without knowing every detail of the software.
+BCMS is a powerful system, with a lot of options for customization,
+that you'll learn just when you need them. BCMS allows developers
+to extend its functionality, and adapt it to their needs and use cases.
 
-Custom features can be added to the BCMS in two ways: by [creating a plugin](/customization/plugins),
+You can add custom features to BCMS in two ways: by [creating a plugin](/customization/plugins),
 which is more advanced, or by creating [functions](/customization/functions),
-[events](/customization/events) and/or [jobs](/customization/jobs).
-Extending BCMS functionality is limited but powerful. For example, you cannot
-modify core BCMS functionality but can build on top of it.
+[events](/customization/events) and [jobs](/customization/jobs).
+By extending BCMS functionality, you build on top of its core functionality.
 
-When customizing your CMS it is good to know few abstract concepts:
+## Key BCMS elements
 
-- [BCMS Backend](https://github.com/becomesco/cms-backend) - or the **backend**, refers to a Core BCMS module that handles
-  common and custom backend tasks. Those tasks include communication with the
+When customizing your CMS it's good to know a few of key elements of BCMS:
+- [BCMS back end](https://github.com/becomesco/cms-backend) - or the **back end**, refers to a Core BCMS module that handles
+  common and custom back end tasks. Those tasks include communication with the
   database, database caching, scoping, restrictions and security, object
   aggregation and relational updates, real-time connection with sockets,
   and many more.
 - [BCMS UI](https://github.com/becomesco/cms-ui) - or the **dashboard**, refers to a Core BCMS module that provides
-  a beautiful CMS user interface interface. It is simply the frontend of the BCMS.
+  CMS user interface interface. Simply - it's the front end of the BCMS.
 - [BCMS SDK](https://github.com/becomesco/cms-sdk) - or the **SDK**, refers to a Core BCMS module that provides a layer
-  of abstraction between the UI and the backend. It is a client side module
-  used by the UI and it handles caching, communication with the backend API,
+  of abstraction between the UI and the back end. It is a client side module
+  used by the UI and it handles caching, communication with the back end API,
   and data synchronization, among many other things.
 
 ---
 
 ## Getting started
 
-To customize your CMS you will need to create a [local CMS project](/install/locally).
+To customize your CMS, you will need to create a [local CMS project](/install/locally).
 Make sure to save a copy or your local project because
-[deploying changes to the Cloud](/customization/deployment) will not save your
+deploying changes to the Cloud won't save your
 project structure, the Cloud will only store production optimized versions of
-your custom code. We recommend a use of [GitHub](https://github.com),
+your custom code. It's recommended to use [GitHub](https://github.com),
 [GitLab](https://about.gitlab.com/) or [BitBucket](https://bitbucket.org/)
 for storing your code.
 
 - [Functions](/customization/functions)
 - [Events](/customization/events)
 - [Jobs](/customization/jobs)
-- [Deployment](/customization/deployment)
 - [Plugins](/customization/plugins)

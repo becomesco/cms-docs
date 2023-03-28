@@ -4,7 +4,7 @@ import imageOne from '/src/images/customization/plugins/plugin-in-navigation.svg
 # Extending BCMS with custom Plugins
 
 The most powerful way to extend BCMS functionality is by using BCMS Plugins.
-Plugins are applications that run inside of the CMS with UI and Backend components.
+Plugins are applications that run inside of the CMS with UI and back end components.
 
 With plugins, you can display any kind of data from BCMS, in any way you want. For example, you can display form submissions, different kinds of charts, craft your own content authoring flow - and display it all inside BCMS.
 
@@ -37,12 +37,12 @@ That's it! You can now start building your plugin and take advantage of the powe
 ---
 
 ## Project Structure
-The project contains multiple directories and files, but the most important ones for plugin development are `ui` and `backend`.
+The project contains multiple directories and files, but the most important ones for plugin development are `ui` and `back end`.
 
-- The backend directory contains the backend code for the plugin.
+- The back end directory contains the back end code for the plugin.
   Here, you will write your custom REST endpoints and server-side logic.
-  To install backend dependencies, navigate to the root of the project and run `npm install --save PACKAGE_NAME`.
-- The `ui` directory contains the frontend code for the plugin.
+  To install back end dependencies, navigate to the root of the project and run `npm install --save PACKAGE_NAME`.
+- The `ui` directory contains the front end code for the plugin.
   This is where you will write your UI elements, call APIs, and present data to the user.
   If you need additional dependencies, navigate to the ui directory and run `npm install --save PACKAGE_NAME`.
 
@@ -50,17 +50,17 @@ Additionally, you can customize the plugin name by modifying the bcms-plugin.con
 
 ---
 
-## Plugin Backend
+## Plugin back end
 
-Both BCMS and BCMS Plugins use [Purple Cheetah](https://github.com/becomesco/purple-cheetah) for the backend. This means that you will use Purple Cheetah to create controllers and middleware.
+Both BCMS and BCMS Plugins use [Purple Cheetah](https://github.com/becomesco/purple-cheetah) for the back end. This means that you will use Purple Cheetah to create controllers and middleware.
 When you create a new plugin project, it will include example code for a simple To-do plugin to help you get started quickly.
 
 ### Creating an Endpoint
 
 To create an endpoint, follow these steps:
 
-1. Create a controller/middleware object in the backend directory.
-  For example, let's create a hello-world.ts file with the following code:
+1. Create a controller/middleware object in the back end directory.
+  For example, create a hello-world.ts file with the following code:
   <CodeGroup title="backend/hello-world.ts">
   ```ts
   import {
@@ -101,7 +101,7 @@ To create an endpoint, follow these steps:
     name: 'bcms-plugin---name',
     controllers: [
       TodoController,
-      HelloWorldController, // <-- This is our controller
+      HelloWorldController, // <-- This is your controller
     ],
   });
   ```
@@ -194,18 +194,18 @@ ETag: W/"23-P6T7nIGEhyt+0WRId7BsUh87luo"
 
 ---
 
-## Plugin Frontend
+## Plugin front end
 
-You can find the frontend code for the plugin in the `ui` directory.
-The BCMS UI is built with Vue 3 and uses `.tsx` syntax.
+You can find the front end code for the plugin in the `ui` directory.
+The BCMS UI uses Vue 3 and `.tsx` syntax.
 The plugin starter kit includes everything you need to get started. It's recommended to follow the code from the starter kit to help speed up the process.
 
-Developers can access the [SDK](https://github.com/becomesco/cms-sdk) via window.bcms.sdk.*. This makes it easy to access the backend API.
+Developers can access the [SDK](https://github.com/becomesco/cms-sdk) via window.bcms.sdk.*. This makes it easy to access the back end API.
 
 ---
 
-## Plugin Deployment
+## Deploying a plugin
 
 When you are ready to deploy your plugin to the CMS, follow these steps:
-- Run `npm run bundle` to bundle the backend and frontend code and create a plugin package.
+- Run `npm run bundle` to bundle the back end and front end code and create a plugin package.
 - Run `npm run deploy` to deploy the bundled plugin to the CMS. It may take a few moments for the changes to appear in the CMS.

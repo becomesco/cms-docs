@@ -1,22 +1,17 @@
 # BCMS Function development
 
-BCMS Functions are JavaScript functions that can be executed by sending an
-HTTP request to the Backend API. Once function is created, it will be
+BCMS Functions are JavaScript functions that you can execute by sending an
+HTTP request to the back end API. Once you create a function, it will be
 available at `POST: https://{CMS_DOMAIN}/api/function/{FUNCTION_NAME}`.
 
----
+## Creating a BCMS function
 
-## Create a function
-
-Creating a function is pretty straight forward. First you need to create a
-file inside of the `src/functions`, for example, let's create a file called
-`ping-pong.ts`.
+To create a function, create a file inside `src/functions`, for example `ping-pong.ts`.
 
 To keep it simple, this function will be public and echo back a request body.
-This can be done like this:
 
+<CodeGroup title="src/functions/ping-pong.ts">
 ```ts
-// src/functions/ping-pong.ts
 
 import { createBcmsFunction } from '@becomes/cms-backend/src/function';
 
@@ -34,9 +29,10 @@ export default createBcmsFunction(async () => {
   };
 });
 ```
+</CodeGroup>
 
 After saving the file and starting the BCMS you can send a `POST` request to
-`/api/function/ping-pong`. Request and response will look like this:
+`/api/function/ping-pong`. Request and response should look like this:
 
 ```txt
 POST http://localhost:8080/api/function/ping-pong
@@ -69,12 +65,12 @@ ETag: W/"44-r1QIq4dWf0ZgljC19i8Qi20S0LY"
 ```
 
 That's it! You just created a BCMS Function. Since functions are running on the
-Backend, they have access to all core utilities and helpers. This means that
+back end, they have access to all BCMS's core utilities and helpers. This means that
 functions have access to the database and, for example you can return list of
-all [Entries](/inside-bcms/entries) in specific [Template](/inside-bcms/templates):
+all [Entries](/inside-bcms/entries) in a specific [Template](/inside-bcms/templates):
 
+<CodeGroup title="src/functions/ping-pong.ts">
 ```ts
-// src/functions/ping-pong.ts
 
 import { createBcmsFunction } from '@becomes/cms-backend/src/function';
 import { BCMSRepo } from '@becomes/cms-backend/src/repo';
@@ -101,19 +97,25 @@ export default createBcmsFunction(async () => {
   };
 });
 ```
+</CodeGroup>
 
 ---
 
 ## Public vs Private functions
 
-In example above we've created a **public** function. This means that the
-function can be called by anyone from anywhere without authentication. Public
-functions are useful if you need to return publicly available data to many
-different clients, this makes it very easy for clients to call the function 
-and get the data.
+In the example above, you created a **public** function. This means that anyone can call thatfunction,
+from anywhere without authentication. Public functions are useful if you need to return publicly available data to many
+different clients.
 
-In contrast to public functions, **private** function requires an authentication 
+In contrast to public functions, **private** functions require an authentication
 using [HTTP Signature](https://github.com/becomesco/cms-client/blob/master/src/util/security.ts#L6)
 which is available out-of-the-box with [BCMS Client package](https://github.com/becomesco/cms-client).
 
+---
 
+## Deploying a function
+
+When you are ready to deploy your function to the CMS, follow these steps:
+
+- Inside the project, run `npm run bundle`. This will compile TypeScript files and bootstrap the project.
+- Then, to deploy your function, run `npm run deploy`.

@@ -1,22 +1,15 @@
 # BCMS Events
 
-BCMS Events are JavaScript functions which are executed by internal backend
-Events. They allow you to run some custom code when specific event is
-triggered.
-
----
+BCMS Events are JavaScript functions that get triggered by events inside BCMS.
+They allow you to run some custom code when specific event happens.
 
 ## Creating an event handler
 
-Creating an event handler is pretty straight forward. First you need to create
-a file inside of the `src/events`, for example, let's create a file called
-`test.ts`.
-
+To create an event handler, create a file inside `src/events`, for example, `test.ts`.
 To keep is simple, this event will only log data which it receives:
 
+<CodeGroup title="src/events/test.ts">
 ```ts
-// src/events/test.ts
-
 import { createBcmsEvent } from '@becomes/cms-backend/src/event';
 import {
   BCMSEventConfigMethod,
@@ -35,18 +28,17 @@ export default createBcmsEvent(async () => {
   };
 });
 ```
+</CodeGroup>
 
-The event handler which we have created will be triggered every time a new
+The event handler you created will trigger every time a new
 [Entry](/inside-bcms/entries) is added to the database.
 
 ---
 
 ## Triggering an event
 
-Since we are talking about internal events, they can be triggered only by
-internal code, this also includes Functions, Jobs and Plugins. Events can be
-triggered using the [Event Manager](https://github.com/becomesco/cms-backend/blob/master/src/event/main.ts#L12).
-Few examples are shown bellow:
+Only Functions, Jobs, and Plugins can trigger internal events. Events are triggered using the [Event Manager](https://github.com/becomesco/cms-backend/blob/master/src/event/main.ts#L12).
+A few examples:
 
 ```ts
 // Trigger Entry Added event
@@ -69,10 +61,19 @@ await BCMSEventManager.emit(
 
 // Trigger custom event
 await BCMSEventManager.emit(
-  'MY_CUSTOM_SCOPE', 
-  'MY_CUSTOM_METHOD', 
+  'MY_CUSTOM_SCOPE',
+  'MY_CUSTOM_METHOD',
   {
     custom: 'data',
   }
 );
 ```
+
+---
+
+## Deploying an event
+
+When you are ready to deploy your event to the CMS, follow these steps:
+
+- Inside the project, run `npm run bundle`. This will compile TypeScript files and bootstrap the project.
+- Then, to deploy your event, run `npm run deploy`.

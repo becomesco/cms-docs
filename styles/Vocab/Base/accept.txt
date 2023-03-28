@@ -9,6 +9,9 @@
 (?i)Vercel
 (?i)SSD
 (?i)VPC
-(?i)unoptimized
+(?i)JWT
+(?i)READ
+(?i)ADMIN
+(?i)USER
 v.B
 v.O
