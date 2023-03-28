@@ -232,8 +232,8 @@ export const navigation = [
     title: 'Cloud',
     links: [
       { title: 'Overview', href: '/cloud' },
-      { title: 'Team', href: '/cloud/team' },
-      { title: 'Instances', href: '/cloud/instances' },
+      // { title: 'Team', href: '/cloud/team' },
+      // { title: 'Instances', href: '/cloud/instances' },
       { title: 'Nginx config', href: '/cloud/nginx' },
       { title: 'Dependencies', href: '/cloud/dependencies' },
       { title: 'Functions', href: '/cloud/functions' },
@@ -242,7 +242,7 @@ export const navigation = [
       { title: 'Plugins', href: '/cloud/plugins' },
       { title: 'Environment variables', href: '/cloud/env-variables' },
       { title: 'Domains', href: '/cloud/domains' },
-      { title: 'Account settings', href: '/cloud/account-settings' },
+      // { title: 'Account settings', href: '/cloud/account-settings' },
     ],
   },
   {

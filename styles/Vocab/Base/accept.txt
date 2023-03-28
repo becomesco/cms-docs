@@ -13,5 +13,9 @@
 (?i)READ
 (?i)ADMIN
 (?i)USER
+(?i)SMTP
+(?i)Nginx
+(?i)config
+(?i)unoptimized
 v.B
 v.O

@@ -1,49 +1,55 @@
+import Image from 'next/image';
+import addDependency from '/src/images/cloud/dependencies/1-add-dependency.svg';
+
 # BCMS Dependencies
 
-When you are writing your own [Functions](/cloud/functions), [Events](/cloud/events)
-or [Jobs](/cloud/jobs) you might be in need of NPM packages which are not
-preinstalled with the CMS (for example [axios](https://www.npmjs.com/package/axios)).
-Dependencies allows you to specify which additional dependencies your project
-needs.
+When you write your [Functions](/cloud/functions), [Events](/cloud/events)
+and [Jobs](/cloud/jobs) you will probably want to install some NPM packages which are not
+already installed with the CMS (for example [axios](https://www.npmjs.com/package/axios)).
 
-<Note>
-  It is important to know that if you provide an invalid dependency it will result
-  in CMS crash which will start the CMS in safe mode.
+BCMS dependencies allow you to specify which additional NPM packages your project needs.
+
+---
+
+## Adding a dependency
+
+On the instance page, click on **Dependencies** card, and the **Add new dependency** button.
+**Package name** must be a valid NPM dependency name and **Package version** must be a valid version of that
+package.
+
+<Image
+  src={addDependency}
+  alt="Add plugin modal"
+  className="h-auto w-full"
+  unoptimized
+/>
+
+When you add a dependency, CMS will rebuild with new configuration. It'll take a few seconds.
+
+<Note danger>
+  Please double-check that you written the dependency correctly. Invalid dependency name it will result
+  in CMS crash, which will start the CMS in the safe mode.
 </Note>
 
 ---
 
-## Adding dependency
+## Editing a dependency
 
-Login to the [BCMS Cloud](https://cloud.thebcms.com) and open an Instance to
-which you would like to add a dependency. When on the Instance screen click on
-**Dependencies** card. From here, click on **Add new dependency** button and you
-will be able to add package name and version. **Package name** must be a valid
-NPM dependency name and **Package version** must be a valid version for
-specified package.
-
-When dependency is added, you will need to wait a little bit for CMS to rebuild
-with new configuration.
-
----
-
-## Edit dependency
-
-While on the Instance screen click on **Dependencies** card. This will open a
+On the instance page click on **Dependencies** card. This will open a
 modal with list of available dependencies, with Package name and **Edit**
 button next to it.
 
 To edit dependency click on **Edit** button next to the package name you
 would like to edit.
 
-When dependency is edited, you will need to wait a little bit for CMS to rebuild
-with new configuration.
+When you add a dependency, CMS will rebuild with new configuration. It'll take a few seconds.
+
 
 ---
 
-### Delete dependency
+### Deleting a dependency
 
-While on the Instance screen click on **Dependencies** card. This will open a
+On the instance page click on **Dependencies** card. This will open a
 modal with list of available dependencies, with Package name and **Edit**
 button next to it.
 
@@ -51,5 +57,4 @@ To delete dependency click on **Edit** button next to the package name you
 would like to delete. From here, you can delete dependency by clicking on
 **Delete** button in the bottom left corner of the modal.
 
-When dependency is deleted, you will need to wait a little bit for CMS to rebuild
-with new configuration.
+When you delete a dependency, CMS will rebuild with new configuration. It'll take a few seconds.

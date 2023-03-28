@@ -8,83 +8,83 @@ import { UserIcon } from '@/components/icons/UserIcon'
 import { UsersIcon } from '@/components/icons/UsersIcon'
 
 const cloud = [
-  {
-    href: '/cloud/team',
-    name: 'Team',
-    description:
-      'Learn how to integrate BCMS into your codebase(s) and tools.',
-    icon: UserIcon,
-  },
-  {
-    href: '/cloud/instances',
-    name: 'Instances',
-    description:
-      'BCMS is open-source software. Favorite the repository and help us spread a word!',
-    icon: ChatBubbleIcon,
-  },
+  // {
+  //   href: '/cloud/team',
+  //   name: 'Team',
+  //   description:
+  //     'Learn how to integrate BCMS into your codebase(s) and tools.',
+  //   // icon: UserIcon,
+  // },
+  // {
+  //   href: '/cloud/instances',
+  //   name: 'Instances',
+  //   description:
+  //     'BCMS is open-source software. Favorite the repository and help us spread a word!',
+  //   icon: ChatBubbleIcon,
+  // },
   {
     href: '/cloud/nginx',
     name: 'Ngnix configuration',
     description:
       'Add custom Nginix configuration. For when you want to configure custom proxy or stuff.',
-    icon: EnvelopeIcon,
+    // icon: EnvelopeIcon,
   },
   {
     href: '/cloud/dependencies',
     name: 'Dependencies',
     description:
       'Join BCMS Slack community to learn from other developers and stay up-to-date with new features.',
-    icon: UsersIcon,
+    // icon: UsersIcon,
   },
   {
     href: '/cloud/functions',
     name: 'Functions',
     description:
       'JavaScript functions which can be executed by sending an HTTP request to the BCMS back end API.',
-    icon: UsersIcon,
+    // icon: UsersIcon,
   },
   {
     href: '/cloud/events',
     name: 'Events',
     description:
       'Subscribe to any add, update or delete event in your BCMS.',
-    icon: UsersIcon,
+    // icon: UsersIcon,
   },
   {
     href: '/cloud/jobs',
     name: 'Jobs',
     description:
       'A way to execute a custom code on the BCMS back end at specified interval.',
-    icon: UsersIcon,
+    // icon: UsersIcon,
   },
   {
     href: '/cloud/plugins',
     name: 'Plugins',
     description:
       'Use to extend functionality of your BCMS’s back end and UI.',
-    icon: UsersIcon,
+    // icon: UsersIcon,
   },
   {
     href: '/cloud/env-variables',
     name: 'Environment variables',
     description:
       'Your environment variables, which you can access from your Functions, Events, Jobs and Plugins.',
-    icon: UsersIcon,
+    // icon: UsersIcon,
   },
   {
     href: '/cloud/domains',
     name: 'Domains',
     description:
       'Add custom domains to access your CMS',
-    icon: UsersIcon,
+    // icon: UsersIcon,
   },
-  {
-    href: '/cloud/account-settings',
-    name: 'Account settings',
-    description:
-      'Update your email, change password, upload avatar. Regular stuff.',
-    icon: UsersIcon,
-  },
+  // {
+  //   href: '/cloud/account-settings',
+  //   name: 'Account settings',
+  //   description:
+  //     'Update your email, change password, upload avatar. Regular stuff.',
+  //   // icon: UsersIcon,
+  // },
 ]
 
 function ResourceIcon({ icon: Icon }) {
@@ -128,7 +128,9 @@ function Resource({ resource }) {
       <ResourcePattern {...resource.pattern} mouseX={mouseX} mouseY={mouseY} />
       <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-dark/7.5 group-hover:ring-dark/10 dark:ring-light/10 dark:group-hover:ring-light/20" />
       <div className="relative px-4 pt-16 pb-4 rounded-2xl">
-        <ResourceIcon icon={resource.icon} />
+        {
+          resource.icon && <ResourceIcon icon={resource.icon} />
+        }
         <h3 className="mt-4 text-sm font-semibold leading-7 text-dark dark:text-light">
           <Link href={resource.href}>
             <span className="absolute inset-0 rounded-2xl" />

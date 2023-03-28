@@ -1,49 +1,52 @@
+import Image from 'next/image';
+import addDomainName from '/src/images/cloud/domain-names/1-add-domain-name.svg';
+
 # Adding custom domain to BCMS
 
-When you create a BCMS Instance, you will also get a domain name from which
-you can access the CMS (it will be in format `{ORG_NAME}-{INSTANCE_NAME}.yourbcms.com`).
-To make the CMS accessible from the custom domain name (e.g. `cms.my-company.com`)
-you will need to add it and configure it on the Cloud.
+When you create a BCMS Instance, you will also get a domain to access your CMS. It's in `{ORG_NAME}-{INSTANCE_NAME}.yourbcms.com` format.
+To make the CMS accessible via the custom domain name (for example, `cms.your-company.com`)
+you will need to add domain and configure it on the Cloud.
 
 ---
 
-## Add a domain name
+## Adding a domain name
 
-Login to the [BCMS Cloud](https://cloud.thebcms.com) and open an Instance to
-which you would like to add a domain name. When on the Instance screen click on
-**Domains** card. From here, click on **Add new domain** button where you
-will need to provide few information:
+In your [BCMS Cloud](https://cloud.thebcms.com) account, and open the instance to
+which you would like to add a domain name.
+
+On the instance page click on **Domains** card, then on **Add new domain** button, where you will need to provide a few details:
 
 - Domain name - domain or sub-domain name which you would like to use.
 - SSL Certificate - **Optional** provided by your domain name provider. If you
   are using [CloudFlare](https://www.cloudflare.com/) as a DNS you can use
   _Origin server certificate_.
-- SSL Private Key - **Required if SSL Certificate is provided**, it is also
-  provided by your domain name provider and is paired with SSL Certificate.
-- Proxy config - [Nginx configuration](/cloud/nginx) for specified domain name.
+- SSL Private Key - **Required if you add SSL Certificate**, it's also
+  provided by your domain name provider and paired with SSL Certificate.
+- Proxy config - [Nginx configuration](/cloud/nginx) for the specified domain name.
 
-When domain name is added, you will need to wait a little bit for CMS to rebuild
-with new configuration.
+<Image
+  src={addDomainName}
+  alt="Add plugin modal"
+  className="h-auto w-full"
+  unoptimized
+/>
+
+When you add a domain name, CMS will rebuild with new configuration. It'll take a few seconds.
 
 ---
 
-## Edit a domain name
+## Editing a domain name
 
-When you are on the Instance screen click on **Domains** card. Here you will
+On the instance page, click on the **Domains** card. Here you will
 see the list of all domains with a domain name and **Edit** button next to it.
 To edit a domain, click on **Edit** button.
 
-When domain name is edited, you will need to wait a little bit for CMS to rebuild
-with new configuration.
+When you edit a domain name, CMS will rebuild with new configuration. It'll take a few seconds.
 
 ---
 
-## Delete a job
+## Deleting a domain name
 
-When you are on the Instance screen click on **Domains** card. Here you will
-see the list of all domains with a domain name and **Edit** button next to it.
-To delete a domain, click on **Edit** button and after that click on **Delete**
-button in the bottom left corner of the modal.
+On the instance page click on the **Domains** card. To delete a domain, click on **Edit** button and then on the **Delete** button.
 
-When domain name is deleted, you will need to wait a little bit for CMS to rebuild
-with new configuration.
+When you delete a domain name, CMS will rebuild with new configuration. It'll take a few seconds.

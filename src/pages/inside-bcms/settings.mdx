@@ -6,13 +6,13 @@ import { File } from '@/components/icons/File'
 
 # Settings
 
-Settings page is used to manage data backups, your account, languages and team invites.
+Settings page is where you can manage backups, manage your account details, add languages and invite team members.
 
 ---
 
 ## Creating a backup
 
-To create a backup of your data, click on **Backups**, and then **Create new backup**. This might take some take, depending on the size of your CMS, but all backups will be located in one place and you can download them at any time.
+To create a backup of your CMS data, click on **Backups**, and then **Create new backup**. This might take some take, depending on the size of your CMS, but all backups will be located in one place and you can download them at any time.
 
 <Image
   src={settingsBackups}
@@ -23,21 +23,18 @@ To create a backup of your data, click on **Backups**, and then **Create new bac
 
 To download a backup, click on <File />. To delete a backup, click on <TrashBin />.
 
-{/* <Note>It is recommended to make often backups of your CMS data.</Note> */}
+---
+
+## Editing account
+
+To edit your account data, click on **Edit account**. This will redirect you to the page, where you can edit your email, avatar, email etc.
 
 ---
 
-## Edit account
+## Adding languages
 
-To edit your account data, click on **Edit account**. This will redirect you to [cloud](/cloud), where you can edit things like name, email and avatar.
-
----
-
-## Handling languages
-
-To add a language click on the **Add** area, which will give you the list of all available languages to choose from.
-
-When you add a new language, whenever you fetch CMS data, you will also be fetching [entry](/inside-bcms/entries) data with all selected languages.
+To be able to write multilingual content in BCMS, you need add desired languages.
+To add a language click on the **Add** button, which will give you the list of all available languages to choose from.
 
 <Image
   src={settingsLanguages}
@@ -46,13 +43,18 @@ When you add a new language, whenever you fetch CMS data, you will also be fetch
   unoptimized
 />
 
+When you add a new language, whenever you fetch CMS data, you will be fetching [entry](/inside-bcms/entries) data with all selected languages.
+You will also see a language dropdown in every entry.
+
+
+
 To delete a language, click on the **X** from the language card.
 
-<Note>English is the default language of the BCMS, so you won't be able to delete it. Any other language you can delete, but note that this will remove all data you added for that specific language.</Note>
+<Note>English is the default language in BCMS, so you won't be able to delete it. Any other language you can delete, but note that this will also remove all data you added for that language.</Note>
 
 ---
 
-## Handling team
+## Invite team members
 
 To invite a new team member, click on **Invite a new member**. This will redirect you to cloud, where you can [manage team](/cloud/team).
 

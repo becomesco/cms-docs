@@ -1,40 +1,41 @@
+import Image from 'next/image';
+import addPlugin from '/src/images/cloud/plugins/1-add-plugin.svg';
+
 # BCMS Plugins
 
-Using the cloud dashboard you are able only to upload or update existing plugin 
-with a new bundled plugin. To learn how to write plugins, please refer to 
-[Customization Plugins section](/customization/plugins).
+In the cloud dashboard you can only upload or update existing plugin
+with a new bundled plugin. To learn how to write custom plugins, please refer to
+[writing custom BCMS Plugins](/customization/plugins).
 
 ---
 
-## Add a plugin
+## Adding a plugin
 
-Login to the [BCMS Cloud](https://cloud.thebcms.com) and open an Instance to
-which you would like to upload a plugin. When on the Instance screen click on
-**Plugins** card. After that, click on **Add new plugin** and here you will be
+log in to [BCMS Cloud](https://cloud.thebcms.com) and open an instance
+where you would like to upload a plugin to. Click on **Plugins** card. Then, click on **Add new plugin** and here you will be
 able to upload a bundled plugin file.
 
-When plugin is added, you will need to wait a little bit for CMS to rebuild
-with new configuration.
+When you add a plugin, CMS will rebuild with new configuration. It'll take a few seconds.
+
+<Image
+  src={addPlugin}
+  alt="Add plugin modal"
+  className="h-auto w-full"
+  unoptimized
+/>
 
 ---
 
-## Edit a plugin
+## Edititing a plugin
 
-When you are on the Instance screen click on **Plugins** card. Here you will
-see the list of all plugins with a plugin name and **Edit** button next to it.
-To edit a plugin, click on **Edit** button.
+On the instance page click on **Plugins** card. To edit a plugin, click on **Edit** button next to its name.
 
-When plugin is edited, you will need to wait a little bit for CMS to rebuild
-with new configuration.
+When you edit a plugin, CMS will rebuild with new configuration. It'll take a few seconds.
 
 ---
 
-## Delete a job
+## Deleting a plugin
 
-When you are on the Instance screen click on **Plugins** card. Here you will
-see the list of all plugins with a plugin name and **Edit** button next to it.
-To delete a plugin, click on **Edit** button and after that click on **Delete**
-button in the bottom left corner of the modal.
+On the instance page click on **Plugins** card. To delete a plugin, click on **Edit** button next to its name and follow the instructions.
 
-When plugin is deleted, you will need to wait a little bit for CMS to rebuild
-with new configuration.
+When you delete a plugin, CMS will rebuild with new configuration. It'll take a few seconds.

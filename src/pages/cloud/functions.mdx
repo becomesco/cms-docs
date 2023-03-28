@@ -1,56 +1,57 @@
+import Image from 'next/image';
+import addFunction from '/src/images/cloud/functions/1-add-function.svg';
+
 # BCMS Functions
 
-BCMS Functions are JavaScript functions that can be executed by sending an
-HTTP request to the BCMS back end API. Once function is created, it will be
-available at `POST: https://{CMS_DOMAIN}/api/function/{FUNCTION_NAME}`.
-For simple function (when logic can be placed in 1 file and you do not need
-autocomplete) we recommend creating function like explained on this page, but
-for complex functions (when you need utilities, file structure, services...)
-we recommend [using your favorite code editor to create them](/customization/functions).
+BCMS Functions are JavaScript functions that you can execute by sending an
+HTTP request to the back end API. Once you create a function, it will be
+available at <br />`POST: https://{CMS_DOMAIN}/api/function/{FUNCTION_NAME}`.
+
+To create simple functions that fit into one .ts file, you can follow the instructions below.
+For more complex functions, or when you want to benefit autocomplete, split it into several files, services etc.,
+you can [code your functions locally](/customization/functions).
 
 ---
 
-## Add a function
+## Adding a function
 
-Login to the [BCMS Cloud](https://cloud.thebcms.com) and open an Instance to
-which you would like to add a function. When on the Instance screen click on
-**Functions** card. From here, click on **Add new function** button where you
-will need to provide few things:
+log in to the [BCMS Cloud](https://cloud.thebcms.com) and open the instance you would like to add a function to.
+Click on the **Functions** card. From here, click on **Add new function** button where you can provide a few things:
 
-- Function name - Is the name of the function and it can be any string. Just have
-in mind that name will be *slugified*. For example, if the name is **Test function**,
-it will be converted to `test-function`.
+- Function name - the name of the function, as string. Keep in mind
+in mind that the name will be *slugified*. For example, if the name is **Test function**,
+it will becomes `test-function`.
 - Access to function - Can be **Public** or **Private**. Public function will be
 accessible to anyone while private function will require [API Key](/inside-bcms/key-manager)
 authorization.
-- Global scope - Is the place where you want to do your imports and declare
+- Global scope - The place where you want to do your imports and declare
 utility functions.
-- Handler scope - Is the code which will be called when endpoint of the function
+- Handler scope - The code which will be called when endpoint of the function
 is called. Here you have access to: `request`, `errorHandler`, `logger` and `auth` objects.
 More information [here](https://github.com/becomesco/cms-backend/blob/master/src/types/function/models/main.ts#L37)
 
-When function is added, you will need to wait a little bit for CMS to rebuild
-with new configuration.
+<Image
+  src={addFunction}
+  alt="Add plugin modal"
+  className="h-auto w-full"
+  unoptimized
+/>
+
+When you add a function, CMS will rebuild with new configuration. It'll take a few seconds.
 
 ---
 
-## Edit a function
+## Editing a function
 
-When you are on the Instance screen click on **Functions** card. Here you will
-see the list of all functions with a function name and **Edit** button next to it.
-To edit a function, click on **Edit** button.
+When you are on the instance page click on **Functions** card. To edit a function, click on **Edit** button.
 
-When function is edited, you will need to wait a little bit for CMS to rebuild
-with new configuration.
+When you edit a function, CMS will rebuild with new configuration. It'll take a few seconds.
 
 ---
 
-## Delete a function
+## Deleting a function
 
-When you are on the Instance screen click on **Functions** card. Here you will
-see the list of all functions with a function name and **Edit** button next to it.
-To delete a function, click on **Edit** button and after that click on **Delete**
-button in the bottom left corner of the modal.
+Click on **Functions** card on the instance page. To delete a function, click on **Edit**
+button and then **Delete**.
 
-When function is deleted, you will need to wait a little bit for CMS to rebuild
-with new configuration.
+When you delete a function, CMS will rebuild with new configuration. It'll take a few seconds.
