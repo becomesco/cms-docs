@@ -16,7 +16,7 @@ const resources = [
     icon: UserIcon,
   },
   {
-    href: 'https://github.com/becomesco/cms',
+    href: 'https://github.com/bcms/cms',
     name: 'Github',
     description:
       'BCMS is open-source software. Favorite the repository and help us spread a word!',

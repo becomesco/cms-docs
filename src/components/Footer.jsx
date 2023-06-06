@@ -219,7 +219,7 @@ function SmallPrint() {
         <SocialLink href="https://twitter.com/thebcms" icon={TwitterIcon}>
           Follow us on Twitter
         </SocialLink>
-        <SocialLink href="https://github.com/becomesco/cms" icon={GitHubIcon}>
+        <SocialLink href="https://github.com/bcms/cms" icon={GitHubIcon}>
           Follow us on GitHub
         </SocialLink>
         <SocialLink href="https://thebcms.com/slack" icon={DiscordIcon}>
