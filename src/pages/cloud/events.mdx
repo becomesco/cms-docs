@@ -19,11 +19,11 @@ On the instance page click on **Events** card, then on **Add new event** button.
 
 - Event name - Can be any name that you want.
 - Event scope - This can be one of
-these [predefined BCMS event scopes](https://github.com/bcms/cms-backend/blob/master/src/types/event/config.ts#L4) or name of a custom event scope.
-- Method - Defines which method will trigger the event. Can be one of these [predefined BCMS event methods](https://github.com/bcms/cms-backend/blob/master/src/types/event/config.ts#L21).
+these [predefined BCMS event scopes](https://github.com/bcms/backend/blob/master/src/types/event/config.ts#L4) or name of a custom event scope.
+- Method - Defines which method will trigger the event. Can be one of these [predefined BCMS event methods](https://github.com/bcms/backend/blob/master/src/types/event/config.ts#L21).
 - Global scope - Is the place where you want to do your imports and declare utility functions.
 - Handler scope - Is your code that will execute on every event call. Here you have access to: `scope`, `method` and `payload` objects.
-More information [here](https://github.com/bcms/cms-backend/blob/master/src/types/event/main.ts#L9)
+More information [here](https://github.com/bcms/backend/blob/master/src/types/event/main.ts#L9)
 
 <Image
   src={addEvent}
