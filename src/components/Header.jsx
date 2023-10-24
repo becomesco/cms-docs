@@ -12,7 +12,7 @@ import {
 } from '@/components/MobileNavigation'
 import { useMobileNavigationStore } from '@/components/MobileNavigation'
 import { ModeToggle } from '@/components/ModeToggle'
-import { MobileSearch, Search } from '@/components/Search'
+import { MobileSearch, Search } from '@/components/Search2'
 
 function TopLevelNavItem({ href, children }) {
   return (

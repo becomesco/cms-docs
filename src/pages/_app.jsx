@@ -33,6 +33,7 @@ export default function App({ Component, pageProps }) {
           property="og:image"
           content={`https://docs.thebcms.com/api/og-image?name=${uriName}&description=${pageProps.description}`}
         />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"/>
       </Head>
       <MDXProvider components={mdxComponents}>
         <Layout {...pageProps}>
