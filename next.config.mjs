@@ -3,6 +3,8 @@ import { remarkPlugins } from './mdx/remark.mjs'
 import { rehypePlugins } from './mdx/rehype.mjs'
 import { recmaPlugins } from './mdx/recma.mjs'
 
+console.log(process.env);
+
 const withMDX = nextMDX({
   options: {
     remarkPlugins,
