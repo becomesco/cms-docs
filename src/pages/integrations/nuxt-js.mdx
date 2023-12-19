@@ -71,7 +71,7 @@ If you want to get an entry from Blog template, and the entry's slug is _'how-to
     const blog = (await ctx?.$bcms.entry.get({
       template: 'blog',
       entry: 'how-to-connect-bcms-and-nuxtjs',
-    })) as BlogEntry[];
+    })) as BlogEntry;
     return { blog }
   });
   ```
