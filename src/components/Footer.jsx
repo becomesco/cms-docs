@@ -1,7 +1,7 @@
-import { forwardRef, Fragment, useState } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { Transition } from '@headlessui/react';
+import { forwardRef, Fragment, useState } from 'react'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { Transition } from '@headlessui/react'
 
 import { Button } from '@/components/Button'
 import { navigation } from '@/components/Navigation'
@@ -180,22 +180,13 @@ function GitHubIcon(props) {
 function DiscordIcon(props) {
   return (
     <svg
+      viewBox="0 -28.5 256 256"
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      aria-hidden="true"
+      preserveAspectRatio="xMidYMid"
       {...props}
       fill="none"
-      strokeLinecap="round"
-      strokeLinejoin="round"
     >
-      <path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"></path>
-      <path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"></path>
-      <path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"></path>
-      <path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"></path>
-      <path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"></path>
-      <path d="M15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"></path>
-      <path d="M10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5z"></path>
-      <path d="M8.5 5H10V3.5C10 2.67 9.33 2 8.5 2S7 2.67 7 3.5 7.67 5 8.5 5z"></path>
+      <path d="M216.856 16.597A208.502 208.502 0 0 0 164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046-19.692-2.961-39.203-2.961-58.533 0-1.832-4.4-4.55-9.933-6.846-14.046a207.809 207.809 0 0 0-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161.094 161.094 0 0 0 79.735 175.3a136.413 136.413 0 0 1-21.846-10.632 108.636 108.636 0 0 0 5.356-4.237c42.122 19.702 87.89 19.702 129.51 0a131.66 131.66 0 0 0 5.355 4.237 136.07 136.07 0 0 1-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36ZM85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2c12.867 0 23.236 11.804 23.015 26.2.02 14.375-10.148 26.18-23.015 26.18Zm85.051 0c-12.645 0-23.014-11.805-23.014-26.18s10.148-26.2 23.014-26.2c12.867 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18Z" />
     </svg>
   )
 }
@@ -204,7 +195,7 @@ function SocialLink({ href, icon: Icon, children }) {
   return (
     <Link href={href} className="group">
       <span className="sr-only">{children}</span>
-      <Icon className="w-5 h-5 transition fill-dark group-hover:fill-dark dark:group-hover:fill-dark" />
+      <Icon className="w-5 h-5 transition fill-dark dark:fill-white group-hover:fill-dark dark:group-hover:fill-yellow" />
     </Link>
   )
 }
@@ -222,8 +213,8 @@ function SmallPrint() {
         <SocialLink href="https://github.com/bcms/cms" icon={GitHubIcon}>
           Follow us on GitHub
         </SocialLink>
-        <SocialLink href="https://thebcms.com/slack" icon={DiscordIcon}>
-          Join our Slack community
+        <SocialLink href="https://discord.com/invite/SYBY89ccaR" icon={DiscordIcon}>
+          Join our Discord community
         </SocialLink>
       </div>
     </div>
