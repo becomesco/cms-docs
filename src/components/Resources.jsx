@@ -30,10 +30,10 @@ const resources = [
     icon: EnvelopeIcon,
   },
   {
-    href: 'https://thebcms.com/slack',
-    name: 'Slack Community',
+    href: 'https://discord.com/invite/SYBY89ccaR',
+    name: 'Discord Community',
     description:
-      'Join BCMS Slack community to learn from other developers and stay up-to-date with new features.',
+      'Join BCMS Discord community to learn from other developers and stay up-to-date with new features.',
     icon: UsersIcon,
   },
 ]

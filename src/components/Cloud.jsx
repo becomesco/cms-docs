@@ -33,7 +33,7 @@ const cloud = [
     href: '/cloud/dependencies',
     name: 'Dependencies',
     description:
-      'Join BCMS Slack community to learn from other developers and stay up-to-date with new features.',
+      'Join BCMS Discord community to learn from other developers and stay up-to-date with new features.',
     // icon: UsersIcon,
   },
   {
