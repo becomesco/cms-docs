@@ -28,12 +28,12 @@ export default function App({ Component, pageProps }) {
         ) : (
           <title>{`${pageProps.title} - BCMS`}</title>
         )}
-        <meta name="description" content={pageProps.description} />
+        <meta name="description" content={pageProps.description || 'Learn everything there is to know about the BCMS. From a quickstart guide, to advanced tips and tricks - make amazing projects with BCMS'} />
         <meta
           property="og:image"
           content={`https://docs.thebcms.com/api/og-image?name=${uriName}&description=${pageProps.description}`}
         />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
       </Head>
       <MDXProvider components={mdxComponents}>
         <Layout {...pageProps}>
