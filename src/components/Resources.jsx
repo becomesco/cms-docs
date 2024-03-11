@@ -23,13 +23,6 @@ const resources = [
     icon: ChatBubbleIcon,
   },
   {
-    href: 'https://thebcms.com/blog/tags/tutorials',
-    name: 'Tutorials',
-    description:
-      'Technical tutorials about how to use BCMS in your everyday development challenges.',
-    icon: EnvelopeIcon,
-  },
-  {
     href: 'https://discord.com/invite/SYBY89ccaR',
     name: 'Discord Community',
     description:
