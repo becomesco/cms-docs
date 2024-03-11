@@ -61,31 +61,56 @@ In the next sections, you'll learn how to set up BCMS on its own server.
 
 First, go to [DigitalOcean](https://cloud.digitalocean.com/) and log in to your account. After that, you can go to [Create Droplet](https://docs.digitalocean.com/products/droplets/how-to/create/) screen.
 
-<Image src={createADroplet} alt="" unoptimized className="w-full" />
+<Image
+  src={createADroplet}
+  alt="Creating a Droplet"
+  unoptimized
+  className="w-full"
+/>
 
 In **Choose an image** section, select **Ubuntu**.
 
-<Image src={selectADroplet} alt="" unoptimized className="w-full" />
+<Image
+  src={selectADroplet}
+  alt="Select a Droplet"
+  unoptimized
+  className="w-full"
+/>
 
 In **Choose a plan** section, you should select a **Basic** plan with **Regular SSD** and recommended hardware specification, which, at the time of writing these instructions, is a $20 /month plan. Please keep in mind that this is a recommended setup, and you can select any plan you like.
 
-<Image src={chooseAPlan} alt="" unoptimized className="w-full" />
+<Image src={chooseAPlan} alt="Choose a Plan" unoptimized className="w-full" />
 
 You can skip **Add block storage** section.
 
 In **Choose a datacenter region** section, you can select any region. Try selecting a region that's physically close to your location.
 
-<Image src={chooseADatacenter} alt="" unoptimized className="w-full" />
+<Image
+  src={chooseADatacenter}
+  alt="Choose a Datacenter"
+  unoptimized
+  className="w-full"
+/>
 
 The next section is a **VPC Network**. If you don't know what this is, leave the default settings.
 
 In the **Authorization** section, you have the option to use the SSH Key or Password to login into a server. If you don't know the SSH Key, select a password login and type a strong password.
 
-<Image src={authentication} alt="" unoptimized className="w-full" />
+<Image
+  src={authentication}
+  alt="Authentication"
+  unoptimized
+  className="w-full"
+/>
 
 In **Finalize and create** section, create only 1 Droplet and set its name to anything you like.
 
-<Image src={finalizeAndCreate} alt="" unoptimized className="w-full" />
+<Image
+  src={finalizeAndCreate}
+  alt="Finalize and Create"
+  unoptimized
+  className="w-full"
+/>
 
 With all of this done, you can click on Create Droplet button.
 
@@ -95,37 +120,72 @@ With all of this done, you can click on Create Droplet button.
 
 Setting up a firewall is optional, but recommended. Once your Droplet is created and ready, it will appear on the **Droplet screen** of the **DigitalOcean Dashboard**.
 
-<Image src={dropletScreen} alt="" unoptimized className="w-full" />
+<Image
+  src={dropletScreen}
+  alt="Droplet Firewall"
+  unoptimized
+  className="w-full"
+/>
 
 In the sidebar, click on **Networking**, and then click on the Edit button in the **Firewalls** section.
 
-<Image src={dropletNetwork} alt="" unoptimized className="w-full" />
+<Image
+  src={dropletNetwork}
+  alt="Droplet Networking"
+  unoptimized
+  className="w-full"
+/>
 
 You will be redirected to the network configuration settings screen, and here you can click on **Create Firewall** button. After this, you will be redirected to the Firewall configuration screen.
 
-<Image src={firewall} alt="" unoptimized className="w-full" />
+<Image
+  src={firewall}
+  alt="Droplet Create Firewall"
+  unoptimized
+  className="w-full"
+/>
 
 First, you will need to enter the firewall name. Use **bcms-firewall** as a name, so that you know it's purpose later.
 
-<Image src={firewallName} alt="" unoptimized className="w-full" />
+<Image
+  src={firewallName}
+  alt="Droplet Firewall Name"
+  unoptimized
+  className="w-full"
+/>
 
 After that, set the incoming connection rules as shown below. Remember that for SSH connections, you can set a specific IP address that can use it, but if you do not know what this is or if you do not have a static IP address, leave it as shown below.
 
-<Image src={inboundRules} alt="" unoptimized className="w-full" />
+<Image
+  src={inboundRules}
+  alt="Droplet Inbound Rules"
+  unoptimized
+  className="w-full"
+/>
 
 Outgoing connection rules can be left without changing them, as shown below.
 
-<Image src={outboundRules} alt="" unoptimized className="w-full" />
+<Image
+  src={outboundRules}
+  alt="Droplet Outbound Rules"
+  unoptimized
+  className="w-full"
+/>
 
 The only thing left is to apply the firewall to BCMS Droplet. You can do this by typing a Droplet name (in this case, it is **my-bcms-server**) in **Apply to Droplets** section.
 
-<Image src={applyToDroplets} alt="" unoptimized className="w-full" />
+<Image
+  src={applyToDroplets}
+  alt="Apply Firewall to BCMS Droplet"
+  unoptimized
+  className="w-full"
+/>
 
 You can now click on **Create Firewall** button at the end of the page.
 
 If you go back to the Droplet screen and navigate the networking tab, you will see that the firewall you just created is applied to the Droplet.
 
-<Image src={firewalls} alt="" unoptimized className="w-full" />
+<Image src={firewalls} alt="Firewalls" unoptimized className="w-full" />
 
 Now you are ready to login into our server.
 
@@ -137,20 +197,30 @@ The first step is to get the IP address of the server. You can find this informa
 
 <Image
   src={publicIpAddressOfTheDroplet}
-  alt=""
+  alt="Public IP Adress of the Droplet"
   unoptimized
   className="w-full"
 />
 
 After this, open a terminal of the command line and type `ssh root@IP_ADDRESS` but make sure to replace **IP_ADDRESS** with numbers you have copied from the DigitalOcean dashboard. In our case, this command will look like this:<br /> ssh root@178.128.197.200.
 
-<Image src={executeSshCommand} alt="" unoptimized className="w-full" />
+<Image
+  src={executeSshCommand}
+  alt="Execute SSH Command"
+  unoptimized
+  className="w-full"
+/>
 
 If you have selected password authentication (the one you created for the Droplet), you will be prompted to enter the password.
 
 After successful login, you will see a message shown below.
 
-<Image src={ubuntuServerLoginMessage} alt="" unoptimized className="w-full" />
+<Image
+  src={ubuntuServerLoginMessage}
+  alt="Ubuntu Server Login Message"
+  unoptimized
+  className="w-full"
+/>
 
 ---
 
@@ -160,7 +230,7 @@ BCMS is installed using a single command. Go to your [BCMS Cloud Dashboard](http
 
 <Image
   src={openInstanceInstallInstructions}
-  alt=""
+  alt="Installing BCMS on the Droplet"
   unoptimized
   className="w-full"
 />
