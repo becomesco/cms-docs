@@ -33,6 +33,7 @@
     "next": "13.0.2",
     "next-api-og-image": "^4.3.0",
     "postcss-focus-visible": "^6.0.4",
+    "puppeteer": "^22.4.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-github-btn": "^1.4.0",
