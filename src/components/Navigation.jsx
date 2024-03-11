@@ -117,12 +117,12 @@ function NavigationGroup({ group, className }) {
 
   return (
     <li className={clsx('relative mt-6', className)}>
-      <motion.h2
+      <motion.div
         layout="position"
         className="text-xs font-semibold text-dark dark:text-light"
       >
         {group.title}
-      </motion.h2>
+      </motion.div>
       <div className="relative pl-2 mt-3">
         <AnimatePresence initial={!isInsideMobileNavigation}>
           {isActiveGroup && (
