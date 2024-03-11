@@ -17,7 +17,8 @@ In this quick guide, you'll see how to set up a brand-new website to work with B
   - [Docker](https://docs.docker.com/get-docker/){{ target: '_blank' }}
   - [Docker compose](https://docs.docker.com/compose/){{ target: '_blank' }}
 
-  Make sure to have them installed before you continue. Click on each of the items above to read the installation instructions.
+Make sure to have them installed before you continue. Click on each of the items above to read the installation instructions.
+
 </Note>
 
 The easiest way to start BCMS project locally is by using the [BCMS CLI](https://www.npmjs.com/package/@becomes/cms-cli).
@@ -25,39 +26,32 @@ The easiest way to start BCMS project locally is by using the [BCMS CLI](https:/
 ## Install BCMS CLI
 
 To install it globally, run this command in your terminal:
-<CodeGroup>
-  ```bash
-  npm install @becomes/cms-cli -g
-```
-</CodeGroup>
+
+<CodeGroup>```bash npm install @becomes/cms-cli -g ```</CodeGroup>
 
 To verify that the installation went well, run:
 
-<CodeGroup>
-  ```bash
-  bcms --help
-```
-</CodeGroup>
+<CodeGroup>```bash bcms --help ```</CodeGroup>
 
 ## Create BCMS project
 
 Now that you have the CLI installed, all you have to do is open a terminal, navigate to a location where you want to create the project, and run:
 
-<CodeGroup>
-  ```bash
-  bcms --cms create
-```
-</CodeGroup>
+<CodeGroup>```bash bcms --cms create ```</CodeGroup>
 
 This command will prompt you to enter the name of your project.
 
 <Note>
-  Since BCMS relies on Docker to run all application segments, please ensure that Docket is running on your system. Run ```docker ps -a``` to list all available docker containers. The command will succeed only if the Docker engine is running. Don't worry if your docker table is empty. That's fine 👍
+  Since BCMS relies on Docker to run all application segments, please ensure
+  that Docket is running on your system. Run ```docker ps -a``` to list all
+  available docker containers. The command will succeed only if the Docker
+  engine is running. Don't worry if your docker table is empty. That's fine 👍
 </Note>
 
 ## Start a development server
 
-After creating a BCMS project, you can enter the project location from your terminal or open it in your favorite code editor or IDE, like VSCode. Inside the project, run ```docker-compose up``` or ```docker compose up```  (use whichever works for you).
+After creating a BCMS project, you can enter the project location from your terminal or open it in your favorite code editor or IDE, like VSCode. Inside the project, run `docker-compose up` or `docker compose up` (use whichever works for you).
+
 <Image
   src={outputOfTheDockerComposeUpCommand}
   alt="Figure 1 - Output of the docker-compose up command."
@@ -65,7 +59,7 @@ After creating a BCMS project, you can enter the project location from your term
   unoptimized
 />
 
-Once all containers are started, you can open your browser and navigate to [localhost:8080](http://localhost:8080).
+Once all containers are started, you can open your browser and navigate to <code className='text-green dark:text-yellow'>localhost:8080</code>.
 
 <Image
   src={bcmsInLocalDev}
