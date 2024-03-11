@@ -25,7 +25,7 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'cdn.loom.com',
-        port: '',
+        port: '22',
         pathname: '/sessions/thumbnails/**',
       },
     ],
