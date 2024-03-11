@@ -31,7 +31,7 @@ export default function App({ Component, pageProps }) {
         <meta name="description" content={pageProps.description || 'Learn everything there is to know about the BCMS. From a quickstart guide, to advanced tips and tricks - make amazing projects with BCMS'} />
         <meta
           property="og:image"
-          content={`https://docs.thebcms.com/api/og-image?name=${uriName}&description=${pageProps.description}`}
+          content={`https://docs.thebcms.com/api/og-image?name=${uriName}&description=${pageProps.description || 'Learn everything there is to know about the BCMS. From a quickstart guide, to advanced tips and tricks - make amazing projects with BCMS'}`}
         />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
       </Head>
