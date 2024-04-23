@@ -182,7 +182,7 @@ function CodeGroupPanels({ children, ...props }) {
     )
   }
 
-  return <CodePanel {...props}>{children}</CodePanel>
+  return <CodePanel {...props} code={children.props?.children ?? ''}>{children}</CodePanel>
 }
 
 function usePreventLayoutShift() {
