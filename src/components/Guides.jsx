@@ -19,11 +19,6 @@ const guides = [
     description:
       'Read about the different types of errors returned by the API.',
   },
-  {
-    href: '/install/digitalocean',
-    name: 'How to install BCMS on Ubuntu Server',
-    description: "Learn how to install BCMS on DigitalOcean's Ubuntu Server.",
-  },
 ]
 
 export function Guides() {

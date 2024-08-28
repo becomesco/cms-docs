@@ -189,14 +189,6 @@ export const navigation = [
     ],
   },
   {
-    title: 'Self-hosting',
-    links: [
-      { title: 'DigitalOcean', href: '/install/digitalocean' },
-      // { title: 'AWS', href: '/install/aws' },
-      { title: 'Locally', href: '/install/locally' },
-    ],
-  },
-  {
     title: 'Inside BCMS',
     links: [
       { title: 'Overview', href: '/inside-bcms' },
@@ -205,7 +197,7 @@ export const navigation = [
       { title: 'Widgets', href: '/inside-bcms/widgets' },
       { title: 'Groups', href: '/inside-bcms/groups' },
       { title: 'Media', href: '/inside-bcms/media' },
-      { title: 'Key manager', href: '/inside-bcms/key-manager' },
+      { title: 'API manager', href: '/inside-bcms/api-manager' },
       { title: 'Settings', href: '/inside-bcms/settings' },
       { title: 'Properties', href: '/inside-bcms/properties' },
     ],
@@ -218,46 +210,46 @@ export const navigation = [
       { title: 'Nuxt.js', href: '/integrations/nuxt-js' },
     ],
   },
-  {
-    title: 'Extending BCMS',
-    links: [
-      { title: 'Overview', href: '/customization' },
-      { title: 'Functions', href: '/customization/functions' },
-      { title: 'Events', href: '/customization/events' },
-      { title: 'Jobs', href: '/customization/jobs' },
-      { title: 'Plugins', href: '/customization/plugins' },
-    ],
-  },
-  {
-    title: 'Cloud',
-    links: [
-      { title: 'Overview', href: '/cloud' },
-      // { title: 'Team', href: '/cloud/team' },
-      // { title: 'Instances', href: '/cloud/instances' },
-      { title: 'Nginx config', href: '/cloud/nginx' },
-      { title: 'Dependencies', href: '/cloud/dependencies' },
-      { title: 'Functions', href: '/cloud/functions' },
-      { title: 'Events', href: '/cloud/events' },
-      { title: 'Jobs', href: '/cloud/jobs' },
-      { title: 'Plugins', href: '/cloud/plugins' },
-      { title: 'Environment variables', href: '/cloud/env-variables' },
-      { title: 'Domains', href: '/cloud/domains' },
-      // { title: 'Account settings', href: '/cloud/account-settings' },
-    ],
-  },
-  {
-    title: 'CLI Tool',
-    links: [
-      { title: 'Overview', href: '/cli' },
-    ],
-  },
+  // {
+  //   title: 'Extending BCMS',
+  //   links: [
+  //     { title: 'Overview', href: '/customization' },
+  //     { title: 'Functions', href: '/customization/functions' },
+  //     { title: 'Events', href: '/customization/events' },
+  //     { title: 'Jobs', href: '/customization/jobs' },
+  //     { title: 'Plugins', href: '/customization/plugins' },
+  //   ],
+  // },
+  // {
+  //   title: 'Cloud',
+  //   links: [
+  //     { title: 'Overview', href: '/cloud' },
+  //     // { title: 'Team', href: '/cloud/team' },
+  //     // { title: 'Instances', href: '/cloud/instances' },
+  //     // { title: 'Nginx config', href: '/cloud/nginx' },
+  //     { title: 'Dependencies', href: '/cloud/dependencies' },
+  //     { title: 'Functions', href: '/cloud/functions' },
+  //     { title: 'Events', href: '/cloud/events' },
+  //     { title: 'Jobs', href: '/cloud/jobs' },
+  //     // { title: 'Plugins', href: '/cloud/plugins' },
+  //     { title: 'Environment variables', href: '/cloud/env-variables' },
+  //     // { title: 'Domains', href: '/cloud/domains' },
+  //     // { title: 'Account settings', href: '/cloud/account-settings' },
+  //   ],
+  // },
+  // {
+  //   title: 'CLI Tool',
+  //   links: [
+  //     { title: 'Overview', href: '/cli' },
+  //   ],
+  // },
 ]
 
 export function Navigation(props) {
   return (
     <nav {...props}>
       <ul role="list">
-        <TopLevelNavItem href="#">API</TopLevelNavItem>
+        {/* <TopLevelNavItem href="#">API</TopLevelNavItem> */}
         <TopLevelNavItem href="#">Documentation</TopLevelNavItem>
         <TopLevelNavItem href="#">Support</TopLevelNavItem>
         {navigation.map((group, groupIndex) => (

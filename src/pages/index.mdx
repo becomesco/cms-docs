@@ -1,5 +1,7 @@
 import { Guides } from '@/components/Guides'
 import { Resources } from '@/components/Resources'
+import Image from 'next/image'
+import bcmsDashboard from '/src/images/quickstart/look-how-beautifull-bcms-is-but-it-s-three-times-more-powerful.jpg'
 
 export const description =
   'Learn everything there is to know about the BCMS. From a quickstart guide, to advanced tips and tricks - make amazing projects with BCMS'
@@ -11,7 +13,14 @@ export const sections = [
 
 # Welcome to BCMS documentation
 
-BCMS is an open-source, Headless CMS.
+BCMS is an API-based Headless CMS for developers and content creators. It's designed to be simple, fast, and beautiful.
+
+<Image
+  src={bcmsDashboard}
+  alt="BCMS Dashboard"
+  className="h-auto w-full"
+  unoptimized
+/>
 
 Chances are, you are exploring different tools now, and wondering "How's BCMS any different?".
 As developers, we worked with most of them, and then decided to make BCMS, with simple ideas:
@@ -29,18 +38,18 @@ As developers, we worked with most of them, and then decided to make BCMS, with 
   <Button href="/integrations" variant="outline" children="Explore Integrations" />
 </div>
 
-{/* ## Getting started {{ anchor: false }}
+## Getting started {{ anchor: false }}
 
-To get started, create your account first, then read about how to create a BCMS instance, optionally deploy it and connect with modern frameworks. {{ className: 'lead' }}
+To get started, create your account first, then read about how to create a BCMS project, and connect it with modern frameworks. {{ className: 'lead' }}
 
 <div className="not-prose">
   <Button
-    href="https://cloud.thebcms.com/"
+    href="https://app.thebcms.com/sign-up?utm_source=docs"
     variant="text"
     arrow="right"
     children="Create your account"
   />
-</div> */}
+</div>
 
 <Guides />
 

@@ -1,3 +1,9 @@
+import Image from 'next/image'
+import imageOne from '/src/images/inside-bcms/templates/create-new-template.png';
+import imageTwo from '/src/images/inside-bcms/templates/create-new-template-2.png';
+import imageThree from '/src/images/inside-bcms/templates/adding-properties-to-a-template.gif';
+import imageFour from '/src/images/inside-bcms/templates/delete-a-template.gif';
+
 # Working with templates
 
 Templates in BCMS are a pre-defined content structure. Based on that structure, you can create [entries](/inside-bcms/entries).
@@ -10,7 +16,16 @@ When you create a template for your Blog posts, it will be a multi-entry templat
 
 ## Creating and editing a template
 
-To create a template, click on **Add new template**. In the next step, fill in the title, for example Blog.
+To create a template, click on **Create new template**.
+
+<Image
+  src={imageOne}
+  alt="Create a new template"
+  className="h-auto w-auto"
+  unoptimized
+/>
+
+In the next step, fill in the title, for example Blog.
 
 <Note>
   When creating templates, it's recommended to use names in singular. For example,
@@ -19,8 +34,15 @@ To create a template, click on **Add new template**. In the next step, fill in t
   doesn't really matter what you name your templates.
 </Note>
 
-You can also give each template a description. It is visible only inside the CMS.
-Teams usualy use descriptions to describe internal processes, share resources and explain what that template is being used for.
+You can also give each template a description. It's visible only inside the CMS.
+Teams usually use descriptions to describe internal processes, share resources and explain what that template is being used for.
+
+<Image
+  src={imageTwo}
+  alt="Create a new template"
+  className="h-auto w-auto"
+  unoptimized
+/>
 
 {/**
  * TODO: LOOM video of creating a template
@@ -37,20 +59,24 @@ Teams usualy use descriptions to describe internal processes, share resources an
 
 ## Adding properties to a template
 
-To add properties to your newly created template, click **Add property** button, and select from the list of properties. Here you can learn more about available [properties](/inside-bcms/properties).
+To add properties to your newly created template, choose a property form the Property list on the right side and drag and drop it to your template. ere you can learn more about available [properties](/inside-bcms/properties).
+
+<Image
+  src={imageThree}
+  alt="Adding properties to a template"
+  className="h-auto w-auto"
+  unoptimized
+/>
 
 ---
 
 ## Deleting a template
 
-Deleting a template is as easy as clicking on the **Delete** button, entering the template's name and clicking **Confirm**.
-{/**
- * TODO: Loom video of deleting a template
- * Should cover:
- * - How to delete a Template.
- * - It will automatically delete all entries from that template.
- * - As of now, there is no way to revert back deleted templates or entries, so make sure you know what you are doing.
- * - Deleting a Template also deletes it from the Key manager.
- * */}
+Deleting a template is as easy as clicking on the "Edit template" button, choosing "Delete" and clicking "Confirm".
 
-<Video youtubeId="GczDpfLCjmQ" title="How to delete a BCMS Template" />
+<Image
+  src={imageFour}
+  alt="Deleting a template"
+  className="h-auto w-auto"
+  unoptimized
+/>

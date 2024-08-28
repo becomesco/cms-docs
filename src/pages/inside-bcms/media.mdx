@@ -1,7 +1,10 @@
 import Image from 'next/image'
-import mediaUploadArea from '/src/images/inside-bcms/media/upload-area.png'
-import mediaModifyImage from '/src/images/inside-bcms/media/modify-image.png'
-import { Pen } from '@/components/icons/Pen'
+import imageOne from '/src/images/inside-bcms/media/15.jpg';
+import imageTwo from '/src/images/inside-bcms/media/16.jpg';
+import imageThree from '/src/images/inside-bcms/media/17.jpg';
+import imageFour from '/src/images/inside-bcms/media/18.jpg';
+
+import { ThreeDots } from '@/components/icons/ThreeDots'
 import { TrashBin } from '@/components/icons/TrashBin'
 
 # Working with media
@@ -15,8 +18,8 @@ Media manager allows you to store your images, videos and other files with many 
 To upload a media file, click on **Upload file**, and then either browse the files from your system or drag and drop them in the pre-defined area.
 
 <Image
-  src={mediaUploadArea}
-  alt="Media upload area"
+  src={imageOne}
+  alt="Upload file"
   className="h-auto w-full"
   unoptimized
 />
@@ -26,6 +29,13 @@ To upload a media file, click on **Upload file**, and then either browse the fil
 ## Using folders
 
 To create a folder, click on **Create new folder**, and enter the folder's name.
+
+<Image
+  src={imageTwo}
+  alt="Create new folder"
+  className="h-auto w-full"
+  unoptimized
+/>
 
 Folders are a great way to organize your files. You can nest media inside of a folder and associate a custom name to it for easier search.
 
@@ -37,15 +47,13 @@ Folders are a great way to organize your files. You can nest media inside of a f
 
 ---
 
-## Modify image
+## Rename files
 
-If the file is of type image, you will be able to modify the aspect-ratio, zoom-in/out, flip and crop it before uploading.
-
-You can do this by uploading an image and clicking on the <Pen /> which will open the editing mode. All available options are located at the bottom.
+You can rename a file by clicking on the <ThreeDots /> icon which will open the editing mode.
 
 <Image
-  src={mediaModifyImage}
-  alt="Media modify image"
+  src={imageThree}
+  alt="Rename file"
   className="h-auto w-full"
   unoptimized
 />
@@ -54,9 +62,16 @@ You can do this by uploading an image and clicking on the <Pen /> which will ope
 
 ## Deleting media
 
-To delete a media or a folder you can click on the <TrashBin /> that is located on each individual file/folder.
+To delete a media or a folder you can click on the <TrashBin /> that is located under individual file/folder's <ThreeDots /> dropdown.
 
 <Note>
   This will remove the media from all places where it is used, so delete media
   with caution.
 </Note>
+
+<Image
+  src={imageFour}
+  alt="Media upload area"
+  className="h-auto w-full"
+  unoptimized
+/>

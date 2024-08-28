@@ -69,7 +69,7 @@ export const Header = forwardRef(function Header({ className }, ref) {
       <div className="flex items-center gap-5">
         <nav className="hidden md:block">
           <ul role="list" className="flex items-center gap-8">
-            <TopLevelNavItem href="https://rest-apis.thebcms.com/bcms-backend/3-0-0">API</TopLevelNavItem>
+            {/* <TopLevelNavItem href="https://rest-apis.thebcms.com/bcms-backend/3-0-0">API</TopLevelNavItem> */}
             <TopLevelNavItem href="/">Documentation</TopLevelNavItem>
             <TopLevelNavItem href="https://thebcms.com">Website</TopLevelNavItem>
             <li className='mt-2'>
@@ -83,7 +83,7 @@ export const Header = forwardRef(function Header({ className }, ref) {
           <ModeToggle />
         </div>
         <div className="hidden min-[416px]:contents">
-          <Button target="_blank" href="https://cloud.thebcms.com/">Sign in</Button>
+          <Button target="_blank" href="https://app.thebcms.com/">Sign in</Button>
         </div>
       </div>
     </motion.div>

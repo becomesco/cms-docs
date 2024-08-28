@@ -1,33 +1,12 @@
 import Image from 'next/image'
-import settingsBackups from '/src/images/inside-bcms/settings/backups.png'
-import settingsLanguages from '/src/images/inside-bcms/settings/languages.png'
+import accountSettings from '/src/images/inside-bcms/settings/account-settings.jpg'
+import settingsLanguages from '/src/images/inside-bcms/settings/languages.jpg'
 import { TrashBin } from '@/components/icons/TrashBin'
 import { File } from '@/components/icons/File'
 
 # Settings
 
-Settings page is where you can manage backups, manage your account details, add languages and invite team members.
-
----
-
-## Creating a backup
-
-To create a backup of your CMS data, click on **Backups**, and then **Create new backup**. This might take some take, depending on the size of your CMS, but all backups will be located in one place and you can download them at any time.
-
-<Image
-  src={settingsBackups}
-  alt="Settings backups"
-  className="h-auto w-auto"
-  unoptimized
-/>
-
-To download a backup, click on <File />. To delete a backup, click on <TrashBin />.
-
----
-
-## Editing account
-
-To edit your account data, click on **Edit account**. This will redirect you to the page, where you can edit your email, avatar, email etc.
+Settings page is where you can manage your account details, add languages, manage subscription and billing and invite team members.
 
 ---
 
@@ -46,8 +25,6 @@ To add a language click on the **Add** button, which will give you the list of a
 When you add a new language, whenever you fetch CMS data, you will be fetching [entry](/inside-bcms/entries) data with all selected languages.
 You will also see a language dropdown in every entry.
 
-
-
 To delete a language, click on the **X** from the language card.
 
 <Note>English is the default language in BCMS, so you won't be able to delete it. Any other language you can delete, but note that this will also remove all data you added for that language.</Note>
@@ -56,6 +33,19 @@ To delete a language, click on the **X** from the language card.
 
 ## Invite team members
 
-To invite a new team member, click on **Invite a new member**. This will redirect you to cloud, where you can [manage team](/cloud/team).
+To invite a new team member, enter their name and click **Invite a member**.
 
 <Note>Only admins are able to manage team members.</Note>
+
+---
+
+## Account settings
+
+To edit your email or name, click on **Account settings** under your name in the sidebar.
+
+<Image
+  src={accountSettings}
+  alt="Account settings"
+  className="h-auto w-auto"
+  unoptimized
+/>
