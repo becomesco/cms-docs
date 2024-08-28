@@ -14,13 +14,13 @@ const resources = [
       'Learn how to integrate BCMS into your codebase(s) and tools.',
     icon: UserIcon,
   },
-  {
-    href: 'https://github.com/bcms/cms',
-    name: 'Github',
-    description:
-      'BCMS is open-source software. Favorite the repository and help us spread a word!',
-    icon: ChatBubbleIcon,
-  },
+  // {
+  //   href: 'https://github.com/bcms/cms',
+  //   name: 'Github',
+  //   description:
+  //     'BCMS is open-source software. Favorite the repository and help us spread a word!',
+  //   icon: ChatBubbleIcon,
+  // },
   {
     href: 'https://discord.com/invite/SYBY89ccaR',
     name: 'Discord Community',
