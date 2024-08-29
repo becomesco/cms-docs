@@ -1,198 +1,154 @@
-import Image from 'next/image'
-import bcmsWebsiteCreate from '/src/images/integrations/next-js/bcms-website-create.gif'
-import workingWithBcmsImage from '/src/images/integrations/next-js/bcms-image-and-next-js.jpg'
-
-export const sections = [
-  { title: 'Starting from scratch', id: 'starting-a-project-from-scratch' },
-  {
-    title: 'Adding BCMS to existing project',
-    id: 'adding-bcms-to-an-existing-next-js-project-in-6-steps',
-  },
-  {
-    title: 'Project structure',
-    id: 'next-js-and-bcms-project-structure',
-  },
-  {
-    title: 'Getting data from BCMS',
-    id: 'how-to-get-data-from-bcms-on-a-next-js-page',
-  },
-  {
-    title: 'BCMSImage Component',
-    id: 'working-with-bcms-image-next-js-component',
-  },
-  {
-    title: 'Where to deploy',
-    id: 'where-to-deploy-next-js-and-bcms-code',
-  },
-]
-
 # Getting started with Next.js and BCMS
 
-This is the Next.js plugin documentation for the BCMS. In this article, you'll learn everything you need to get started using BCMS and Next.js.
+This is the Next.js plugin documentation for the BCMS. In this article, you'll
+learn everything you need to get started using BCMS and Next.js. Let's start!
 
 ---
 
-## Starting a Next.js project from scratch
+- Open your BCMS project on https://app.thebcms.com
+- Make sure that you have some Entries in the BCMS project so that we can fetch
+data and display it in Next.js. For example, you can create a Template called
+**Blog** and add Media property called **Cover image**.
 
-If you are starting a Next.js project from scratch, and want to connect it with BCMS, you can initialize Next.js project by using the [BCMS CLI](/cli). Through an interactive terminal questionary, BCMS CLI will set the codebase up for you.
+![Create a Blog template](/integration/1.png)
 
-After installing BCMS CLI globally, you should be able to create a Next.js project and connect it with BCMS by running: `bcms --website create`. Here you can read more about [BCMS CLI](/cli).
+- Now you can create a new Blog entry with title **My First Blog**, add some cover
+image to it and add lorem ipsum content.
 
-After running the create command, you will be prompted to decide on a few options:
+![Create new Blog entry](/integration/2.png)
 
-- For the project name, you can enter your project's name
-- For framework - select Next.js
-- When asked if you want to connect to the BCMS, answer with yes. After this, you'll be able to select the BCMS to connect to. If you are using a local BCMS, select the local one. However, if you are using the live version - select Live.
-- Since your Next.js project needs an [API key](/inside-bcms/api-keys) to be able to access the data from the BCMS, in the next step, you'll need to select an API key that you want to use. If you haven't created any API keys yet, CLI will automatically create one. If BCMS CLI finds any API key, it will let you select one, or create a new one.
+- Navigate to _Administration/Settings/Api keys_
+- Here you can create a new Api key. After you've created the key, leave the page opened because we will need Api key information in next steps.
+- Make sure that Key can get Entries from Blog Template (see image bellow).
 
-After completing all the above steps, the CLI will initialize the project and install dependencies. Then, you can open the project in your favorite code editor and run `npm run dev`. Now you can navigate to <code className='text-green dark:text-yellow'>localhost:3000</code>.
+![Api key created](/integration/3.png)
 
-## Adding BCMS to an existing Next.js project in 6 steps
+- After this, open your terminal of choice and create a new Next.js project
+using Next.js starter: `npx create-next-app@latest`
+- Open the project in your code editor.
+- Install BCMS related packages with: `npm i --save @thebcms/cli @thebcms/client @thebcms/components-react`
+- Open `package.json` and modify scripts to look like in example bellow:
 
-The fastest way to use BCMS with Next.js is to create a new project using BCMS CLI. But if you want to [add BCMS to an existing Next.js project, here are the steps](/integrations/next-js/bcms-and-an-existing-project)
-
-## Next.js & BCMS project structure
-
-By default, BCMS CLI creates a typical NextJS project. However, you might spot a few new files and folders. Here is what they are:
-
-- `./bcms.config.js` - Where the [BCMS Most](https://github.com/bcms/most) configuration is. BCMS most is an API layer between the BCMS and your project. In short, the Most makes it easy to get data from the BCMS and synchronize it in real-time.
-- `./bcms.routes.js` - Here you can define custom API routes in the Most server (by default running on localhost:3001). This is an advanced feature.
-- `./bcms` - This is a dynamic directory created by the Most, and it is used for caching data and storing data types from the BCMS. Yes, If you are using [TypeScript](https://www.typescriptlang.org/), [GraphQL](https://graphql.org/), or even [JSDoc](https://jsdoc.app/), BCMS got you covered - with automatically typed BCMS!
-
-That's all the stuff related to the BCMS. Everything else in your project's folder is the vanilla Next.js.
-
-## How to get data from BCMS on a Next.js page
-
-There are two ways you can get data from the BCMS and display it on the page.
-
-Using the BCMS Client, and using BCMS Most. Here's an example, and the differences.
-For examle, you have Blog entries in your BCMS, and you want to display one blog post on the path `/blog/{blog-slug}`.
-
-### Getting data on the Next.js page with BCMS Client
-
-<CodeGroup>
-```javascript
-import { GetServerSideProps } from 'next';
-import { getBcmsClient } from 'next-plugin-bcms';
-import React, { FC } from 'react';
-import { BlogsEntry } from '../../bcms/types';
-
-interface Props {
-  blog: BlogsEntry;
+```json
+"scripts": {
+  "dev": "bcms --pull types --lng ts && next dev",
+  "build": "bcms --pull types --lng ts && next build",
+  "start": "bcms --pull types --lng ts && next start",
+  "lint": "bcms --pull types --lng ts && next lint"
 }
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const client = getBcmsClient();
-  const blog: BlogsEntry = await client.entry.get({
-    template: 'blogs',
-    entry: 'awesome-first-blog-slug',
-  });
-  return {
-    props: {
-      blog,
-    } as Props,
-  };
-};
-
-const Blog: FC<Props> = (props) => {
-  return (
-    <pre>
-      {JSON.stringify(props.blog, null, ' ')}
-    </pre>
-  );
-};
-
-export default Blog;
 ```
-</CodeGroup>
 
-### Getting data on the Next.js page using BCMS Most
+- You can see that we've added `bcms --pull types --lng ts`. This command will
+start BCMS CLI and pull types from the BCMS and store them in `/bcms/types/*`.
+Generated types are valid for JavaScript and TypeScript.
 
-<CodeGroup>
-```javascript
-import { GetServerSideProps } from 'next';
-import { getBcmsMost } from 'next-plugin-bcms';
-import React, { FC } from 'react';
-import { BlogsEntry } from '../../bcms/types';
+- If you are using TypeScript, open `tsconfig.json` and set `moduleResolution`
+to `Node`:
 
-interface Props {
-  blog: BlogsEntry;
+```json
+{
+    "compilerOptions": {
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "noEmit": true,
+        "esModuleInterop": true,
+        "module": "esnext",
+        "moduleResolution": "Node", <-- This line
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "jsx": "preserve",
+        "incremental": true,
+        "plugins": [
+            {
+                "name": "next"
+            }
+        ],
+        "paths": {
+            "@/*": ["./src/*"]
+        }
+    },
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+    "exclude": ["node_modules"]
 }
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const most = getBcmsMost();
-  const blog: BlogsEntry | null = await most.content.entry.findOne(
-    'blogs',
-    async (e) => e.meta.en.slug === 'awesome-first-blog-slug',
-  );
-  if (!blog) {
-    return {
-      notFound: true,
-    };
-  }
-  return {
-    props: {
-      blog,
-    } as Props,
-  };
-};
-
-const Blog: FC<Props> = (props) => {
-  return (
-    <pre>
-      {JSON.stringify(props.blog, null, ' ')}
-    </pre>
-    );
-  };
-export default Blog;
 ```
-</CodeGroup>
 
-### What is the difference between getting data using BCMS Client and BCMS Most
+- Create new file in the root of the project called `bcms.config.cjs` and add
+CLI configuration like shown bellow:
 
-The simple answer is that BCMS Client will make an API request to the BCMS every time, while BCMS Most will check the local cache and decide if it needs to make an API request or not.
+```js
+module.exports = {
+    client: {
+        orgId: "YOUR_PROJECT_ORG_ID",
+        instanceId: "YOUR_PROJECT_INSTANCE_ID",
+        apiKey: {
+            id: "API_KEY_ID",
+            secret: "API_KEY_SECRET",
+        },
+    },
+};
+```
 
-There are more details to this answer but simply put, for now: if you want to deploy your application to Vercel or Netlify, you should use BCMS Client, and if you are deploying to Railway or DigitalOcean App Platform, you should use BCMS Most.
+- All information for this configuration can be found on Api key page (page on
+which you've created an Api key in previous steps).
+- One more thing and we are ready to fetch our blogs. In `/src` directory
+create a new file called `bcms.ts`. Inside of it we will initialize BCMS Client
+and expose it so that we can use it inside of the pages.
 
-## Working with BCMSImage Next.js component
+```ts
+import { Client } from "@thebcms/client";
 
-You probably love when images on the web are sharp and high-quality. But you also love fast websites. Why can't you have both, you wonder? Well, BCMS Image lets you have both. To simplify handling responsive images and performance optimization, BCMS comes with the BCMSImage component.
-
-To start, import BCMSImage component, and pass an object from BCMS, containing an image. In the example below, the prop is `cover_image` object.
-
-<CodeGroup>
-```javascript
-return (
-  <div>
-    {props.entry.meta.en?.cover_image && (
-      <BCMSImage media={props.entry.meta.en.cover_image} />
-    )}
-    <pre>
-      <code>{JSON.stringify(props.entry, null, '  ')}</code>
-    </pre>
-  </div>
+// All values are same as in `bcms.config.cjs`
+export const bcms = new Client(
+    "ORG_ID",
+    "INSTANCE_ID",
+    {
+        id: "API_KEY_ID",
+        secret: "API_KEY_SECRET",
+    },
+    {
+        injectSvg: true,
+    },
 );
 ```
-</CodeGroup>
 
-If you resize your browser, you'll see that the image size is changing. It's not some CSS magic, but the real image source is changing. If you inspect the image, you'll see that the image source is the same size as it appears on the screen.
+- Now we can go to `/src/app/page.tsx`, fetch data from the BCMS project and
+display it on the page:
 
-<Image
-  src={workingWithBcmsImage}
-  alt="Next.js headless cms - BCMS image and Next.js"
-  className="h-auto w-full"
-  unoptimized
-/>
+```tsx
+import { bcms } from "@/bcms";
+import { BlogEntry } from "../../bcms/types/ts";
+import { BCMSContentManager, BCMSImage } from "@thebcms/components-react";
 
-## Where to deploy Next.js & BCMS code
+export default async function Home() {
+    const blogs = (await bcms.entry.getAll("blog")) as BlogEntry[];
 
-You can deploy your Next.js application powered by the BCMS, anywhere you usually deploy Next.js. Just keep in mind that you won't benefit from BCMS Cache if you are deploying your app on a platform that uses serverless technology.
-Recommended platforms:
+    return (
+        <main>
+            <div className={`flex flex-col gap-4`}>
+                {blogs.map((blog, blogIdx) => {
+                    if (!blog.meta.en || !blog.content.en) {
+                        return "";
+                    }
+                    return (
+                        <div key={blogIdx} className={`flex flex-col gap-8`}>
+                            <h1 className={`mb-10 text-3xl`}>
+                                {blog.meta.en.title}
+                            </h1>
+                            <BCMSImage
+                                className={`w-full h-60 object-cover`}
+                                media={blog.meta.en.cover_image}
+                                clientConfig={bcms.getConfig()}
+                            />
+                            <BCMSContentManager items={blog.content.en} />
+                        </div>
+                    );
+                })}
+            </div>
+        </main>
+    );
+}
+```
 
-- [Railway](https://docs.railway.app/getting-started)
-- [DigitalOcean App Platform](https://docs.digitalocean.com/developer-center/deploying-a-next.js-application-on-a-digitalocean-droplet/)
-- [Heroku](https://heroku.com/)
-
-## What's next
-Great, you now have a fully set up Next.js with BCMS. Congrats! 🎉 <br />
-Now you can learn more about [Widgets](/inside-bcms/widgets) and [Groups](/inside-bcms/groups).
+That's it, happy coding!

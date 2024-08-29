@@ -37,6 +37,14 @@
   background-color: rgba(19, 20, 26, var(--tw-bg-opacity));
 }
 
+code {
+  white-space: nowrap;
+}
+
+pre code {
+  white-space: break-spaces;
+}
+
 .bcmsBody {
   -webkit-overflow-scrolling: touch;
   background-image: url(/gradient-small.png);
