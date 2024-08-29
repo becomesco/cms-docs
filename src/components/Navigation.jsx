@@ -197,7 +197,7 @@ export const navigation = [
       { title: 'Widgets', href: '/inside-bcms/widgets' },
       { title: 'Groups', href: '/inside-bcms/groups' },
       { title: 'Media', href: '/inside-bcms/media' },
-      { title: 'API manager', href: '/inside-bcms/api-manager' },
+      { title: 'API manager', href: '/inside-bcms/api-keys' },
       { title: 'Settings', href: '/inside-bcms/settings' },
       { title: 'Properties', href: '/inside-bcms/properties' },
     ],
