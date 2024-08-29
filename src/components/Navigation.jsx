@@ -40,7 +40,7 @@ function NavLink({ href, tag, active, isAnchorLink = false, children }) {
     >
       <span className="truncate">{children}</span>
       {tag && (
-        <Tag variant="small" color="zinc">
+        <Tag variant="small" color="emerald">
           {tag}
         </Tag>
       )}
@@ -141,8 +141,9 @@ function NavigationGroup({ group, className }) {
         <ul role="list" className="border-l border-transparent">
           {group.links.map((link) => (
             <motion.li key={link.href} layout="position" className="relative">
-              <NavLink href={link.href} active={link.href === router.pathname}>
+              <NavLink href={link.href} active={link.href === router.pathname} tag={link.tag}>
                 {link.title}
+                {/* {link.tag && <Tag variant="small">{link.tag}</Tag>} */}
               </NavLink>
               <AnimatePresence mode="popLayout" initial={false}>
                 {link.href === router.pathname && sections.length > 0 && (
@@ -208,6 +209,8 @@ export const navigation = [
       { title: 'Next.js', href: '/integrations/next-js' },
       { title: 'Gatsby.js', href: '/integrations/gatsby-js' },
       { title: 'Nuxt.js', href: '/integrations/nuxt-js' },
+      { title: 'Astro.js', href: '/integrations/astro-js', tag: 'Coming soon' },
+      { title: 'SvelteKit', href: '/integrations/sveltekit', tag: 'Coming soon'  },
     ],
   },
   // {
