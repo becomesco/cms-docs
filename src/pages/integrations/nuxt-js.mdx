@@ -1,290 +1,130 @@
-export const sections = [
-  { title: 'Starting from scratch', id: 'starting-a-project-from-scratch' },
-  {
-    title: 'Adding BCMS to existing project',
-    id: 'adding-bcms-to-an-existing-nuxt-project',
-  },
-  {
-    title: 'Getting data from BCMS',
-    id: 'getting-data-from-bcms-in-a-nuxt-page',
-  },
-  {
-    title: 'BCMSImage Component',
-    id: 'working-with-bcms-image-nuxt-js-component',
-  },
-]
-
 # Getting started with Nuxt.js and BCMS
 
-This is the Nuxt.js plugin documentation for the BCMS.
+This is the Nuxt.js plugin documentation for the BCMS. Let's start!
 
-## Starting a Nuxt.js project from scratch
+---
 
-If you are starting a Nuxt.js project from scratch, and want to connect it with BCMS, You can initialize Nuxt project by using the [BCMS CLI](/cli).
-Through an interactive terminal questionary, BCMS cli will set it up for you.
+- Open your BCMS project on https://app.thebcms.com
+- Make sure that you have some Entries in the BCMS project so that we can fetch
+data and display it in Nuxt.js. For example, you can create a Template called
+**Blog** and add Media property called **Cover image**.
 
-To install BCMS CLI globally, run `npm install @becomes/cms-cli -g`. After that, you should be able to create a Nuxt project and connect it with BCMS by running: `bcms --website create`. Here you can read more about [BCMS CLI](/cli). If you want to add BCMS to an existing Nuxt project, that's described [here]().
+![Create a Blog template](/integration/1.png)
 
-## Adding BCMS to an existing Nuxt project
+- Now you can create a new Blog entry with title **My First Blog**, add some cover
+image to it and add lorem ipsum content.
 
-Developers usualy start Nuxt.js & BCMS with [BCMS CLI](/cli) projects by running `bcms --website create`, like described above. If you want to add BCMS to an existing Nuxt.js project, follow along.
+![Create new Blog entry](/integration/2.png)
 
-First you'll need to install the BCMS Nuxt.js plugin by running `nuxt-plugin-bcms`. After that, add this code to your `nuxt.config.js` modules section:
+- Navigate to _Administration/Settings/Api keys_
+- Here you can create a new Api key. After you've created the key, leave the page opened because we will need Api key information in next steps.
+- Make sure that Key can get Entries from Blog Template (see image bellow).
 
-<CodeGroup>
-```javascript
-modules: [
-  ...
-  [
-    'nuxt-plugin-bcms',
-    createBcmsNuxtConfig({
-      cms: {
-        origin: process.env.BCMS_API_ORIGIN /** your BCMS_API_ORIGIN */,
-        key: {
-          id:  process.env.BCMS_API_KEY /** your BCMS_API_KEY */,
-          secret:  process.env.BCMS_API_SECRET /** your BCMS_API_SECRET */
-        },
-      },
-      websiteDomain: process.env.ORIGIN || 'http://localhost:3000',
-      media: {
-        download: false,
-      },
-    }),
-  ],
-]
+![Api key created](/integration/3.png)
+
+- After this, open your terminal of choice and create a new Nuxt.js project
+using Nuxt.js starter: `npx nuxi@latest init <project-name>`
+- Open the project in your code editor.
+- Install BCMS related packages with: `npm i --save @thebcms/cli @thebcms/client @thebcms/components-vue`
+- Open `package.json` and modify scripts to look like in example bellow:
+
+```json
+"scripts": {
+  "build": "bcms --pull types --lng ts && nuxt build",
+  "dev": "bcms --pull types --lng ts && nuxt dev",
+  "generate": "bcms --pull types --lng ts && nuxt generate",
+  "preview": "bcms --pull types --lng ts && nuxt preview",
+  "postinstall": "bcms --pull types --lng ts && nuxt prepare"
+},
 ```
-</CodeGroup>
 
-## Getting data from BCMS in a Nuxt page
+- You can see that we've added `bcms --pull types --lng ts`. This command will
+start BCMS CLI and pull types from the BCMS and store them in `/bcms/types/*`.
+Generated types are valid for JavaScript and TypeScript.
 
-There are two ways how you can get data in Nuxt page.
+- If you are using TypeScript, open `tsconfig.json` and set `moduleResolution`
+to `Node`:
 
-The first is by using BCMS Client methods, available in Nuxt context with the name **$bcms**. The other way is by making API calls to the Nuxt middleware, by using **$bcms.request( ... )**. Depending on how complex your use case is, you'll chose the simpler on more complex one.
+```json
+{
+  // https://nuxt.com/docs/guide/concepts/typescript
+  "extends": "./.nuxt/tsconfig.json",
+  "compilerOptions": {
+    "moduleResolution": "Node"
+  }
+}
+```
 
-### Getting data in a Nuxt.js page using BCMS Client
+- Create new file in the root of the project called `bcms.config.cjs` and add
+CLI configuration like shown bellow:
 
-If you want to get an entry from Blog template, and the entry's slug is _'how-to-connect-bcms-and-nuxtjs'_, all you have to do is:
+```js
+module.exports = {
+    client: {
+        orgId: "YOUR_PROJECT_ORG_ID",
+        instanceId: "YOUR_PROJECT_INSTANCE_ID",
+        apiKey: {
+            id: "API_KEY_ID",
+            secret: "API_KEY_SECRET",
+        },
+    },
+};
+```
 
-<CodeGroup>
-  ```typescript {{ title: 'Nuxt.js 3' }}
-  const { data } = useAsyncData(async (ctx) => {
-    const blog = (await ctx?.$bcms.entry.get({
-      template: 'blog',
-      entry: 'how-to-connect-bcms-and-nuxtjs',
-    })) as BlogEntry;
-    return { blog }
-  });
-  ```
-</CodeGroup>
+- All information for this configuration can be found on Api key page (page on
+which you've created an Api key in previous steps).
+- One more thing and we are ready to fetch our blogs. In root of the project
+create a new file called `bcms.ts`. Inside of it we will initialize BCMS Client
+and expose it so that we can use it inside of the pages.
 
-For this particular use case, you will probably put this code in your `blog/_slug.vue` file, and set entry parameter to be dynamic, like this: `entry: ctx.route.params.slug`. After that, your blog's data is available in the `blog` variable.
+```ts
+import { Client } from "@thebcms/client";
 
-{/* TODO: The rest of the available $bcms options */}
+// All values are same as in `bcms.config.cjs`
+export const bcms = new Client(
+    "ORG_ID",
+    "INSTANCE_ID",
+    {
+        id: "API_KEY_ID",
+        secret: "API_KEY_SECRET",
+    },
+    {
+        injectSvg: true,
+    },
+);
+```
 
-### Getting data using Nuxt middleware API
+- Now we can go to `/app.vue`, fetch data from the BCMS project and
+display it on the page:
 
-When using BCMS with Nuxt middleware API, you don't call BCMS API endpoints every time you need something from the CMS. Instead, Nuxt middleware caches the reponse data in RAM, prividing fast response time and more flexibility. Here's how to set it up:
-
-Create a `bcms.routes.ts` file. Inside, create a simple configuration and an endpoint which will return list of all templates.
-
-<CodeGroup>
-  ```typescript
-import { createBcmsMostServerRoutes, createBcmsMostServerRoute } from '@becomes/cms-most';
-
-export default createBcmsMostServerRoutes({
-    '/template-list.json': createBcmsMostServerRoute({
-      method: 'get',
-      async handler({ bcms }) {
-        await bcms.template.pull();
-        const result = await bcms.template.find(async () => true);
-        return result.map((temp) => {
-          return {
-            title: temp.label,
-            slug: '/' + temp.name,
-          };
-        });
-      },
-    }),
-});
-````
-</CodeGroup>
-
-In the example above, there's an endpoint that returns a light model of all templates from the BCMS instance, containing only the _title_ and _slug_ properties of each template.
-
-You can now call this endpoint inside of _asyncData_, as shown bellow:
-
-<CodeGroup>
-```typescript
-const { data } = useAsyncData(async (ctx) => {
-  const result = await ctx?.$bcms.request<Array<{ title: string; slug: string }>>({
-    url: '/template-list.json',
-  });
-  return result;
-});
-````
-
-</CodeGroup>
-
-## Working with BCMSImage Nuxt.js component
-
-Images on the web are great. High-quality, sharp ones. But, fast websites are even more great! Why can't there be both? Well, BCMS Image lets you have both. To simplify handling responsive images and performance optimization, BCMS comes with the BCMSImage component.
-
-It automatically creates several variants of the source image, including WEBP format. To start, import BCMSImage component, and pass an object from BCMS, containing an image. In the example below, the prop is `cover_image` object.
-
-<CodeGroup>
-```html
+```vue
 <template>
-  ...
-  <BCMSImage :media="blog.meta.en.cover_image" />
+  <div>
+    <div v-for="(blog, blogIdx) in blogs" :key="blogIdx">
+        <BCMSImage :media="blog.meta.cover_image" :client="bcms" />
+        <BCMSContentManager :items="blog.content" />
+    </div>
+  </div>
 </template>
-<script lang="ts">
-  import BCMSImage from 'nuxt-plugin-bcms/components/image.vue';
-  export default Vue.extend({
-    components: {
-      BCMSImage,
-    },
-  });
-</script>
-````
-</CodeGroup>
 
-## Adding data from Nuxt.js to BCMS
+<script setup lang="ts">
+import {bcms} from "~/bcms";
+import type {BlogEntry, BlogEntryMetaItem} from "~/bcms/types/ts";
+import type {EntryContentParsedItem} from "@thebcms/client/types";
+import {BCMSContentManager, BCMSImage} from "@thebcms/components-vue";
 
-Now the things got a bit more spicy 🌶️. Is there a website that doesn't have a contact form / newsletter subscription form? Comment form even. When working with modern static site generators like Nuxt.js, developers usualy end up using some 3rd party form providers. With BCMS, you don't need to do that. The same way you get data from BCMS, you can add or update data.
-
-If you want to create a comment section, you could easily create a [template](/inside-bcms/templates), and name it *Comment* for example. It can contain properties like *full_name* and *message*.
-
-In your Nuxt.js code, you'll have something like this:
-
-<CodeGroup>
-```html
-<template>
-  <form @submit="handleSubmit()">
-    <label>
-      <span>Your name</span>
-      <input type="text" v-model="full_name" />
-    </label>
-    <label>
-      <span>Your message</span>
-      <textarea v-model="message"></textarea>
-    </label>
-  </form>
-</template>
-<script lang="ts">
-  export default Vue.extend({
-    data: {
-      return {
-        full_name: '',
-        message: '',
-      }
-    },
-    methods: {
-      async handleSubmit() {
-      const bcms = this.$bcms as BCMSNuxtPlugin;
-      const date = new Date();
-      await bcms.entry.create({
-        templateId: '1234567', /** Your template ID */
-        meta: [
-          {
-            lng: 'en',
-            props: [
-              {
-                id: 'title-prop-id', /** Your title prop ID */
-                data: [`Comment from ${date.toDateString()}`],
-              },
-              {
-                id: 'slug-prop-id', /** Your slug prop ID */
-                data: ['anthony-hopkins-comment'],
-              },
-              {
-                id: 'full_name-prop-id', /** Your full_name prop ID */
-                data: [this.full_name]
-              },
-               {
-                id: 'message-prop-id', /** Your message prop ID */
-                data: [this.message]
-              }
-            ],
-          },
-        ],
-        content: [
-          {
-            lng: 'en',
-            nodes: [
-              // ProseMirror nodes
-            ],
-            plainText: '',
-          },
-        ],
-      });
-    },
+const result = await useAsyncData(async () => {
+  const entries = await bcms.entry.getAll('blog') as BlogEntry[];
+  // Map entry to meta and content for English
+  return entries.map(entry => {
+    return {
+      meta: entry.meta.en as BlogEntryMetaItem,
+      content: entry.content.en as EntryContentParsedItem[]
     }
-  });
+  })
+})
+const blogs = result.data;
 </script>
-````
-</CodeGroup>
+```
 
-<Note>
-  `prop-id` of a property is displayed on the [template's page](/inside-bcms/templates).
-</Note>
-
-Now you'll be able to get data from your Nuxt.js aplication to your BCMS instance.
-
-<Note>
-Just don't forget to allow your API key in [API manager](/inside-bcms/api-keys) to add data to your *Contact* template.
-</Note>
-
-## Updateing BCMS data from Nuxt.js to BCMS
-
-The same way you create an entry, you can update an entry too. Here's how:
-
-<CodeGroup>
-```html
-<script lang="ts">
-  export default Vue.extend({
-    methods: {
-      async handleUpdate() {
-        const bcms = this.$bcms as BCMSNuxtPlugin;
-        const date = new Date();
-        await bcms.entry.update({
-          _id: '7654321', /** Your entry ID */
-          templateId: '1234567', /** Your template ID */
-          meta: [
-            {
-              lng: 'en',
-              props: [
-                {
-                  id: 'title-prop-id', /** Your title prop ID */
-                  data: [`Comment from ${date.toDateString()}`],
-                },
-                {
-                  id: 'slug-prop-id', /** Your slug prop ID */
-                  data: ['anthony-hopkins-comment'],
-                },
-                {
-                  id: 'full_name-prop-id', /** Your full_name prop ID */
-                  data: 'Anthony Hopkins'
-                },
-                {
-                  id: 'message-prop-id', /** Your message prop ID */
-                  data: 'First, principles, Clarice. Simplicity. Read Marcus Aurelius. Of each particular thing, ask what is it in itself? What is its nature?'
-                }
-              ],
-            },
-          ],
-          content: [
-            {
-              lng: 'en',
-              nodes: [
-                // ProseMirror nodes
-              ],
-              plainText: '',
-            },
-          ],
-        });
-      },
-    }
-  });
-</script>
-````
-</CodeGroup>
+That's it, happy coding!
