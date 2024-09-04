@@ -28,259 +28,246 @@ export const sections = [
 
 # Getting started with Gatsby.js and BCMS
 
-This is the guide for connecting Gatsby.js and BCMS. This article will teach you all the basics to begin working with BCMS and Gatsby.js.
+This is the guide for connecting Gatsby.js and BCMS. This article will teach you all the basics to begin working with BCMS and Gatsby.js. Let's start!
 
 ---
 
-## Starting a Gatsby.js project from scratch
+- Open your BCMS project on https://app.thebcms.com
+- Make sure that you have some Entries in the BCMS project so that we can fetch
+data and display it in Gatsby.js. For example, you can create a Template called
+**Blog** and add Media property called **Cover image**.
 
-If you are starting a Gatsby.js project from scratch, and want to connect it with BCMS, using [BCMS CLI](/cli) is a recommended way. Through an interactive terminal questionary, BCMS CLI will set the codebase up for you.
+![Create a Blog template](/integration/1.png)
 
-After installing BCMS CLI globally, you should be able to create a Gatsby.js project and connect it with BCMS by running: `bcms --website create`. Here you can read more about [BCMS CLI](/cli).
+- Now you can create a new Blog entry with title **My First Blog**, add some cover
+image to it and add lorem ipsum content.
 
-After running the create command, you will be prompted to decide on a few options:
+![Create new Blog entry](/integration/2.png)
 
-- For the project name, you can enter your project's name
-- For framework - select Gatsby.js
-- When asked if you want to connect to the BCMS, answer with yes. After this, you'll be able to select the BCMS to connect to. If you are using a local BCMS, select the local one. However, if you are using the live version - select Live.
-- Since your Gatsby.js project needs an [API key](/inside-bcms/api-keys) to be able to access the data from the BCMS, in the next step, you'll need to select an API key that you want to use. If you haven't created any API keys yet, CLI will automatically create one. If BCMS CLI finds any API key, it will let you select one, or create a new one.
+- Navigate to _Administration/Settings/Api keys_
+- Here you can create a new Api key. After you've created the key, leave the page opened because we will need Api key information in next steps.
+- Make sure that Key can get Entries from Blog Template (see image bellow).
 
-After completing all the above steps, the CLI will initialize the project and install dependencies. Then, you can open the project in your favorite code editor and run `npm run dev`. Now you can navigate to <code className='text-green dark:text-yellow'>localhost:3000</code>.
+![Api key created](/integration/3.png)
 
-## Adding BCMS to an existing Gatsby.js project in 3 steps
+- After this, open your terminal of choice and create a new Gatsby.js project
+using Gatsby.js CLI: `gatsby new`
+- Open the project in your code editor.
+- Install BCMS related packages with: `npm i --save @thebcms/cli @thebcms/client @thebcms/components-react`
+- Open `package.json` and modify scripts to look like in example bellow:
 
-The fastest way to use BCMS with Gatsby.js is to create a new project using BCMS CLI. But if you want to add BCMS to an existing Gatsby.js project, here are the steps:
-
-1. Install the plugin and its dependencies by running: `npm install -D gatsby-source-bcms @becomes/cms-most @becomes/cms-client`
-2. In `gatsby-config.js` add the plugin:
-
-<CodeGroup title="gatsby-config.js">
-```javascript
-import {createBcmsMostConfig} from '@becomes/cms-most';
-
-plugins: [
-  ...
-  {
-    resolve: 'gatsby-source-bcms',
-    options: createBcmsMostConfig({
-      cms: {
-        origin: process.env.BCMS_API_ORIGIN || 'https://becomes-starter-projects.yourbcms.com',
-        key: {
-          id: process.env.BCMS_API_KEY || '629dcd4dbcf5017354af6fe8',
-          secret: process.env.BCMS_API_KEY_SECRET || '7a3c5899f211c2d988770f7561330ed8b0a4b2b5481acc2855bb720729367896'
-        }
-      },
-      media: {
-        download: false
-      }
-    }),
-  }
-]
-
-export default Blog;
+```json
+"scripts": {
+  "develop": "bcms --pull types --lng ts && gatsby develop",
+  "start": "bcms --pull types --lng ts && gatsby develop",
+  "build": "bcms --pull types --lng ts && gatsby build",
+  "serve": "bcms --pull types --lng ts && gatsby serve",
+  "clean": "gatsby clean",
+  "typecheck": "tsc --noEmit"
+},
 ```
-</CodeGroup>
 
-## Gatsby.js & BCMS project structure
+- You can see that we've added `bcms --pull types --lng ts`. This command will
+start BCMS CLI and pull types from the BCMS and store them in `/bcms/types/*`.
+Generated types are valid for JavaScript and TypeScript.
+- Create new file in the root of the project called `bcms.config.cjs` and add
+CLI configuration like shown bellow:
 
-By default, BCMS CLI creates a typical Gatsby.js project. However, you might spot a few new files and folders. Here's what they are.
-
-- `./gatsby-config.js` - This is a typical Gatsby configuration file. But now there is BCMS plugin initialization.
-- `./bcms.routes.js` - Here you can define custom API routes in the Most server (by default running on localhost:3001). This is an advanced feature.
-- `./gatsby-node.js` - Here, you have access to the [BCMS Most](https://github.com/bcms/most) and can create dynamic pages.
-
-That's all the stuff related to the BCMS. Everything else in your project's folder is the vanilla Gatsby.js.
-
-## How to get data from BCMS on a Gatsby.js page?
-
-There are two ways you can get data from the BCMS and display it on the page.
-Using Gatsby GraphQL, and using Gatsby Node and BCMS Most.
-
-### Getting data on the Gatsby.js page with BCMS and GraphQL
-
-<Note>
-  Please keep in mind that this is just an example, and that you probably need to adapt it to your data structure.
-</Note>
-
-<CodeGroup title="pages/example.tsx">
-```javascript
-import { graphql } from 'gatsby';
-import React, { FC } from 'react';
-/**
- * These types are autogenerated by the BCMS Most.
- */
-import type { PagesEntry } from '../../bcms/types-ts';
-
-interface Ctx {
-  data: {
-    page: {
-      bcms: PagesEntry;
-    };
-  };
-}
-
-const Example: FC<Ctx> = ({ data }) => {
-  return (
-    <pre>
-      <code>{JSON.stringify(data.page.bcms, null, '  ')}</code>
-    </pre>
-  );
-};
-
-export default Example;
-
-export const query = graphql`
-  query {
-    page: bcmsPages(bcms: { meta: { en: { slug: { eq: "example" } } } }) {
-      bcms {
-        content {
-          en {
-            value
-            type
-            name
-            isValueObject
-            attrs {
-              level
-            }
-          }
-        }
-        createdAt
-        userId
-        updatedAt
-        templateId
-        status
-        meta {
-          en {
-            title
-            slug
-            cover_image {
-              _id
-              alt_text
-              width
-              src
-              name
-              height
-              caption
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-```
-</CodeGroup>
-
-### Getting data on the Gatsby.js page using BCMS Most and Gatsby Node
-
-<CodeGroup title="templates/example.tsx">
-```javascript
-import React, { FC } from 'react';
-/**
- * This types are autogenerated by the BCMS Most.
- */
-import { PagesEntry } from '../../bcms/types-ts';
-
-interface Props {
-  pageContext: {
-    page: PagesEntry;
-  };
-}
-
-const Example: FC<Props> = (props) => {
-  const ctx = props.pageContext;
-  return (
-    <pre>
-      <code>{JSON.stringify(ctx.page, null, '  ')}</code>
-    </pre>
-  );
-};
-
-export default Example;
-```
-</CodeGroup>
-
-<CodeGroup title="gatsby-node.ts">
-```javascript
-import * as path from 'path';
-import { CreatePagesArgs } from 'gatsby';
-import { getBcmsMost } from 'gatsby-source-bcms';
-
-export const createPages = async (data: CreatePagesArgs) => {
-  const most = getBcmsMost();
-  const {
-    actions: { createPage },
-  } = data;
-
-  const examplePageData = await most.content.entry.findOne(
-    'pages',
-    async (item) => item.meta.en.slug === 'example',
-  );
-  createPage({
-    component: path.resolve('src/templates/example.tsx'),
-    path: '/example',
-    context: {
-      page: examplePageData,
+```js
+module.exports = {
+    client: {
+        orgId: "YOUR_PROJECT_ORG_ID",
+        instanceId: "YOUR_PROJECT_INSTANCE_ID",
+        apiKey: {
+            id: "API_KEY_ID",
+            secret: "API_KEY_SECRET",
+        },
     },
-  });
 };
 ```
-</CodeGroup>
 
-### What's the difference between getting data using GraphQL and BCMS Most
+- All information for this configuration can be found on Api key page (page on
+which you've created an Api key in previous steps).
+- One more thing and we are ready to fetch our blogs. In root directory
+create a new file called `bcms-client.ts`. Inside of it we will initialize BCMS Client
+and expose it so that we can use it inside of page templates.
 
-In hort, it comes down to the developer's personal preference.
+```ts
+import { Client } from "@thebcms/client";
 
-## Working with BCMSImage Gatsby.js component
-
-Usually, websites have a lot of images for blogs, banners, posts, users, and animations...
-To simplify handling responsive images and performance optimization, BCMS comes with the BCMSImage component.
-
-BCMSImage is a powerful component, super easy to use.
-BCMSImage automatically creates multiple variants of the source image, including WEBP format.
-See how to use BCMSImage and what you can do with it:
-
-To start, import BCMSImage component, and pass an object from BCMS, containing an image. In the example below, the prop is `cover_image` object.
-
-<CodeGroup>
-```javascript
-return (
-  <Layout>
-    {props.entry.meta.en?.cover_image && (
-      <BCMSImage media={props.entry.meta.en.cover_image} />
-    )}
-    <pre>
-      <code>{JSON.stringify(props.entry, null, '  ')}</code>
-    </pre>
-  </Layout>
+// All values are same as in `bcms.config.cjs`
+export const bcms = new Client(
+    "ORG_ID",
+    "INSTANCE_ID",
+    {
+        id: "API_KEY_ID",
+        secret: "API_KEY_SECRET",
+    },
+    {
+        injectSvg: true,
+    },
 );
 ```
-</CodeGroup>
 
-If you change the size of the viewport, you'll see that the image size is changing. It's not some CSS magic, but the real image source is changing. If you inspect the image, you'll see that the image source is the same size as it appears on the screen.
+- Now we can create 2 page templates, page which will list all blogs: `./src/templates/blogs.tsx` and
+page which will display blog data: `./src/templates/blog.tsx`
 
-<Image
-  src={workingWithBcmsImage}
-  alt="Gatsby.js headless cms - BCMS image and Gatsby.js"
-  className="h-auto w-full"
-  unoptimized
-/>
+```tsx
+// src/templates/blog.tsx
 
-To learn more about responsive images and BCMS, read about [BCMSImage component](/components/bcms-image) documentation.
+import React from 'react';
+import { BlogEntryMetaItem } from '../../bcms/types/ts';
+import { EntryContentParsedItem } from '@thebcms/client/types';
+import { BCMSContentManager, BCMSImage } from '@thebcms/components-react';
+import { bcms } from '../../bcms-client';
 
----
+export interface BlogPageTemplateProps {
+    blog: {
+        meta: BlogEntryMetaItem;
+        content: EntryContentParsedItem[];
+    };
+}
 
-## Where to deploy Gatsby.js & BCMS code
+export const BlogPageTemplate: React.FC<{
+    pageContext: BlogPageTemplateProps;
+}> = ({ pageContext: { blog } }) => {
+    return (
+        <div className={`flex flex-col items-center`}>
+            <div className={`relative w-full h-[450px]`}>
+                <BCMSImage
+                    media={blog.meta.cover_image}
+                    clientConfig={bcms.getConfig()}
+                    className={`w-full h-full object-cover`}
+                />
+                <div
+                    className={`absolute top-0 left-0 w-full h-full bg-black bg-opacity-30 backdrop-blur-sm flex flex-col gap-2 items-center justify-center`}
+                >
+                    <div className={`text-3xl text-white font-bold`}>
+                        {blog.meta.title}
+                    </div>
+                </div>
+            </div>
+            <div className={`max-w-[640px] w-full mt-36`}>
+                <BCMSContentManager items={blog.content} />
+            </div>
+        </div>
+    );
+};
 
-You can deploy your BCMS-powered Gatsby application anywhere you usually deploy your Gatsby applications.
-Keep in mind that, to benefit from BCMS Cache, you should avoid using platforms that serve applications in the serverless technology.
+export default BlogPageTemplate;
+```
 
-Recommended platforms:
+```tsx
+// src/templates/blogs.tsx
 
-- [Railway](https://docs.railway.app/getting-started)
-- [DigitalOcean App Platform](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-gatsby-application-to-digitalocean-app-platform)
-- [Heroku](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/deploying-to-heroku/)
+import React from 'react';
+import { BCMSImage } from '@thebcms/components-react';
+import { BCMSMedia } from '../../bcms/types/ts';
+import { bcms } from '../../bcms-client';
+import { Link } from 'gatsby';
 
-## What's next
-Great, you now have a fully set up Gatsby.js with BCMS. Congrats! 🎉 <br />
-Now you can learn more about [Widgets](/inside-bcms/widgets) and [Groups](/inside-bcms/groups).
+export interface BlogsPageTemplateProps {
+    blogs: Array<{
+        title: string;
+        image: BCMSMedia;
+        slug: string;
+    }>;
+}
+
+export const BlogsPageTemplate: React.FC<{
+    pageContext: BlogsPageTemplateProps;
+}> = ({ pageContext: { blogs } }) => {
+    return (
+        <div className={`flex flex-col gap-4`}>
+            {blogs.map((blog, blogIdx) => {
+                return (
+                    <Link
+                        to={`/blog/${blog.slug}`}
+                        key={blogIdx}
+                        className={`flex gap-2 items-center bg-gray-50`}
+                    >
+                        <div className={`w-20 h-20`}>
+                            <BCMSImage
+                                className={`w-full h-full object-cover`}
+                                media={blog.image}
+                                clientConfig={bcms.getConfig()}
+                                options={{
+                                    // Generate only images of
+                                    // specified sizes
+                                    sizes: [
+                                        {
+                                            width: 80,
+                                            height: 80,
+                                        },
+                                        {
+                                            width: 160,
+                                            height: 160,
+                                        },
+                                    ],
+                                }}
+                            />
+                        </div>
+                        <div className={`text-lg p-4`}>{blog.title}</div>
+                    </Link>
+                );
+            })}
+        </div>
+    );
+};
+
+export default BlogsPageTemplate;
+```
+
+- Since we made page templates, all that is left to do is to create pages
+from `gatsby-node.ts`
+
+```ts
+// gatsby-node.ts
+
+import { CreatePagesArgs } from 'gatsby';
+import { BlogEntry, BlogEntryMetaItem } from './bcms/types/ts';
+import path from 'path';
+import { bcms } from './bcms-client';
+import { BlogsPageTemplateProps } from './src/templates/blogs';
+import { BlogPageTemplateProps } from './src/templates/blog';
+import { EntryContentParsedItem } from '@thebcms/client/types';
+
+export const createPages = async ({
+    actions: { createPage },
+}: CreatePagesArgs) => {
+    const blogs = (await bcms.entry.getAll('blog')) as BlogEntry[];
+    const blogsCtx: BlogsPageTemplateProps = {
+        blogs: blogs.map((blog) => {
+            const meta = blog.meta.en as BlogEntryMetaItem;
+            return {
+                title: meta.title,
+                slug: meta.slug,
+                image: meta.cover_image,
+            };
+        }),
+    };
+    console.log(blogsCtx);
+    createPage({
+        path: '/blog',
+        component: path.resolve('./src/templates/blogs.tsx'),
+        context: blogsCtx,
+    });
+    for (let i = 0; i < blogs.length; i++) {
+        const blog = blogs[i];
+        const meta = blog.meta.en as BlogEntryMetaItem;
+        const blogCtx: BlogPageTemplateProps = {
+            blog: {
+                meta: meta,
+                content: blog.content.en as EntryContentParsedItem[],
+            },
+        };
+        createPage({
+            path: `/blog/${meta.slug}`,
+            component: path.resolve('./src/templates/blog.tsx'),
+            context: blogCtx,
+        });
+    }
+};
+```
+
+That's it, happy coding!
